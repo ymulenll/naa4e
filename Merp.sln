@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Infrastructure", "Merp.Infrastructure\Merp.Infrastructure.csproj", "{A55D9702-109E-44EA-9E7E-D3B0B49EF123}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Accountancy.CommandStack", "Merp.Accountancy.CommandStack\Merp.Accountancy.CommandStack.csproj", "{A30BA9D9-CE21-407A-94FB-F9C8C99564B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A55D9702-109E-44EA-9E7E-D3B0B49EF123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A55D9702-109E-44EA-9E7E-D3B0B49EF123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A55D9702-109E-44EA-9E7E-D3B0B49EF123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A55D9702-109E-44EA-9E7E-D3B0B49EF123}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A30BA9D9-CE21-407A-94FB-F9C8C99564B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A30BA9D9-CE21-407A-94FB-F9C8C99564B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A30BA9D9-CE21-407A-94FB-F9C8C99564B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A30BA9D9-CE21-407A-94FB-F9C8C99564B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
