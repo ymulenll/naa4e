@@ -33,12 +33,12 @@ namespace Merp.Infrastructure
             }
         }
 
-        public static void Send(Command command)
+        public static void Send<T>(T command) where T : Command
         {
             _Send(command);
         }
 
-        public static void RaiseEvent(DomainEvent @event)
+        public static void RaiseEvent<T>(DomainEvent @event) where T : DomainEvent
         {
             _Send(@event);
         }
