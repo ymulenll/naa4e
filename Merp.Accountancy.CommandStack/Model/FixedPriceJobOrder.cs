@@ -14,7 +14,8 @@ namespace Merp.Accountancy.CommandStack.Model
         public string Number { get; private set; }
         public DateTime DateOfStart { get; private set; }
         public DateTime DueDate { get; private set; }
-        public string Name { get; set; }
+        public string Name { get; private set; }
+        public bool IsCompleted { get; private set; }
 
         protected FixedPriceJobOrder()
         {
@@ -32,7 +33,8 @@ namespace Merp.Accountancy.CommandStack.Model
                     Price = price,
                     DateOfStart= dateOfStart,
                     DueDate=dueDate,
-                    Name = name
+                    Name = name,
+                    IsCompleted = false
                 };
                 return jobOrder;
             }
