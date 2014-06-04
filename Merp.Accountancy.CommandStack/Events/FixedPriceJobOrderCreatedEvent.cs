@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Merp.Accountancy.CommandStack.Events
 {
-    public class FixedPriceJobOrderCreated : DomainEvent
+    public class FixedPriceJobOrderCreatedEvent : DomainEvent
     {
         public Guid JobOrderId { get; private set; }
         public int CustomerId { get; private set; }
@@ -16,7 +16,7 @@ namespace Merp.Accountancy.CommandStack.Events
         public DateTime DueDate { get; private set; }
         public string JobOrderName { get; private set; }
 
-        public FixedPriceJobOrderCreated(Guid jobOrderId, int customerId, decimal price, DateTime dateOfStart, DateTime dueDate, string jobOrderName)
+        public FixedPriceJobOrderCreatedEvent(Guid jobOrderId, int customerId, decimal price, DateTime dateOfStart, DateTime dueDate, string jobOrderName)
         {
             JobOrderId = jobOrderId;
             CustomerId = customerId;

@@ -20,7 +20,7 @@ namespace Merp.Accountancy.CommandStack.Model
 
         protected FixedPriceJobOrder()
         {
-
+            
         }
 
         public class Factory

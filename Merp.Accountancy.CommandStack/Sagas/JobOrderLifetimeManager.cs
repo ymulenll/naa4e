@@ -35,7 +35,7 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 );
             var repository = new Repository<FixedPriceJobOrder>();
             repository.Save(jobOrder);
-            var @event = new FixedPriceJobOrderCreated(
+            var @event = new FixedPriceJobOrderCreatedEvent(
                 jobOrder.Id,
                 jobOrder.CustomerId,
                 jobOrder.Price,
