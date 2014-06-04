@@ -46,8 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database.cs" />
     <Compile Include="Denormalizers\JobOrderDenormalizer.cs" />
+    <Compile Include="MerpContext.cs" />
     <Compile Include="Model\FixedPriceJobOrder.cs" />
+    <Compile Include="IDatabase.cs" />
+    <Compile Include="Model\JobOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
