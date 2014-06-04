@@ -9,7 +9,7 @@ namespace Merp.Web.UI.Models.JobOrder
     public class CreateFixedPriceViewModel : IValidatableObject
     {
         [Required]
-        public string CustomerCode { get; set; }        
+        public int CustomerCode { get; set; }        
         [Required]
         public string Name { get; set; }
         [Required]

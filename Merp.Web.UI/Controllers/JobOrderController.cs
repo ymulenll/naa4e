@@ -41,6 +41,7 @@ namespace Merp.Web.UI.Controllers
             {
                 return View(model);
             }
+            WorkerServices.CreateFixedPriceJobOrder(model);
             return View(model);
         }
     }

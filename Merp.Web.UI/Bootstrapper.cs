@@ -2,6 +2,7 @@ using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using Unity.Mvc4;
 using Merp.Web.UI.WorkerServices;
+using Merp.Infrastructure;
 
 namespace Merp.Web.UI
 {
@@ -31,6 +32,7 @@ namespace Merp.Web.UI
 
     public static void RegisterTypes(IUnityContainer container)
     {
+        container.RegisterType<Bus, Bus>();
         container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
     }
   }

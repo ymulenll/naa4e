@@ -331,6 +331,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Merp.Accountancy.CommandStack\Merp.Accountancy.CommandStack.csproj">
+      <Project>{a30ba9d9-ce21-407a-94fb-f9c8c99564b4}</Project>
+      <Name>Merp.Accountancy.CommandStack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Merp.Infrastructure\Merp.Infrastructure.csproj">
+      <Project>{a55d9702-109e-44ea-9e7e-d3b0b49ef123}</Project>
+      <Name>Merp.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

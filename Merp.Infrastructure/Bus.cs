@@ -18,7 +18,7 @@ namespace Merp.Infrastructure
             sagaFactoryWrappers.Add(new SagaFactoryWrapper<T>(factory));
         }
 
-        public static void _Send<T>(T message) where T : Message
+        private static void _Send<T>(T message) where T : Message
         {
             if (sagaFactoryWrappers != null)
             {
