@@ -12,7 +12,20 @@ namespace Merp.Accountancy.QueryStack.Model
     {
         public void Handle(FixedPriceJobOrderCreatedEvent message)
         {
-            throw new NotImplementedException();
+            var fixedPriceJobOrder = new FixedPriceJobOrder();
+            fixedPriceJobOrder.CustomerId = message.CustomerId;
+            fixedPriceJobOrder.DateOfStart = message.DateOfStart;
+            fixedPriceJobOrder.DueDate = message.DueDate;
+            fixedPriceJobOrder.IsCompleted = message.IsCompleted;
+            fixedPriceJobOrder.Name = message.JobOrderName;
+            fixedPriceJobOrder.Number = string.Empty;
+            fixedPriceJobOrder.Price = message.Price;
+            
+            using(var db = new MerpContext())
+            {
+                db.JobOrders.Add(fixedPriceJobOrder);
+                db.SaveChanges();
+            }
         }
     }
 }

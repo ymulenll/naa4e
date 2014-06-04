@@ -9,6 +9,15 @@ namespace Merp.Infrastructure
     public class Bus
     {
         private static IList<SagaFactoryWrapper> sagaFactoryWrappers;
+        public static void RegisterHandler<T>(Func<T> factory)
+        {
+            if (sagaFactoryWrappers == null)
+            {
+                sagaFactoryWrappers = new List<SagaFactoryWrapper>();
+            }
+            sagaFactoryWrappers.Add(new SagaFactoryWrapper<T>(factory));
+        }
+
         public static void RegisterSaga<T>(Func<T> factory)
         {
             if (sagaFactoryWrappers == null)

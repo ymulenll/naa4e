@@ -4,6 +4,7 @@ using Unity.Mvc4;
 using Merp.Web.UI.WorkerServices;
 using Merp.Infrastructure;
 using Merp.Accountancy.CommandStack.Sagas;
+using Merp.Accountancy.QueryStack.Model;
 
 namespace Merp.Web.UI
 {
@@ -17,7 +18,11 @@ namespace Merp.Web.UI
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             Container = container;
 
+            //Sagas registration
             Bus.RegisterSaga(() => new JobOrderLifetimeManager(container.Resolve<Bus>()));
+
+            //Denormalizers registration
+            Bus.RegisterHandler(() => new JobOrderDenormalizer());
         }
 
         private static IUnityContainer BuildUnityContainer()

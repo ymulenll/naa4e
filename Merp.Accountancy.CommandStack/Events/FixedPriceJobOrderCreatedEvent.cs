@@ -15,6 +15,7 @@ namespace Merp.Accountancy.CommandStack.Events
         public DateTime DateOfStart { get; private set; }
         public DateTime DueDate { get; private set; }
         public string JobOrderName { get; private set; }
+        public bool IsCompleted { get; private set; }
 
         public FixedPriceJobOrderCreatedEvent(Guid jobOrderId, int customerId, decimal price, DateTime dateOfStart, DateTime dueDate, string jobOrderName)
         {
@@ -24,6 +25,7 @@ namespace Merp.Accountancy.CommandStack.Events
             DateOfStart = dateOfStart;
             DueDate = dueDate;
             JobOrderName = jobOrderName;
+            IsCompleted = false;
         }
     }
 }
