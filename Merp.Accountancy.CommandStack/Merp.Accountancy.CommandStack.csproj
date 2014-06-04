@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\FixedPriceJobOrderCreated.cs" />
     <Compile Include="Model\FixedPriceJobOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\CreateFixedPriceJobOrderCommand.cs" />

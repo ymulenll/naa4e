@@ -38,7 +38,7 @@ namespace Merp.Infrastructure
             _Send(command);
         }
 
-        public static void RaiseEvent<T>(DomainEvent @event) where T : DomainEvent
+        public static void RaiseEvent<T>(T @event) where T : DomainEvent
         {
             _Send(@event);
         }

@@ -12,12 +12,12 @@ namespace Merp.Web.UI
         public static IUnityContainer Container { get; private set; }
 
         public static void Initialise()
-        {
-            Bus.RegisterSaga(() => new JobOrderLifetimeManager());
-            
+        {   
             var container = BuildUnityContainer();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             Container = container;
+
+            Bus.RegisterSaga(() => new JobOrderLifetimeManager(container.Resolve<Bus>()));
         }
 
         private static IUnityContainer BuildUnityContainer()
