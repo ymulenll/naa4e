@@ -21,5 +21,15 @@ namespace Merp.Web.UI.Controllers
             var model = new CreateFixedPriceViewModel();
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult CreateFixedPrice(CreateFixedPriceViewModel model)
+        {
+            if(!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+            return View(model);
+        }
     }
 }
