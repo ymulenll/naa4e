@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Model\FixedPriceJobOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Commands\StartFixedPriceJobOrderCommand.cs" />
+    <Compile Include="Commands\CreateFixedPriceJobOrderCommand.cs" />
     <Compile Include="Sagas\JobOrderLifetimeManager.cs" />
   </ItemGroup>
   <ItemGroup>

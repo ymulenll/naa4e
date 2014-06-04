@@ -7,19 +7,21 @@ using Merp.Infrastructure;
 
 namespace Merp.Accountancy.CommandStack.Commands
 {
-    public sealed class StartFixedPriceJobOrderCommand : Command
+    public sealed class CreateFixedPriceJobOrderCommand : Command
     {
         public int CustomerId { get; private set; }
         public decimal Price { get; private set; }
         public DateTime DateOfStart { get; private set; }
         public DateTime DueDate { get; private set; }
+        public string JobOrderName { get; private set; }
 
-        public StartFixedPriceJobOrderCommand(int customerId, decimal price, DateTime dateOfStart, DateTime dueDate)
+        public CreateFixedPriceJobOrderCommand(int customerId, decimal price, DateTime dateOfStart, DateTime dueDate, string jobOrderName)
         {
             CustomerId = customerId;
             Price = price;
             DateOfStart = dateOfStart;
             DueDate = dueDate;
+            JobOrderName = jobOrderName;
         }
     }
 }

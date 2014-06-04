@@ -10,15 +10,16 @@ using Merp.Accountancy.CommandStack.Model;
 
 namespace Merp.Accountancy.CommandStack.Sagas
 {
-    public sealed class JobOrderLifetimeManager : IHandleMessage<StartFixedPriceJobOrderCommand>
+    public sealed class JobOrderLifetimeManager : IHandleMessage<CreateFixedPriceJobOrderCommand>
     {
-        public void Handle(StartFixedPriceJobOrderCommand message)
+        public void Handle(CreateFixedPriceJobOrderCommand message)
         {
             var jobOrder = FixedPriceJobOrder.Factory.CreateNewInstance(
                 message.CustomerId,
                 message.Price, 
                 message.DateOfStart, 
-                message.DueDate
+                message.DueDate,
+                message.JobOrderName
                 );
             var repository = new Repository<FixedPriceJobOrder>();
             repository.Save(jobOrder);

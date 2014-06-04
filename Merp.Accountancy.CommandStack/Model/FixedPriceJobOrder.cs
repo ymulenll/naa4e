@@ -14,7 +14,8 @@ namespace Merp.Accountancy.CommandStack.Model
         public string Number { get; private set; }
         public DateTime DateOfStart { get; private set; }
         public DateTime DueDate { get; private set; }
-        
+        public string Name { get; set; }
+
         protected FixedPriceJobOrder()
         {
 
@@ -22,7 +23,7 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public class Factory
         {
-            public static FixedPriceJobOrder CreateNewInstance(int customerId, decimal price, DateTime dateOfStart, DateTime dueDate)
+            public static FixedPriceJobOrder CreateNewInstance(int customerId, decimal price, DateTime dateOfStart, DateTime dueDate, string name)
             {
                 var jobOrder = new FixedPriceJobOrder() 
                 {
@@ -30,7 +31,8 @@ namespace Merp.Accountancy.CommandStack.Model
                     CustomerId = customerId,
                     Price = price,
                     DateOfStart= dateOfStart,
-                    DueDate=dueDate
+                    DueDate=dueDate,
+                    Name = name
                 };
                 return jobOrder;
             }
