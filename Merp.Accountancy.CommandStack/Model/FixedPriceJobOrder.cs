@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Merp.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Merp.Accountancy.CommandStack.Model
 {
-    public class FixedPriceJobOrder
+    public class FixedPriceJobOrder : Aggregate
     {
-        public Guid Id { get; private set; }
+        
         public decimal Price { get; private set; }
         public int CustomerId { get; private set; }
         public string Number { get; private set; }
