@@ -1,4 +1,5 @@
 ﻿using Merp.Web.UI.Models.JobOrder;
+using Merp.Web.UI.WorkerServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,17 @@ namespace Merp.Web.UI.Controllers
 {
     public class JobOrderController : Controller
     {
+        public JobOrderControllerWorkerServices WorkerServices { get; private set; }
+
+        public JobOrderController(JobOrderControllerWorkerServices workerServices)
+        {
+            if(workerServices==null)
+            {
+                throw new ArgumentNullException("workerServices");
+            }
+            WorkerServices = workerServices;
+        }
+
         // GET: JobOrder
         public ActionResult Index()
         {
