@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Merp.Infrastructure
 {
-    public class Bus
+    public class Bus : IBus
     {
         private static IList<SagaFactoryWrapper> sagaFactoryWrappers;
         public static void RegisterHandler<T>(Func<T> factory)
@@ -48,6 +48,16 @@ namespace Merp.Infrastructure
         }
 
         public static void RaiseEvent<T>(T @event) where T : DomainEvent
+        {
+            _Send(@event);
+        }
+
+        void IBus.Send<T>(T command)
+        {
+            _Send(command);
+        }
+
+        void IBus.RaiseEvent<T>(T @event)
         {
             _Send(@event);
         }

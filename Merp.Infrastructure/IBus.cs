@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Merp.Infrastructure
 {
-    public class Saga
+    public interface IBus
     {
-        //public IBus Bus { get; set; }
+        void Send<T>(T command) where T : Command;
+
+        void RaiseEvent<T>(T @event) where T : DomainEvent;
     }
 }

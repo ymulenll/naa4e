@@ -43,6 +43,7 @@
     <Compile Include="Bus.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="DomainEvent.cs" />
+    <Compile Include="IBus.cs" />
     <Compile Include="IHandleMessage.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
