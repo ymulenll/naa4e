@@ -1,4 +1,5 @@
-﻿using Merp.Infrastructure;
+﻿using Merp.Accountancy.CommandStack.Events;
+using Merp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,6 @@ namespace Merp.Accountancy.CommandStack.Model
 {
     public class FixedPriceJobOrder : Aggregate
     {
-        
         public decimal Price { get; private set; }
         public int CustomerId { get; private set; }
         public string Number { get; private set; }
@@ -21,6 +21,19 @@ namespace Merp.Accountancy.CommandStack.Model
         protected FixedPriceJobOrder()
         {
             
+        }
+
+        public void Extend(DateTime newDueDate, decimal price)
+        {
+            this.DueDate = newDueDate;
+            this.Price = price;
+
+            var @event = new FixedPriceJobOrderExtendedEvent(
+                this.Id, 
+                this.DueDate,
+                this.Price
+            );
+            RaiseEvent(@event);
         }
 
         public class Factory

@@ -11,11 +11,13 @@ using Merp.Accountancy.CommandStack.Events;
 
 namespace Merp.Accountancy.CommandStack.Sagas
 {
-    public sealed class JobOrderLifetimeManager : IHandleMessage<CreateFixedPriceJobOrderCommand>
+    public sealed class FixedPriceJobOrderLifetimeManager : 
+        IHandleMessage<CreateFixedPriceJobOrderCommand>,
+        IHandleMessage<ExtendFixedPriceJobOrderCommand>
     {
         public Bus Bus { get; private set; }
 
-        public JobOrderLifetimeManager(Bus bus)
+        public FixedPriceJobOrderLifetimeManager(Bus bus)
         {
             if(bus==null)
             {
@@ -44,6 +46,12 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 jobOrder.Name
                 );
             Bus.RaiseEvent(@event);
+        }
+
+        public void Handle(ExtendFixedPriceJobOrderCommand message)
+        {
+            var repository = new Repository<FixedPriceJobOrder>();
+            var jobOrder = repository.GetById(message.JobOrderId);
         }
     }
 }

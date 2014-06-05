@@ -19,7 +19,7 @@ namespace Merp.Web.UI
             Container = container;
 
             //Sagas registration
-            Bus.RegisterSaga(() => new JobOrderLifetimeManager(container.Resolve<Bus>()));
+            Bus.RegisterSaga(() => new FixedPriceJobOrderLifetimeManager(container.Resolve<Bus>()));
 
             //Denormalizers registration
             Bus.RegisterHandler(() => new JobOrderDenormalizer());
