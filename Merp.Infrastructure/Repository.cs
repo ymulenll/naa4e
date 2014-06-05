@@ -10,7 +10,17 @@ namespace Merp.Infrastructure
     {
         public void Save(T item)
         {
+            item.GetUncommittedEvents()
+                .ToList()
+                .ForEach(e => ManageEvent(e));
+            item.ClearUncommittedEvents();
+            //Persist aggregate snapshot   
+        }
 
+        private void ManageEvent(DomainEvent e)
+        {
+            //Save event
+            //Notity event via the bus
         }
 
         public T GetById(Guid id)
