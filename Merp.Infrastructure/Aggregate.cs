@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Merp.Infrastructure
 {
-    public class Aggregate
+    public abstract class Aggregate
     {
         public Guid Id { get; protected set; }
         private IList<DomainEvent> uncommittedEvents = new List<DomainEvent>();
