@@ -11,13 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Accountancy.QueryStack
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI", "src\Merp.Web.UI\Merp.Web.UI.csproj", "{94342F75-2140-407A-8579-33AE4D010BE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI.Tests", "src\Merp.Web.UI.Tests\Merp.Web.UI.Tests.csproj", "{42B0B356-49C7-436D-8957-4AC87F82FEB8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{2650331E-8B72-4FE7-99DB-9ED11EFE2CCF}"
 	ProjectSection(SolutionItems) = preProject
 		doc\Process.xlsx = doc\Process.xlsx
 		doc\SRS.docx = doc\SRS.docx
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI.Tests", "test\Merp.Web.UI.Tests\Merp.Web.UI.Tests.csproj", "{42B0B356-49C7-436D-8957-4AC87F82FEB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

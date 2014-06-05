@@ -102,7 +102,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Merp.Web.UI\Merp.Web.UI.csproj">
+    <ProjectReference Include="..\..\src\Merp.Web.UI\Merp.Web.UI.csproj">
       <Project>{94342F75-2140-407A-8579-33AE4D010BE0}</Project>
       <Name>Merp.Web.UI</Name>
     </ProjectReference>
