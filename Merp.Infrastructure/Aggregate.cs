@@ -9,7 +9,16 @@ namespace Merp.Infrastructure
     public abstract class Aggregate
     {
         public Guid Id { get; protected set; }
+
         private IList<DomainEvent> uncommittedEvents = new List<DomainEvent>();
+
+        public bool IsChanged 
+        { 
+            get 
+            { 
+                return this.uncommittedEvents.Any();  
+            } 
+        }
 
         public IEnumerable<DomainEvent> GetUncommittedEvents()
         {
