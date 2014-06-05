@@ -22,7 +22,7 @@ namespace Merp.Web.UI
             Bus.RegisterSaga(() => new FixedPriceJobOrderLifetimeManager(container.Resolve<Bus>()));
 
             //Denormalizers registration
-            Bus.RegisterHandler(() => new JobOrderDenormalizer());
+            Bus.RegisterHandler(() => new FixedPriceJobOrderDenormalizer());
         }
 
         private static IUnityContainer BuildUnityContainer()

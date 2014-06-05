@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
-    <Compile Include="Denormalizers\JobOrderDenormalizer.cs" />
+    <Compile Include="Denormalizers\FixedPriceJobOrderDenormalizer.cs" />
     <Compile Include="MerpContext.cs" />
     <Compile Include="Model\FixedPriceJobOrder.cs" />
     <Compile Include="IDatabase.cs" />

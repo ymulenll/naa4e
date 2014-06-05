@@ -52,6 +52,8 @@ namespace Merp.Accountancy.CommandStack.Sagas
         {
             var repository = new Repository<FixedPriceJobOrder>();
             var jobOrder = repository.GetById(message.JobOrderId);
+            jobOrder.Extend(message.NewDueDate, message.Price);
+            repository.Save(jobOrder);
         }
     }
 }
