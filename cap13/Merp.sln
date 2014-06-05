@@ -3,15 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Infrastructure", "Merp.Infrastructure\Merp.Infrastructure.csproj", "{A55D9702-109E-44EA-9E7E-D3B0B49EF123}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Infrastructure", "src\Merp.Infrastructure\Merp.Infrastructure.csproj", "{A55D9702-109E-44EA-9E7E-D3B0B49EF123}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Accountancy.CommandStack", "Merp.Accountancy.CommandStack\Merp.Accountancy.CommandStack.csproj", "{A30BA9D9-CE21-407A-94FB-F9C8C99564B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Accountancy.CommandStack", "src\Merp.Accountancy.CommandStack\Merp.Accountancy.CommandStack.csproj", "{A30BA9D9-CE21-407A-94FB-F9C8C99564B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI", "Merp.Web.UI\Merp.Web.UI.csproj", "{94342F75-2140-407A-8579-33AE4D010BE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Accountancy.QueryStack", "src\Merp.Accountancy.QueryStack\Merp.Accountancy.QueryStack.csproj", "{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI.Tests", "Merp.Web.UI.Tests\Merp.Web.UI.Tests.csproj", "{42B0B356-49C7-436D-8957-4AC87F82FEB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI", "src\Merp.Web.UI\Merp.Web.UI.csproj", "{94342F75-2140-407A-8579-33AE4D010BE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Accountancy.QueryStack", "Merp.Accountancy.QueryStack\Merp.Accountancy.QueryStack.csproj", "{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI.Tests", "src\Merp.Web.UI.Tests\Merp.Web.UI.Tests.csproj", "{42B0B356-49C7-436D-8957-4AC87F82FEB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{2650331E-8B72-4FE7-99DB-9ED11EFE2CCF}"
+	ProjectSection(SolutionItems) = preProject
+		doc\Process.xlsx = doc\Process.xlsx
+		doc\SRS.docx = doc\SRS.docx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +33,10 @@ Global
 		{A30BA9D9-CE21-407A-94FB-F9C8C99564B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A30BA9D9-CE21-407A-94FB-F9C8C99564B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A30BA9D9-CE21-407A-94FB-F9C8C99564B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94342F75-2140-407A-8579-33AE4D010BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94342F75-2140-407A-8579-33AE4D010BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94342F75-2140-407A-8579-33AE4D010BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,10 +45,6 @@ Global
 		{42B0B356-49C7-436D-8957-4AC87F82FEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42B0B356-49C7-436D-8957-4AC87F82FEB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42B0B356-49C7-436D-8957-4AC87F82FEB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
