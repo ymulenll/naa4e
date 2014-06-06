@@ -43,7 +43,8 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 jobOrder.Price,
                 jobOrder.DateOfStart,
                 jobOrder.DueDate,
-                jobOrder.Name
+                jobOrder.Name,
+                jobOrder.Number
                 );
             Bus.RaiseEvent(@event);
         }

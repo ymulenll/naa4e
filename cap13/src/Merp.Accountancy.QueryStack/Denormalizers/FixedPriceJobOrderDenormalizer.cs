@@ -18,11 +18,11 @@ namespace Merp.Accountancy.QueryStack.Model
             fixedPriceJobOrder.CustomerId = message.CustomerId;
             fixedPriceJobOrder.DateOfStart = message.DateOfStart;
             fixedPriceJobOrder.DueDate = message.DueDate;
-            fixedPriceJobOrder.IsCompleted = message.IsCompleted;
             fixedPriceJobOrder.Name = message.JobOrderName;
-            fixedPriceJobOrder.Number = string.Empty;
+            fixedPriceJobOrder.Number = message.JobOrderNumber;
             fixedPriceJobOrder.Price = message.Price;
-            
+            fixedPriceJobOrder.IsCompleted = false;   
+         
             using(var db = new MerpContext())
             {
                 db.JobOrders.Add(fixedPriceJobOrder);

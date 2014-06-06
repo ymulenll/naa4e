@@ -40,14 +40,16 @@ namespace Merp.Accountancy.CommandStack.Model
         {
             public static FixedPriceJobOrder CreateNewInstance(int customerId, decimal price, DateTime dateOfStart, DateTime dueDate, string name)
             {
+                var id = Guid.NewGuid();
                 var jobOrder = new FixedPriceJobOrder() 
                 {
-                    Id = Guid.NewGuid(),
+                    Id = id,
                     CustomerId = customerId,
                     Price = price,
                     DateOfStart= dateOfStart,
                     DueDate=dueDate,
                     Name = name,
+                    Number = string.Format("{0}/{1}", id.GetHashCode().ToString(), DateTime.Now.Year), 
                     IsCompleted = false
                 };
                 return jobOrder;
