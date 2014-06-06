@@ -18,11 +18,18 @@ namespace Merp.Web.UI
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             Container = container;
 
-            //Sagas registration
-            Bus.RegisterSaga(() => new FixedPriceJobOrderSaga(container.Resolve<Bus>()));
+            RegisterSagas();
 
-            //Denormalizers registration
-            Bus.RegisterHandler(() => new FixedPriceJobOrderDenormalizer());
+            ////Sagas registration
+            //Bus.RegisterSaga(() => new FixedPriceJobOrderSaga(container.Resolve<Bus>()));
+
+            ////Denormalizers registration
+            //Bus.RegisterHandler(() => new FixedPriceJobOrderDenormalizer());
+        }
+
+        private static void RegisterSagas()
+        {
+            ;
         }
 
         private static IUnityContainer BuildUnityContainer()
@@ -40,6 +47,7 @@ namespace Merp.Web.UI
 
         public static void RegisterTypes(IUnityContainer container)
         {
+            container.RegisterType<IBus, Bus>();
             container.RegisterType<Bus, Bus>();
             container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
         }

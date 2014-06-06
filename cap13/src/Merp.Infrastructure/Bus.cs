@@ -52,14 +52,31 @@ namespace Merp.Infrastructure
             _Send(@event);
         }
 
+        private static IList<Type> registeredSagas = new List<Type>();
+
+        void IBus.RegisterSaga<T>()
+        {
+            Type sagaType = typeof(T);
+            if(registeredSagas.Contains(sagaType))
+            {
+                throw new InvalidOperationException("The specified saga is already registered.");
+            }
+            registeredSagas.Add(sagaType);
+        }
+
+        void __Send<T>(T message) where T : Message
+        {
+
+        }
+
         void IBus.Send<T>(T command)
         {
-            _Send(command);
+            this.__Send(command);
         }
 
         void IBus.RaiseEvent<T>(T @event)
         {
-            _Send(@event);
+            this.__Send(@event);
         }
     }
 }

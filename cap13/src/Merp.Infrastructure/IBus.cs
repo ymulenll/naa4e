@@ -11,5 +11,7 @@ namespace Merp.Infrastructure
         void Send<T>(T command) where T : Command;
 
         void RaiseEvent<T>(T @event) where T : DomainEvent;
+
+        void RegisterSaga<T>() where T : Saga;
     }
 }
