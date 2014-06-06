@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 
 namespace Merp.Infrastructure
 {
-    public abstract class Aggregate
+    public abstract class Aggregate : IAggregate
     {
         public Guid Id { get; protected set; }
 
         private IList<DomainEvent> uncommittedEvents = new List<DomainEvent>();
 
-        public bool IsChanged 
+        Guid IAggregate.Id 
+        { 
+            get
+            {
+                return Id;
+            }
+        }
+
+        bool IAggregate.IsChanged 
         { 
             get 
             { 
@@ -20,17 +28,17 @@ namespace Merp.Infrastructure
             } 
         }
 
-        public IEnumerable<DomainEvent> GetUncommittedEvents()
+        IEnumerable<DomainEvent> IAggregate.GetUncommittedEvents()
         {
             return uncommittedEvents.ToArray();
         }
 
-        public void ClearUncommittedEvents()
+        void IAggregate.ClearUncommittedEvents()
         {
             uncommittedEvents.Clear();
         }
 
-        public void RaiseEvent(DomainEvent @event)
+        protected void RaiseEvent(DomainEvent @event)
         {
             uncommittedEvents.Add(@event);
         }

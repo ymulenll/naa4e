@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Merp.Infrastructure
 {
-    public class Repository<T> where T : Aggregate
+    public class Repository<T> where T : IAggregate
     {
         public void Save(T item)
         {
