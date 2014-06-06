@@ -41,11 +41,13 @@
   <ItemGroup>
     <Compile Include="Aggregate.cs" />
     <Compile Include="Bus.cs" />
+    <Compile Include="BusImpl.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="DomainEvent.cs" />
     <Compile Include="IAggregate.cs" />
     <Compile Include="IBus.cs" />
     <Compile Include="IHandleMessage.cs" />
+    <Compile Include="ISagaRepository.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />

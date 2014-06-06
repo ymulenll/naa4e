@@ -47,7 +47,7 @@ namespace Merp.Web.UI
 
         public static void RegisterTypes(IUnityContainer container)
         {
-            container.RegisterType<IBus, Bus>();
+            container.RegisterType<IBus, BusImpl>();
             container.RegisterType<Bus, Bus>();
             container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
         }
