@@ -9,15 +9,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Accountancy.CommandSta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Accountancy.QueryStack", "src\Merp.Accountancy.QueryStack\Merp.Accountancy.QueryStack.csproj", "{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI", "src\Merp.Web.UI\Merp.Web.UI.csproj", "{94342F75-2140-407A-8579-33AE4D010BE0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{2650331E-8B72-4FE7-99DB-9ED11EFE2CCF}"
 	ProjectSection(SolutionItems) = preProject
 		doc\Process.xlsx = doc\Process.xlsx
 		doc\SRS.docx = doc\SRS.docx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI.Tests", "test\Merp.Web.UI.Tests\Merp.Web.UI.Tests.csproj", "{42B0B356-49C7-436D-8957-4AC87F82FEB8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2FBCB788-130A-4718-A9B4-4CC778A93E6A}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI", "src\Merp.Web.UI\Merp.Web.UI.csproj", "{327C5C7F-6772-45E8-8087-2C43E1520149}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B1D4C268-52C0-448E-AFE1-6184A9A41950}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI.Tests", "test\Merp.Web.UI.Tests\Merp.Web.UI.Tests.csproj", "{C7A39701-1B5E-4EBF-81A5-CD98A66E7CC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,16 +46,19 @@ Global
 		{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C6564D4-6628-4A91-B9D2-C1402E6BB49F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94342F75-2140-407A-8579-33AE4D010BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94342F75-2140-407A-8579-33AE4D010BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94342F75-2140-407A-8579-33AE4D010BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94342F75-2140-407A-8579-33AE4D010BE0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42B0B356-49C7-436D-8957-4AC87F82FEB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42B0B356-49C7-436D-8957-4AC87F82FEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42B0B356-49C7-436D-8957-4AC87F82FEB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42B0B356-49C7-436D-8957-4AC87F82FEB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{327C5C7F-6772-45E8-8087-2C43E1520149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{327C5C7F-6772-45E8-8087-2C43E1520149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{327C5C7F-6772-45E8-8087-2C43E1520149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{327C5C7F-6772-45E8-8087-2C43E1520149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7A39701-1B5E-4EBF-81A5-CD98A66E7CC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7A39701-1B5E-4EBF-81A5-CD98A66E7CC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7A39701-1B5E-4EBF-81A5-CD98A66E7CC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7A39701-1B5E-4EBF-81A5-CD98A66E7CC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C7A39701-1B5E-4EBF-81A5-CD98A66E7CC5} = {B1D4C268-52C0-448E-AFE1-6184A9A41950}
 	EndGlobalSection
 EndGlobal
