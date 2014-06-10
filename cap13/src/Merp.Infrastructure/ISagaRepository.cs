@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Merp.Infrastructure
 {
-    public interface ISagaRepository
+    public interface ISagaRepository<T> where T : Saga
     {
     }
 }

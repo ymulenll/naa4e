@@ -11,8 +11,8 @@ using Merp.Accountancy.CommandStack.Events;
 
 namespace Merp.Accountancy.CommandStack.Sagas
 {
-    public sealed class FixedPriceJobOrderSaga : 
-        IHandleMessage<CreateFixedPriceJobOrderCommand>,
+    public sealed class FixedPriceJobOrderSaga : Saga,
+        IAmStartedBy<CreateFixedPriceJobOrderCommand>,
         IHandleMessage<ExtendFixedPriceJobOrderCommand>
     {
         public Bus Bus { get; private set; }
@@ -26,6 +26,11 @@ namespace Merp.Accountancy.CommandStack.Sagas
             Bus = bus;
         }
 
+        protected override void ConfigureSagaMappings()
+        {
+            ConfigureMapping<ExtendFixedPriceJobOrderCommand>(msg => msg.JobOrderId);
+        }
+
         public void Handle(CreateFixedPriceJobOrderCommand message)
         {
             var jobOrder = FixedPriceJobOrder.Factory.CreateNewInstance(
@@ -37,6 +42,7 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 );
             var repository = new Repository<FixedPriceJobOrder>();
             repository.Save(jobOrder);
+            this.Id = jobOrder.Id;
             var @event = new FixedPriceJobOrderCreatedEvent(
                 jobOrder.Id,
                 jobOrder.CustomerId,

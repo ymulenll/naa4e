@@ -45,6 +45,7 @@
     <Compile Include="Command.cs" />
     <Compile Include="DomainEvent.cs" />
     <Compile Include="IAggregate.cs" />
+    <Compile Include="IAmStartedBy.cs" />
     <Compile Include="IBus.cs" />
     <Compile Include="IHandleMessage.cs" />
     <Compile Include="ISagaRepository.cs" />
