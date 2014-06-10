@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Merp.Infrastructure
-{
+{ 
     public interface IAggregate
     {
         Guid Id { get; }
