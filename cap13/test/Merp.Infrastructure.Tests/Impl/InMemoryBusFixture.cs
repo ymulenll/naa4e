@@ -10,117 +10,130 @@ namespace Merp.Infrastructure.Tests.Impl
     [TestClass]
     public class InMemoryBusFixture
     {
-        [TestMethod]
-        public void RegisterSaga_should_throw_InvalidOperationException_on_type_arguments_that_do_not_implement_IAmStartedBy_interface()
+        [TestClass]
+        public class Constructor
         {
-            var containerMock = new Mock<IUnityContainer>().Object;
-            IBus bus = new InMemoryBus(containerMock);
-            Executing.This(() => bus.RegisterSaga<PretendingSaga>())
-                .Should()
-                .Throw<InvalidOperationException>();   
-        }
-
-        [TestMethod]
-        public void RegisterSaga_should_throw_InvalidOperationException_sagas_that_implements_IAmStartedBy_more_than_once()
-        {
-            var containerMock = new Mock<IUnityContainer>().Object;
-            IBus bus = new InMemoryBus(containerMock);
-            Executing.This(() => bus.RegisterSaga<OverloadedSaga>())
-                .Should()
-                .Throw<InvalidOperationException>();
-        }
-
-        [TestMethod]
-        public void RegisterSaga_should_not_throw_InvalidOperationException_on_type_arguments_that_implement_IAmStartedBy_interface()
-        {
-            var containerMock = new Mock<IUnityContainer>().Object;
-            IBus bus = new InMemoryBus(containerMock);
-            bus.RegisterSaga<DummySaga>(); 
-        }
-
-        [TestMethod]
-        public void Ctor_should_throw_ArgumentNullException_on_null_container_and_value_of_parameter_should_be_container()
-        {
-            Executing.This(() => new InMemoryBus(null))
-                           .Should()
-                           .Throw<ArgumentNullException>()
-                           .And
-                           .ValueOf
-                           .ParamName
-                           .Should()
-                           .Be
-                           .EqualTo("container");
-        }
-
-        public class PretendingSaga : Saga
-        {
-            public PretendingSaga(IBus bus) : base(bus)
+            [TestMethod]
+            public void Ctor_should_throw_ArgumentNullException_on_null_container_and_value_of_parameter_should_be_container()
             {
-
-            }
-
-            protected override void ConfigureSagaMappings()
-            {
-                
+                Executing.This(() => new InMemoryBus(null))
+                               .Should()
+                               .Throw<ArgumentNullException>()
+                               .And
+                               .ValueOf
+                               .ParamName
+                               .Should()
+                               .Be
+                               .EqualTo("container");
             }
         }
 
-        public class DummySaga : Saga, 
-            IAmStartedBy<DummySaga.DummyMessage>
+        [TestClass]
+        public class RegisterSagaMethod
         {
-            public class DummyMessage : Message
+            [TestMethod]
+            public void RegisterSaga_should_throw_InvalidOperationException_on_type_arguments_that_do_not_implement_IAmStartedBy_interface()
             {
-
+                var containerMock = new Mock<IUnityContainer>().Object;
+                IBus bus = new InMemoryBus(containerMock);
+                Executing.This(() => bus.RegisterSaga<PretendingSaga>())
+                    .Should()
+                    .Throw<InvalidOperationException>();   
             }
 
-            public DummySaga(IBus bus) : base(bus)
+            [TestMethod]
+            public void RegisterSaga_should_throw_InvalidOperationException_sagas_that_implements_IAmStartedBy_more_than_once()
             {
-
+                var containerMock = new Mock<IUnityContainer>().Object;
+                IBus bus = new InMemoryBus(containerMock);
+                Executing.This(() => bus.RegisterSaga<OverloadedSaga>())
+                    .Should()
+                    .Throw<InvalidOperationException>();
             }
 
-            protected override void ConfigureSagaMappings()
+            [TestMethod]
+            public void RegisterSaga_should_not_throw_InvalidOperationException_on_type_arguments_that_implement_IAmStartedBy_interface()
             {
-                throw new NotSupportedException();
+                var containerMock = new Mock<IUnityContainer>().Object;
+                IBus bus = new InMemoryBus(containerMock);
+                bus.RegisterSaga<DummySaga>(); 
             }
 
-            public void Handle(DummySaga.DummyMessage message)
+            public class PretendingSaga : Saga
             {
-                throw new NotSupportedException();
+                public PretendingSaga(IBus bus)
+                    : base(bus)
+                {
+
+                }
+
+                protected override void ConfigureSagaMappings()
+                {
+
+                }
+            }
+
+            public class DummySaga : Saga,
+                IAmStartedBy<DummySaga.DummyMessage>
+            {
+                public class DummyMessage : Message
+                {
+
+                }
+
+                public DummySaga(IBus bus)
+                    : base(bus)
+                {
+
+                }
+
+                protected override void ConfigureSagaMappings()
+                {
+                    throw new NotSupportedException();
+                }
+
+                public void Handle(DummySaga.DummyMessage message)
+                {
+                    throw new NotSupportedException();
+                }
+            }
+
+            public class OverloadedSaga : Saga,
+                IAmStartedBy<OverloadedSaga.FooMessage>,
+                IAmStartedBy<OverloadedSaga.BarMessage>
+            {
+                public class FooMessage : Message
+                {
+
+                }
+                public class BarMessage : Message
+                {
+
+                }
+
+                public OverloadedSaga(IBus bus)
+                    : base(bus)
+                {
+
+                }
+
+                protected override void ConfigureSagaMappings()
+                {
+                    throw new NotSupportedException();
+                }
+
+                public void Handle(OverloadedSaga.BarMessage message)
+                {
+                    throw new NotImplementedException();
+                }
+
+                public void Handle(OverloadedSaga.FooMessage message)
+                {
+                    throw new NotImplementedException();
+                }
             }
         }
 
-        public class OverloadedSaga : Saga,
-            IAmStartedBy<OverloadedSaga.FooMessage>,
-            IAmStartedBy<OverloadedSaga.BarMessage>
-        {
-            public class FooMessage : Message
-            {
-
-            }
-            public class BarMessage : Message
-            {
-
-            }
-
-            public OverloadedSaga(IBus bus) : base(bus)
-            {
-
-            }
-
-            protected override void ConfigureSagaMappings()
-            {
-                throw new NotSupportedException();
-            }
-
-            public void Handle(OverloadedSaga.BarMessage message)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void Handle(OverloadedSaga.FooMessage message)
-            {
-                throw new NotImplementedException();
-            }
-        }
+ 
     }
 }

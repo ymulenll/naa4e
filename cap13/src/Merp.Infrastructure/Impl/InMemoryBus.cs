@@ -12,7 +12,7 @@ namespace Merp.Infrastructure.Impl
         public IUnityContainer Container {get; private set;}
 
         private static IDictionary<Type, Type> registeredSagas = new Dictionary<Type, Type>();
-        
+        private static IDictionary<Type, Type> registeredHandlers = new Dictionary<Type, Type>();
 
         public InMemoryBus(IUnityContainer container)
         {
@@ -46,7 +46,8 @@ namespace Merp.Infrastructure.Impl
 
         void _Send<T>(T message) where T : Message
         {
-            
+            //var sagas = registeredSagas.Values
+            //                .Where(s => s.)
         }
 
         void IBus.Send<T>(T command)

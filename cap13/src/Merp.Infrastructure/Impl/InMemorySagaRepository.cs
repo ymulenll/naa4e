@@ -24,7 +24,7 @@ namespace Merp.Infrastructure.Impl
 
         public T GetById<T>(Guid id) where T : Saga
         {
-            return (T) runningSagas[id];
+            return runningSagas[id] as T;
         }
     }
 }

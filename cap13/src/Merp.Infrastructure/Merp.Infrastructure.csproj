@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Aggregate.cs" />
     <Compile Include="Bus.cs" />
+    <Compile Include="IEventStore.cs" />
     <Compile Include="Impl\InMemoryBus.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="DomainEvent.cs" />
