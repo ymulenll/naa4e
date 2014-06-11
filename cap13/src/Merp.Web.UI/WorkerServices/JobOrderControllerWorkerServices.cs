@@ -9,9 +9,9 @@ namespace Merp.Web.UI.WorkerServices
 {
     public class JobOrderControllerWorkerServices
     {
-        public Bus Bus { get; private set; }
+        public IBus Bus { get; private set; }
 
-        public JobOrderControllerWorkerServices(Bus bus)
+        public JobOrderControllerWorkerServices(IBus bus)
         {
             if(bus==null)
             {

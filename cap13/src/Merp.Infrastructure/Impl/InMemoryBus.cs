@@ -1,15 +1,27 @@
-﻿using System;
+﻿using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Merp.Infrastructure
+namespace Merp.Infrastructure.Impl
 {
-    public class BusImpl : IBus
+    public class InMemoryBus : IBus
     {
+        public IUnityContainer Container {get; private set;}
+
         private static IDictionary<Type, Type> registeredSagas = new Dictionary<Type, Type>();
-        private static IDictionary<Guid, Saga> runningSagas = new Dictionary<Guid, Saga>();
+        
+
+        public InMemoryBus(IUnityContainer container)
+        {
+            if(container==null)
+            {
+                throw new ArgumentNullException("container");
+            }
+            Container = container;
+        }
 
         void IBus.RegisterSaga<T>()
         {
@@ -25,6 +37,11 @@ namespace Merp.Infrastructure
                 GenericTypeArguments.
                 First();
             registeredSagas.Add(messageType, sagaType);
+        }
+
+        void IBus.RegisterHandler<T>()
+        {
+            throw new NotImplementedException();
         }
 
         void _Send<T>(T message) where T : Message

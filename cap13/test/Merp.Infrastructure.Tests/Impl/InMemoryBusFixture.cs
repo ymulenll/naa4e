@@ -1,16 +1,20 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using SharpTestsEx;
- 
-namespace Merp.Infrastructure.Tests
+using Microsoft.Practices.Unity;
+using Merp.Infrastructure.Impl;
+
+namespace Merp.Infrastructure.Tests.Impl
 {
     [TestClass]
-    public class BusImplFixture
+    public class InMemoryBusFixture
     {
         [TestMethod]
         public void RegisterSaga_should_throw_InvalidOperationException_on_type_arguments_that_do_not_implement_IAmStartedBy_interface()
         {
-            IBus bus = new BusImpl();
+            var containerMock = new Mock<IUnityContainer>().Object;
+            IBus bus = new InMemoryBus(containerMock);
             Executing.This(() => bus.RegisterSaga<PretendingSaga>())
                 .Should()
                 .Throw<InvalidOperationException>();   
@@ -19,7 +23,8 @@ namespace Merp.Infrastructure.Tests
         [TestMethod]
         public void RegisterSaga_should_throw_InvalidOperationException_sagas_that_implements_IAmStartedBy_more_than_once()
         {
-            IBus bus = new BusImpl();
+            var containerMock = new Mock<IUnityContainer>().Object;
+            IBus bus = new InMemoryBus(containerMock);
             Executing.This(() => bus.RegisterSaga<OverloadedSaga>())
                 .Should()
                 .Throw<InvalidOperationException>();
@@ -28,8 +33,23 @@ namespace Merp.Infrastructure.Tests
         [TestMethod]
         public void RegisterSaga_should_not_throw_InvalidOperationException_on_type_arguments_that_implement_IAmStartedBy_interface()
         {
-            IBus bus = new BusImpl();
+            var containerMock = new Mock<IUnityContainer>().Object;
+            IBus bus = new InMemoryBus(containerMock);
             bus.RegisterSaga<DummySaga>(); 
+        }
+
+        [TestMethod]
+        public void Ctor_should_throw_ArgumentNullException_on_null_container_and_value_of_parameter_should_be_container()
+        {
+            Executing.This(() => new InMemoryBus(null))
+                           .Should()
+                           .Throw<ArgumentNullException>()
+                           .And
+                           .ValueOf
+                           .ParamName
+                           .Should()
+                           .Be
+                           .EqualTo("container");
         }
 
         public class PretendingSaga : Saga
