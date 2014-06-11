@@ -134,6 +134,38 @@ namespace Merp.Infrastructure.Tests.Impl
             }
         }
 
- 
+        [TestClass]
+        public class SendMethod
+        {
+            [TestMethod]
+            public void Send()
+            {
+                var command = new InMemoryBusFixture.SendMethod.FakeSaga.StartCommand();
+                var containerMock = new Mock<IUnityContainer>().Object;
+                IBus bus = new InMemoryBus(containerMock);
+                bus.RegisterSaga<FakeSaga>();
+                bus.Send(command);
+            }
+
+            public class FakeSaga : Saga, IAmStartedBy<InMemoryBusFixture.SendMethod.FakeSaga.StartCommand>
+            {
+                public FakeSaga(IBus bus) : base(bus) { }
+
+                public void Handle(FakeSaga.StartCommand message)
+                {
+                    
+                }
+
+                protected override void ConfigureSagaMappings()
+                {
+                    
+                }
+
+                public class StartCommand : Command
+                {
+
+                }
+            }
+        }
     }
 }

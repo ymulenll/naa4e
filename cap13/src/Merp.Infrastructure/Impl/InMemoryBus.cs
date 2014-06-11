@@ -47,7 +47,7 @@ namespace Merp.Infrastructure.Impl
         void _Send<T>(T message) where T : Message
         {
             //var sagas = registeredSagas.Values
-            //                .Where(s => s.)
+            //                .Where(i => i.Name.StartsWith(typeof(IHandleMessage<>).Name))
         }
 
         void IBus.Send<T>(T command)
