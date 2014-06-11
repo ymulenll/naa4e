@@ -13,6 +13,12 @@ namespace Merp.Infrastructure
         void IBus.RegisterSaga<T>()
         {
             Type sagaType = typeof(T);
+            if(sagaType.GetInterfaces().Where(i => i.Name.StartsWith(typeof(IAmStartedBy<>).Name)).Count() != 1)
+            {
+                throw new InvalidOperationException("The specified saga must implement the IAmStartedBy<T> interface.");
+            }
+            var ii = sagaType.GetInterfaces().Where(i => i.Name.StartsWith(typeof(IAmStartedBy<>).Name)).First();
+            var messageType = ii.GenericTypeArguments.First();
         }
 
         void _Send<T>(T message) where T : Message
