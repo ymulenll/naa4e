@@ -8,21 +8,16 @@ namespace Merp.Infrastructure
 {
     public class BusImpl : IBus
     {
-        private static IList<Type> registeredSagas = new List<Type>();
+        private static IDictionary<Message, Type> registeredSagas = new Dictionary<Message, Type>();
 
         void IBus.RegisterSaga<T>()
         {
             Type sagaType = typeof(T);
-            if (registeredSagas.Contains(sagaType))
-            {
-                throw new InvalidOperationException("The specified saga is already registered.");
-            }
-            registeredSagas.Add(sagaType);
         }
 
         void _Send<T>(T message) where T : Message
         {
-
+            
         }
 
         void IBus.Send<T>(T command)
