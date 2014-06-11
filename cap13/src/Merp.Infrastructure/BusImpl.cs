@@ -8,7 +8,8 @@ namespace Merp.Infrastructure
 {
     public class BusImpl : IBus
     {
-        private static IDictionary<Message, Type> registeredSagas = new Dictionary<Message, Type>();
+        private static IDictionary<Type, Type> registeredSagas = new Dictionary<Type, Type>();
+        private static IDictionary<Guid, Saga> runningSagas = new Dictionary<Guid, Saga>();
 
         void IBus.RegisterSaga<T>()
         {
@@ -17,8 +18,13 @@ namespace Merp.Infrastructure
             {
                 throw new InvalidOperationException("The specified saga must implement the IAmStartedBy<T> interface.");
             }
-            var ii = sagaType.GetInterfaces().Where(i => i.Name.StartsWith(typeof(IAmStartedBy<>).Name)).First();
-            var messageType = ii.GenericTypeArguments.First();
+            var messageType = sagaType.
+                GetInterfaces().
+                Where(i => i.Name.StartsWith(typeof(IAmStartedBy<>).Name)).
+                First().
+                GenericTypeArguments.
+                First();
+            registeredSagas.Add(messageType, sagaType);
         }
 
         void _Send<T>(T message) where T : Message

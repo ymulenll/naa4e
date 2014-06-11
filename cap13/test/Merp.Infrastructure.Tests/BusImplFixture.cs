@@ -17,6 +17,15 @@ namespace Merp.Infrastructure.Tests
         }
 
         [TestMethod]
+        public void RegisterSaga_should_throw_InvalidOperationException_sagas_that_implements_IAmStartedBy_more_than_once()
+        {
+            IBus bus = new BusImpl();
+            Executing.This(() => bus.RegisterSaga<OverloadedSaga>())
+                .Should()
+                .Throw<InvalidOperationException>();
+        }
+
+        [TestMethod]
         public void RegisterSaga_should_not_throw_InvalidOperationException_on_type_arguments_that_implement_IAmStartedBy_interface()
         {
             IBus bus = new BusImpl();
@@ -31,7 +40,8 @@ namespace Merp.Infrastructure.Tests
             }
         }
 
-        public class DummySaga : Saga, IAmStartedBy<DummySaga.DummyMessage>
+        public class DummySaga : Saga, 
+            IAmStartedBy<DummySaga.DummyMessage>
         {
             public class DummyMessage : Message
             {
@@ -46,6 +56,35 @@ namespace Merp.Infrastructure.Tests
             public void Handle(DummySaga.DummyMessage message)
             {
                 throw new NotSupportedException();
+            }
+        }
+
+        public class OverloadedSaga : Saga,
+            IAmStartedBy<OverloadedSaga.FooMessage>,
+            IAmStartedBy<OverloadedSaga.BarMessage>
+        {
+            public class FooMessage : Message
+            {
+
+            }
+            public class BarMessage : Message
+            {
+
+            }
+
+            protected override void ConfigureSagaMappings()
+            {
+                throw new NotSupportedException();
+            }
+
+            public void Handle(OverloadedSaga.BarMessage message)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Handle(OverloadedSaga.FooMessage message)
+            {
+                throw new NotImplementedException();
             }
         }
     }
