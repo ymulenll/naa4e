@@ -54,6 +54,11 @@ namespace Merp.Infrastructure.Tests.Impl
 
         public class PretendingSaga : Saga
         {
+            public PretendingSaga(IBus bus) : base(bus)
+            {
+
+            }
+
             protected override void ConfigureSagaMappings()
             {
                 
@@ -64,6 +69,11 @@ namespace Merp.Infrastructure.Tests.Impl
             IAmStartedBy<DummySaga.DummyMessage>
         {
             public class DummyMessage : Message
+            {
+
+            }
+
+            public DummySaga(IBus bus) : base(bus)
             {
 
             }
@@ -88,6 +98,11 @@ namespace Merp.Infrastructure.Tests.Impl
 
             }
             public class BarMessage : Message
+            {
+
+            }
+
+            public OverloadedSaga(IBus bus) : base(bus)
             {
 
             }

@@ -15,15 +15,10 @@ namespace Merp.Accountancy.CommandStack.Sagas
         IAmStartedBy<CreateFixedPriceJobOrderCommand>,
         IHandleMessage<ExtendFixedPriceJobOrderCommand>
     {
-        public IBus Bus { get; private set; }
 
-        public FixedPriceJobOrderSaga(IBus bus)
+        public FixedPriceJobOrderSaga(IBus bus) : base(bus)
         {
-            if(bus==null)
-            {
-                throw new ArgumentNullException("bus");
-            }
-            Bus = bus;
+
         }
 
         protected override void ConfigureSagaMappings()

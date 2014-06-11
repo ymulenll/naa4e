@@ -24,7 +24,7 @@ namespace Merp.Infrastructure.Impl
 
         public T GetById<T>(Guid id) where T : Saga
         {
-            throw new NotImplementedException();
+            return (T) runningSagas[id];
         }
     }
 }
