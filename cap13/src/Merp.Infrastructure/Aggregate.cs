@@ -20,7 +20,7 @@ namespace Merp.Infrastructure
             }
         }
 
-        bool IAggregate.IsChanged 
+        bool IAggregate.HasPendingChanges 
         { 
             get 
             { 

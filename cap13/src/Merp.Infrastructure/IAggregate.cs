@@ -10,7 +10,7 @@ namespace Merp.Infrastructure
     {
         Guid Id { get; }
 
-        bool IsChanged { get; }
+        bool HasPendingChanges { get; }
 
         IEnumerable<DomainEvent> GetUncommittedEvents();
 
