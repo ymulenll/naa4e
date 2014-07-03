@@ -55,7 +55,6 @@ namespace Merp.Web.UI
 
             // e.g. container.RegisterType<ITestService, TestService>();   
             container.RegisterType<IBus, InMemoryBus>(new InjectionConstructor(container));
-            container.RegisterType<ISagaRepository, InMemorySagaRepository>(new InjectionConstructor(container));
             container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
         }
     }

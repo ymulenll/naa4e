@@ -21,11 +21,6 @@ namespace Merp.Accountancy.CommandStack.Sagas
 
         }
 
-        protected override void ConfigureSagaMappings()
-        {
-            ConfigureMapping<ExtendFixedPriceJobOrderCommand>(msg => msg.JobOrderId);
-        }
-
         public void Handle(CreateFixedPriceJobOrderCommand message)
         {
             var jobOrder = FixedPriceJobOrder.Factory.CreateNewInstance(
@@ -37,7 +32,6 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 );
             var repository = new Repository<FixedPriceJobOrder>();
             repository.Save(jobOrder);
-            this.Id = jobOrder.Id;
             var @event = new FixedPriceJobOrderCreatedEvent(
                 jobOrder.Id,
                 jobOrder.CustomerId,

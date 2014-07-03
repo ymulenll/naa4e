@@ -67,10 +67,6 @@ namespace Merp.Infrastructure.Tests.Impl
 
                 }
 
-                protected override void ConfigureSagaMappings()
-                {
-
-                }
             }
 
             public class DummySaga : Saga,
@@ -85,11 +81,6 @@ namespace Merp.Infrastructure.Tests.Impl
                     : base(bus)
                 {
 
-                }
-
-                protected override void ConfigureSagaMappings()
-                {
-                    throw new NotSupportedException();
                 }
 
                 public void Handle(DummySaga.DummyMessage message)
@@ -115,11 +106,6 @@ namespace Merp.Infrastructure.Tests.Impl
                     : base(bus)
                 {
 
-                }
-
-                protected override void ConfigureSagaMappings()
-                {
-                    throw new NotSupportedException();
                 }
 
                 public void Handle(OverloadedSaga.BarMessage message)
@@ -152,11 +138,6 @@ namespace Merp.Infrastructure.Tests.Impl
                 public FakeSaga(IBus bus) : base(bus) { }
 
                 public void Handle(FakeSaga.StartCommand message)
-                {
-                    
-                }
-
-                protected override void ConfigureSagaMappings()
                 {
                     
                 }
