@@ -8,5 +8,11 @@ namespace Merp.Infrastructure.Impl
 {
     public class InMemoryEventStoreImpl : IEventStore
     {
+        private IList<DomainEvent> events = new List<DomainEvent>();
+
+        public void Save<T>(T @event) where T : DomainEvent
+        {
+            events.Add(@event);
+        }
     }
 }

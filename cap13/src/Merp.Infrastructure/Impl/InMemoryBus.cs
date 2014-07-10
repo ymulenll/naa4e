@@ -10,17 +10,23 @@ namespace Merp.Infrastructure.Impl
     public class InMemoryBus : IBus
     {
         public IUnityContainer Container {get; private set;}
+        public IEventStore EventStore { get; private set; }
 
         private static IDictionary<Type, Type> registeredSagas = new Dictionary<Type, Type>();
         private static IList<Type> registeredHandlers = new List<Type>();
 
-        public InMemoryBus(IUnityContainer container)
+        public InMemoryBus(IUnityContainer container, IEventStore eventStore)
         {
             if(container==null)
             {
                 throw new ArgumentNullException("container");
             }
+            if (eventStore == null)
+            {
+                throw new ArgumentNullException("eventStore");
+            }
             Container = container;
+            EventStore = eventStore;
         }
 
         void IBus.RegisterSaga<T>()
@@ -42,7 +48,6 @@ namespace Merp.Infrastructure.Impl
         void IBus.RegisterHandler<T>()
         {
             registeredHandlers.Add(typeof(T));
-
         }
 
         void _Send<T>(T message) where T : Message
@@ -104,6 +109,7 @@ namespace Merp.Infrastructure.Impl
 
         void IBus.RaiseEvent<T>(T @event)
         {
+            EventStore.Save(@event);
             this._Send(@event);
         }
     }

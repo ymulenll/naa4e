@@ -16,7 +16,8 @@ namespace Merp.Infrastructure.Tests.Impl
             [TestMethod]
             public void Ctor_should_throw_ArgumentNullException_on_null_container_and_value_of_parameter_should_be_container()
             {
-                Executing.This(() => new InMemoryBus(null))
+                var eventStoreMock = new Mock<IEventStore>().Object;
+                Executing.This(() => new InMemoryBus(null, eventStoreMock))
                                .Should()
                                .Throw<ArgumentNullException>()
                                .And
@@ -25,6 +26,21 @@ namespace Merp.Infrastructure.Tests.Impl
                                .Should()
                                .Be
                                .EqualTo("container");
+            }
+
+            [TestMethod]
+            public void Ctor_should_throw_ArgumentNullException_on_null_eventStore_and_value_of_parameter_should_be_eventStore()
+            {
+                var containerMock = new Mock<IUnityContainer>().Object;
+                Executing.This(() => new InMemoryBus(containerMock, null))
+                               .Should()
+                               .Throw<ArgumentNullException>()
+                               .And
+                               .ValueOf
+                               .ParamName
+                               .Should()
+                               .Be
+                               .EqualTo("eventStore");
             }
         }
 
@@ -35,7 +51,8 @@ namespace Merp.Infrastructure.Tests.Impl
             public void RegisterSaga_should_throw_InvalidOperationException_on_type_arguments_that_do_not_implement_IAmStartedBy_interface()
             {
                 var containerMock = new Mock<IUnityContainer>().Object;
-                IBus bus = new InMemoryBus(containerMock);
+                var eventStoreMock = new Mock<IEventStore>().Object;
+                IBus bus = new InMemoryBus(containerMock, eventStoreMock);
                 Executing.This(() => bus.RegisterSaga<PretendingSaga>())
                     .Should()
                     .Throw<InvalidOperationException>();   
@@ -45,7 +62,8 @@ namespace Merp.Infrastructure.Tests.Impl
             public void RegisterSaga_should_throw_InvalidOperationException_sagas_that_implements_IAmStartedBy_more_than_once()
             {
                 var containerMock = new Mock<IUnityContainer>().Object;
-                IBus bus = new InMemoryBus(containerMock);
+                var eventStoreMock = new Mock<IEventStore>().Object;
+                IBus bus = new InMemoryBus(containerMock, eventStoreMock);
                 Executing.This(() => bus.RegisterSaga<OverloadedSaga>())
                     .Should()
                     .Throw<InvalidOperationException>();
@@ -55,7 +73,8 @@ namespace Merp.Infrastructure.Tests.Impl
             public void RegisterSaga_should_not_throw_InvalidOperationException_on_type_arguments_that_implement_IAmStartedBy_interface()
             {
                 var containerMock = new Mock<IUnityContainer>().Object;
-                IBus bus = new InMemoryBus(containerMock);
+                var eventStoreMock = new Mock<IEventStore>().Object;
+                IBus bus = new InMemoryBus(containerMock, eventStoreMock);
                 bus.RegisterSaga<DummySaga>(); 
             }
 
@@ -128,7 +147,8 @@ namespace Merp.Infrastructure.Tests.Impl
             {
                 var command = new InMemoryBusFixture.SendMethod.FakeSaga.StartCommand();
                 var containerMock = new Mock<IUnityContainer>().Object;
-                IBus bus = new InMemoryBus(containerMock);
+                var eventStoreMock = new Mock<IEventStore>().Object;
+                IBus bus = new InMemoryBus(containerMock, eventStoreMock);
                 bus.RegisterSaga<FakeSaga>();
                 bus.Send(command);
             }
