@@ -47,14 +47,15 @@ namespace Merp.Infrastructure.Impl
 
         void _Send<T>(T message) where T : Message
         {
-            DeliverMessageToRegisteredSagas(message);
+            BootRegisteredSagas(message);
+            DeliverMessageToAlreadyRunningSagas(message);
             DeliverMessageToRegisteredHandlers(message);
         }
 
         private void DeliverMessageToRegisteredHandlers<T>(T message)
         {
             Type messageType = message.GetType();
-            var openInterface = typeof(IAmStartedBy<>);
+            var openInterface = typeof(IHandleMessage<>);
             var closedInterface = openInterface.MakeGenericType(messageType);
             var handlersToNotify = from h in registeredHandlers.Values
                                  where closedInterface.IsAssignableFrom(h)
@@ -66,7 +67,7 @@ namespace Merp.Infrastructure.Impl
             }
         }
 
-        private void DeliverMessageToRegisteredSagas<T>(T message)
+        private void BootRegisteredSagas<T>(T message)
         {
             Type messageType = message.GetType();
             var openInterface = typeof(IAmStartedBy<>);
@@ -75,6 +76,21 @@ namespace Merp.Infrastructure.Impl
                                  where closedInterface.IsAssignableFrom(s)
                                  select s;
             foreach (var s in sagasToStartup)
+            {
+                dynamic sagaInstance = Container.Resolve(s);
+                sagaInstance.Handle(message);
+            }
+        }
+
+        private void DeliverMessageToAlreadyRunningSagas<T>(T message)
+        {
+            Type messageType = message.GetType();
+            var openInterface = typeof(IHandleMessage<>);
+            var closedInterface = openInterface.MakeGenericType(messageType);
+            var sagasToNotify = from s in registeredSagas.Values
+                                 where closedInterface.IsAssignableFrom(s)
+                                 select s;
+            foreach (var s in sagasToNotify)
             {
                 dynamic sagaInstance = Container.Resolve(s);
                 sagaInstance.Handle(message);

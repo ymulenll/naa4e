@@ -30,12 +30,6 @@ namespace Merp.Web.UI
 
         private static void RegisterSagas()
         {
-            ////Sagas registration
-            //Bus.RegisterSaga(() => new FixedPriceJobOrderSaga(container.Resolve<Bus>()));
-
-            ////Denormalizers registration
-            //Bus.RegisterHandler(() => new FixedPriceJobOrderDenormalizer());
-            
             var bus = Container.Resolve<IBus>();
             bus.RegisterSaga<FixedPriceJobOrderSaga>();  
         }
@@ -49,12 +43,9 @@ namespace Merp.Web.UI
         }
 
         public static void RegisterTypes(IUnityContainer container)
-        {
-            // register all your components with the container here
-            // it is NOT necessary to register your controllers
-
-            // e.g. container.RegisterType<ITestService, TestService>();   
+        { 
             container.RegisterType<IBus, InMemoryBus>(new InjectionConstructor(container));
+            container.RegisterType<IEventStore, InMemoryEventStoreImpl>();
             container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
         }
     }

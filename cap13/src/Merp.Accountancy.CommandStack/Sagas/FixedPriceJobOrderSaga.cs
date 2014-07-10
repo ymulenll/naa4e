@@ -16,7 +16,7 @@ namespace Merp.Accountancy.CommandStack.Sagas
         IHandleMessage<ExtendFixedPriceJobOrderCommand>
     {
 
-        public FixedPriceJobOrderSaga(IBus bus) : base(bus)
+        public FixedPriceJobOrderSaga(IBus bus, IEventStore eventStore) : base(bus, eventStore)
         {
 
         }
