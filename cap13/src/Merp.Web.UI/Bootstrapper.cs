@@ -46,6 +46,7 @@ namespace Merp.Web.UI
         { 
             container.RegisterType<IBus, InMemoryBus>(new InjectionConstructor(container));
             container.RegisterType<IEventStore, InMemoryEventStoreImpl>();
+            container.RegisterType<IRepository, Repository>();
             container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
         }
     }

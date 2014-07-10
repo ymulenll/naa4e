@@ -61,8 +61,8 @@ namespace Merp.Infrastructure.Tests.Impl
 
             public class PretendingSaga : Saga
             {
-                public PretendingSaga(IBus bus, IEventStore eventStore)
-                    : base(bus, eventStore)
+                public PretendingSaga(IBus bus, IEventStore eventStore, IRepository repository)
+                    : base(bus, eventStore, repository)
                 {
 
                 }
@@ -77,8 +77,8 @@ namespace Merp.Infrastructure.Tests.Impl
 
                 }
 
-                public DummySaga(IBus bus, IEventStore eventStore)
-                    : base(bus, eventStore)
+                public DummySaga(IBus bus, IEventStore eventStore, IRepository repository)
+                    : base(bus, eventStore, repository)
                 {
 
                 }
@@ -102,8 +102,8 @@ namespace Merp.Infrastructure.Tests.Impl
 
                 }
 
-                public OverloadedSaga(IBus bus, IEventStore eventStore)
-                    : base(bus, eventStore)
+                public OverloadedSaga(IBus bus, IEventStore eventStore, IRepository repository)
+                    : base(bus, eventStore, repository)
                 {
 
                 }
@@ -135,8 +135,8 @@ namespace Merp.Infrastructure.Tests.Impl
 
             public class FakeSaga : Saga, IAmStartedBy<InMemoryBusFixture.SendMethod.FakeSaga.StartCommand>
             {
-                public FakeSaga(IBus bus, IEventStore eventStore)
-                    : base(bus, eventStore) { }
+                public FakeSaga(IBus bus, IEventStore eventStore, IRepository repository)
+                    : base(bus, eventStore, repository) { }
 
                 public void Handle(FakeSaga.StartCommand message)
                 {

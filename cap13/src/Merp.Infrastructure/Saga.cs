@@ -12,7 +12,9 @@ namespace Merp.Infrastructure
         public IBus Bus { get; private set; }
         public IEventStore EventStore { get; private set; }
 
-        public Saga(IBus bus, IEventStore eventStore)
+        public IRepository Repository { get; private set; }
+
+        public Saga(IBus bus, IEventStore eventStore, IRepository repository)
         {
             if (bus == null)
             {
@@ -22,8 +24,13 @@ namespace Merp.Infrastructure
             {
                 throw new ArgumentNullException("eventStore");
             }
+            if (repository == null)
+            {
+                throw new ArgumentNullException("repository");
+            }
             Bus = bus;
             EventStore = eventStore;
+            Repository = repository;
         }
     }
 }

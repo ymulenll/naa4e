@@ -16,7 +16,8 @@ namespace Merp.Accountancy.CommandStack.Sagas
         IHandleMessage<ExtendFixedPriceJobOrderCommand>
     {
 
-        public FixedPriceJobOrderSaga(IBus bus, IEventStore eventStore) : base(bus, eventStore)
+        public FixedPriceJobOrderSaga(IBus bus, IEventStore eventStore, IRepository repository)
+            : base(bus, eventStore, repository)
         {
 
         }
@@ -29,9 +30,8 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 message.DateOfStart, 
                 message.DueDate,
                 message.JobOrderName
-                );
-            var repository = new Repository<FixedPriceJobOrder>();
-            repository.Save(jobOrder);
+                ); 
+            this.Repository.Save(jobOrder);
             var @event = new FixedPriceJobOrderCreatedEvent(
                 jobOrder.Id,
                 jobOrder.CustomerId,
@@ -46,10 +46,9 @@ namespace Merp.Accountancy.CommandStack.Sagas
 
         public void Handle(ExtendFixedPriceJobOrderCommand message)
         {
-            var repository = new Repository<FixedPriceJobOrder>();
-            var jobOrder = repository.GetById(message.JobOrderId);
+            var jobOrder = Repository.GetById<FixedPriceJobOrder>(message.JobOrderId);
             jobOrder.Extend(message.NewDueDate, message.Price);
-            repository.Save(jobOrder);
+            Repository.Save(jobOrder);
         }
     }
 }

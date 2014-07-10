@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Merp.Infrastructure
 {
-    public class Repository<T> where T : IAggregate
+    public class Repository : IRepository 
     {
-        public void Save(T item)
+        public void Save<T>(T item) where T : IAggregate
         {
             item.GetUncommittedEvents()
                 .ToList()
@@ -23,7 +23,7 @@ namespace Merp.Infrastructure
             //Notity event via the bus
         }
 
-        public T GetById(Guid id)
+        public T GetById<T>(Guid id) where T : IAggregate
         {
             return default(T);
         }
