@@ -51,5 +51,16 @@ namespace Merp.Web.UI.Controllers
             var model = new ExtendViewModel();
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult CreateFixedPrice(ExtendViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+            //WorkerServices.CreateFixedPriceJobOrder(model);
+            return Redirect("/");
+        }
     }
 }
