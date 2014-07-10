@@ -12,7 +12,7 @@ namespace Merp.Infrastructure.Impl
         public IUnityContainer Container {get; private set;}
 
         private static IDictionary<Type, Type> registeredSagas = new Dictionary<Type, Type>();
-        private static IDictionary<Type, Type> registeredHandlers = new Dictionary<Type, Type>();
+        private static IList<Type> registeredHandlers = new List<Type>();
 
         public InMemoryBus(IUnityContainer container)
         {
@@ -41,7 +41,7 @@ namespace Merp.Infrastructure.Impl
 
         void IBus.RegisterHandler<T>()
         {
-            //throw new NotImplementedException();
+            registeredHandlers.Add(typeof(T));
 
         }
 
@@ -57,7 +57,7 @@ namespace Merp.Infrastructure.Impl
             Type messageType = message.GetType();
             var openInterface = typeof(IHandleMessage<>);
             var closedInterface = openInterface.MakeGenericType(messageType);
-            var handlersToNotify = from h in registeredHandlers.Values
+            var handlersToNotify = from h in registeredHandlers
                                  where closedInterface.IsAssignableFrom(h)
                                  select h;
             foreach(var h in handlersToNotify)

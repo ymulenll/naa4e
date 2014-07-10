@@ -61,7 +61,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
+    <Compile Include="Impl\Repository.cs" />
     <Compile Include="Saga.cs" />
     <Compile Include="SagaFactoryWrapper.cs" />
   </ItemGroup>
