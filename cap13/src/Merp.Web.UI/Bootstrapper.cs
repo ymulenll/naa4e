@@ -45,7 +45,7 @@ namespace Merp.Web.UI
 
         public static void RegisterTypes(IUnityContainer container)
         { 
-            container.RegisterType<IBus, InMemoryBus>(new InjectionConstructor(container));
+            container.RegisterType<IBus, InMemoryBus>(new InjectionConstructor(container, typeof(IEventStore)));
             container.RegisterType<IEventStore, InMemoryEventStoreImpl>();
             container.RegisterType<IRepository, Repository>();
 
