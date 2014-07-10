@@ -44,5 +44,12 @@ namespace Merp.Web.UI.Controllers
             WorkerServices.CreateFixedPriceJobOrder(model);
             return Redirect("/");
         }
+
+        [HttpGet]
+        public ActionResult Extend()
+        {
+            var model = new ExtendViewModel();
+            return View(model);
+        }
     }
 }

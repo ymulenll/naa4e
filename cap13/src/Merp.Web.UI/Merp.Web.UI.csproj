@@ -203,6 +203,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\JobOrder\CreateFixedPriceViewModel.cs" />
+    <Compile Include="Models\JobOrder\ExtendViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="WorkerServices\JobOrderControllerWorkerServices.cs" />
@@ -335,6 +336,7 @@
     <Content Include="Views\JobOrder\CreateFixedPrice.cshtml" />
     <Content Include="Views\JobOrder\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\JobOrder\Extend.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
