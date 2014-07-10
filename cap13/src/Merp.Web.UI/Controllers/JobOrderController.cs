@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcMate.Web.Mvc;
 
 namespace Merp.Web.UI.Controllers
 {
@@ -22,9 +23,11 @@ namespace Merp.Web.UI.Controllers
         }
 
         // GET: JobOrder
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            var model = new IndexViewModel();
+            return View(model);
         }
 
         [HttpGet]
@@ -61,6 +64,13 @@ namespace Merp.Web.UI.Controllers
             }
             WorkerServices.ExtendJobOrder(model);
             return Redirect("/");
+        }
+
+        [HttpGet]
+        public ActionResult GetList()
+        {
+            var model = WorkerServices.GetList();
+            return this.Jsonp(model);
         }
     }
 }

@@ -5,20 +5,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Merp.Web.UI.Models.JobOrder;
+using Merp.Accountancy.QueryStack;
 
 namespace Merp.Web.UI.WorkerServices
 {
     public class JobOrderControllerWorkerServices
     {
         public IBus Bus { get; private set; }
+        public IDatabase Database { get; set; }
 
-        public JobOrderControllerWorkerServices(IBus bus)
+        public JobOrderControllerWorkerServices(IBus bus, IDatabase database)
         {
             if(bus==null)
             {
                 throw new ArgumentNullException("bus");
             }
+            if (database == null)
+            {
+                throw new ArgumentNullException("database");
+            }
             this.Bus = bus;
+            this.Database = database;
         }
 
         public void CreateFixedPriceJobOrder(CreateFixedPriceViewModel model)
@@ -36,6 +43,24 @@ namespace Merp.Web.UI.WorkerServices
         public void ExtendJobOrder(ExtendViewModel model)
         {
 
+        }
+
+        public IEnumerable<IndexViewModel.JobOrder> GetList()
+        {
+            return from jo in Database.FixedPriceJobOrders
+                   select new IndexViewModel.JobOrder
+                   {
+                        CustomerId = jo.CustomerId,
+                         DateOfEnd  = jo.DateOfEnd,
+                         DateOfStart = jo.DateOfStart,
+                         DueDate = jo.DueDate,
+                         IsCompleted = jo.IsCompleted,
+                         Name = jo.Name,
+                         Number = jo.Number,
+                         Price = jo.Price,
+                         Id = jo.Id,
+                         OriginalId = jo.OriginalId
+                   };
         }
     }
 }

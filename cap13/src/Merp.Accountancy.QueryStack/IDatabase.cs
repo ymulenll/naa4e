@@ -11,6 +11,6 @@ namespace Merp.Accountancy.QueryStack
     {
         IQueryable<JobOrder> JobOrders { get; }
 
-
+        IQueryable<FixedPriceJobOrder> FixedPriceJobOrders { get; }
     }
 }

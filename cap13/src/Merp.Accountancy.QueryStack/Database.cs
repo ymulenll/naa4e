@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Merp.Accountancy.QueryStack.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,19 @@ namespace Merp.Accountancy.QueryStack
     {
         private MerpContext Context = new MerpContext();
 
-        public IQueryable<Model.JobOrder> JobOrders
+        public IQueryable<JobOrder> JobOrders
         {
             get
             {
                 return Context.JobOrders;
+            }
+        }
+
+        public IQueryable<FixedPriceJobOrder> FixedPriceJobOrders
+        {
+            get
+            {
+                return Context.FixedPriceJobOrders;
             }
         }
     }

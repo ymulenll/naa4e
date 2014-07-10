@@ -7,6 +7,7 @@ using Merp.Accountancy.CommandStack.Sagas;
 using Merp.Accountancy.QueryStack.Model;
 using Merp.Infrastructure.Impl;
 using Merp.Accountancy.CommandStack.Services;
+using Merp.Accountancy.QueryStack;
 
 namespace Merp.Web.UI
 {
@@ -44,7 +45,9 @@ namespace Merp.Web.UI
         }
 
         public static void RegisterTypes(IUnityContainer container)
-        { 
+        {
+            container.RegisterType<IDatabase, Database>();
+          
             container.RegisterType<IBus, InMemoryBus>(new InjectionConstructor(container, typeof(IEventStore)));
             container.RegisterType<IEventStore, InMemoryEventStoreImpl>();
             container.RegisterType<IRepository, Repository>();
