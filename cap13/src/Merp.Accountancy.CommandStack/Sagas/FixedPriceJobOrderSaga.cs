@@ -7,6 +7,7 @@ using Merp.Infrastructure;
 using Merp.Accountancy.CommandStack.Commands;
 using Merp.Accountancy.CommandStack.Model;
 using Merp.Accountancy.CommandStack.Events;
+using Merp.Accountancy.CommandStack.Services;
 
 
 namespace Merp.Accountancy.CommandStack.Sagas
@@ -15,11 +16,16 @@ namespace Merp.Accountancy.CommandStack.Sagas
         IAmStartedBy<CreateFixedPriceJobOrderCommand>,
         IHandleMessage<ExtendFixedPriceJobOrderCommand>
     {
+        public IJobOrderNumberGenerator JobOrderNumberGenerator { get; private set; }
 
-        public FixedPriceJobOrderSaga(IBus bus, IEventStore eventStore, IRepository repository)
+        public FixedPriceJobOrderSaga(IBus bus, IEventStore eventStore, IRepository repository, IJobOrderNumberGenerator jobOrderNumberGenerator)
             : base(bus, eventStore, repository)
         {
-
+            if(jobOrderNumberGenerator==null)
+            {
+                throw new ArgumentNullException("jobOrderNumberGenerator");
+            }
+            JobOrderNumberGenerator = jobOrderNumberGenerator;
         }
 
         public void Handle(CreateFixedPriceJobOrderCommand message)

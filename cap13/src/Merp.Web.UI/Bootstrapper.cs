@@ -6,6 +6,7 @@ using Merp.Infrastructure;
 using Merp.Accountancy.CommandStack.Sagas;
 using Merp.Accountancy.QueryStack.Model;
 using Merp.Infrastructure.Impl;
+using Merp.Accountancy.CommandStack.Services;
 
 namespace Merp.Web.UI
 {
@@ -47,6 +48,9 @@ namespace Merp.Web.UI
             container.RegisterType<IBus, InMemoryBus>(new InjectionConstructor(container));
             container.RegisterType<IEventStore, InMemoryEventStoreImpl>();
             container.RegisterType<IRepository, Repository>();
+
+            container.RegisterType<IJobOrderNumberGenerator, JobOrderNumberGenerator>();
+
             container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
         }
     }
