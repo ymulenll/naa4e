@@ -8,9 +8,11 @@ namespace Merp.Accountancy.QueryStack.Model
 {
     public abstract class JobOrder
     {
-        public Guid Id { get; private set; }
+        public int Id { get; set; }
+        public Guid OriginalId { get; set; }
         public int CustomerId { get; set; }
         public DateTime DateOfStart { get; set; }
+        public DateTime? DateOfEnd { get; set; }
         public string Name { get; set; }
     }
 }

@@ -53,7 +53,7 @@ namespace Merp.Web.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateFixedPrice(ExtendViewModel model)
+        public ActionResult Extend(ExtendViewModel model)
         {
             if (!this.ModelState.IsValid)
             {

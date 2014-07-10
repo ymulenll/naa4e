@@ -15,6 +15,7 @@ namespace Merp.Accountancy.QueryStack.Model
         public void Handle(FixedPriceJobOrderCreatedEvent message)
         {
             var fixedPriceJobOrder = new FixedPriceJobOrder();
+            fixedPriceJobOrder.OriginalId = message.JobOrderId;
             fixedPriceJobOrder.CustomerId = message.CustomerId;
             fixedPriceJobOrder.DateOfStart = message.DateOfStart;
             fixedPriceJobOrder.DueDate = message.DueDate;
