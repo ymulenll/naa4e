@@ -41,13 +41,44 @@ namespace Merp.Infrastructure.Impl
 
         void IBus.RegisterHandler<T>()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
         }
 
         void _Send<T>(T message) where T : Message
         {
-            //var sagas = registeredSagas.Values
-            //                .Where(i => i.Name.StartsWith(typeof(IHandleMessage<>).Name))
+            DeliverMessageToRegisteredSagas(message);
+            DeliverMessageToRegisteredHandlers(message);
+        }
+
+        private void DeliverMessageToRegisteredHandlers<T>(T message)
+        {
+            Type messageType = message.GetType();
+            var openInterface = typeof(IAmStartedBy<>);
+            var closedInterface = openInterface.MakeGenericType(messageType);
+            var handlersToNotify = from h in registeredHandlers.Values
+                                 where closedInterface.IsAssignableFrom(h)
+                                 select h;
+            foreach(var h in handlersToNotify)
+            {
+                dynamic handlerInstance = Container.Resolve(h);
+                handlerInstance.Handle(message);
+            }
+        }
+
+        private void DeliverMessageToRegisteredSagas<T>(T message)
+        {
+            Type messageType = message.GetType();
+            var openInterface = typeof(IAmStartedBy<>);
+            var closedInterface = openInterface.MakeGenericType(messageType);
+            var sagasToStartup = from s in registeredSagas.Values
+                                 where closedInterface.IsAssignableFrom(s)
+                                 select s;
+            foreach (var s in sagasToStartup)
+            {
+                dynamic sagaInstance = Container.Resolve(s);
+                sagaInstance.Handle(message);
+            }
         }
 
         void IBus.Send<T>(T command)
