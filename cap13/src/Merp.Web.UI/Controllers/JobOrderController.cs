@@ -59,7 +59,7 @@ namespace Merp.Web.UI.Controllers
             {
                 return View(model);
             }
-            //WorkerServices.CreateFixedPriceJobOrder(model);
+            WorkerServices.ExtendJobOrder(model);
             return Redirect("/");
         }
     }

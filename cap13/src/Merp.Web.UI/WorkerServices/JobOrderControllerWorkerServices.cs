@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Merp.Web.UI.Models.JobOrder;
 
 namespace Merp.Web.UI.WorkerServices
 {
@@ -20,7 +21,7 @@ namespace Merp.Web.UI.WorkerServices
             this.Bus = bus;
         }
 
-        public void CreateFixedPriceJobOrder(Models.JobOrder.CreateFixedPriceViewModel model)
+        public void CreateFixedPriceJobOrder(CreateFixedPriceViewModel model)
         {
             var command = new CreateFixedPriceJobOrderCommand( 
                     model.CustomerCode,
@@ -30,6 +31,11 @@ namespace Merp.Web.UI.WorkerServices
                     model.Name
                 );
             Bus.Send(command);
+        }
+
+        public void ExtendJobOrder(ExtendViewModel model)
+        {
+
         }
     }
 }
