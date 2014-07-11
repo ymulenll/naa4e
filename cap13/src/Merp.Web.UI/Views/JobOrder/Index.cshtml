@@ -7,42 +7,42 @@
         var homePageApp = angular.module('myApp', []);
     }());
     (function (module) {
-        var currentJobOrdersController = function ($scope, $http) {
+        var jobOrdersController = function ($scope, $http) {
             $scope.refreshJobOrdersList = function () {
                 var url = '/JobOrder/GetList';
                 $http.get(url).success(function (data) {
-                    $scope.CurrentJobOrders = data;
+                    $scope.JobOrders = data;
                 });
             }
             $scope.refreshJobOrdersList();
         }
-        module.controller('currentJobOrdersController', ['$scope', '$http', currentJobOrdersController]);
+        module.controller('jobOrdersController', ['$scope', '$http', jobOrdersController]);
     }(angular.module('myApp')))
 </script>
 <div class="row">
     <h2>Index</h2>
-    <div id="JobOrdersBox" class="col-md-10 pull-left">
-        <div class="form-group">
-            @Html.LabelFor(model => model.CurrentOnly, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CurrentOnly, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CurrentOnly, "", new { @class = "text-danger" })
+    <div id="JobOrdersBox" class="col-md-10 pull-left" data-ng-app="myApp">
+
+        <div id="JobOrdersTab" data-ng-controller="jobOrdersController">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CurrentOnly, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CurrentOnly, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CurrentOnly, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <input type="button" id="refreshButton" value="Enquire" />
-        <div id="JobOrdersTab" data-ng-controller="CurrentJobOrdersController">
-            <label for="CurrentJobOrdersTable">Commesse aperte</label>&nbsp;(<a id="refreshCurrentJobOrdersList" data-ng-click="refreshJobOrdersList()">refresh</a>)
-            <table id="CurrentJobOrdersTable" class="table table-striped">
+            <label for="JobOrdersTable">Current Job orders</label>&nbsp;(<a id="refreshJobOrdersList" data-ng-click="refreshJobOrdersList()">refresh</a>)
+            <table id="JobOrdersTable" class="table table-striped">
                 <thead>
                     <tr>
                         <td></td>
-                        <td>Cliente</td>
-                        <td>Nome</td>
+                        <td>Customer name</td>
+                        <td>Job Order name</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="jobOrder in CurrentJobOrders">
-                        <td><a href="/SbuMng/Home/{{jobOrder.Id}}">[Edit]</a></td>
+                    <tr data-ng-repeat="jobOrder in JobOrders">
+                        <td><a href="/JobOrder/Extend/{{jobOrder.OriginalId}}">[Extend]</a></td>
                         <td>{{jobOrder.CustomerName}}</td>
                         <td>{{jobOrder.Name}}</td>
                     </tr>

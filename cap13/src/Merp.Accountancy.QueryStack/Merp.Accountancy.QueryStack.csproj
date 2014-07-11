@@ -52,16 +52,21 @@
     <Compile Include="Denormalizers\FixedPriceJobOrderDenormalizer.cs" />
     <Compile Include="JobOrderExtensions.cs" />
     <Compile Include="MerpContext.cs" />
+    <Compile Include="Migrations\201407110737498_JobOrderFlags.cs" />
+    <Compile Include="Migrations\201407110737498_JobOrderFlags.Designer.cs">
+      <DependentUpon>201407110737498_JobOrderFlags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\FixedPriceJobOrder.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="Model\JobOrder.cs" />
+    <Compile Include="Model\Party.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Merp.Accountancy.CommandStack\Merp.Accountancy.CommandStack.csproj">
       <Project>{a30ba9d9-ce21-407a-94fb-f9c8c99564b4}</Project>
@@ -71,6 +76,11 @@
       <Project>{a55d9702-109e-44ea-9e7e-d3b0b49ef123}</Project>
       <Name>Merp.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201407110737498_JobOrderFlags.resx">
+      <DependentUpon>201407110737498_JobOrderFlags.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

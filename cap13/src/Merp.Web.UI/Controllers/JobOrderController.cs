@@ -45,7 +45,7 @@ namespace Merp.Web.UI.Controllers
                 return View(model);
             }
             WorkerServices.CreateFixedPriceJobOrder(model);
-            return Redirect("/");
+            return Redirect("/JobOrder");
         }
 
         [HttpGet]
@@ -63,14 +63,14 @@ namespace Merp.Web.UI.Controllers
                 return View(model);
             }
             WorkerServices.ExtendJobOrder(model);
-            return Redirect("/");
+            return Redirect("/JobOrder");
         }
 
         [HttpGet]
         public ActionResult GetList()
         {
             var model = WorkerServices.GetList();
-            return this.Jsonp(model);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 }

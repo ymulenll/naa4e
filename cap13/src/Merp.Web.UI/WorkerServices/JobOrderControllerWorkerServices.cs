@@ -47,20 +47,20 @@ namespace Merp.Web.UI.WorkerServices
 
         public IEnumerable<IndexViewModel.JobOrder> GetList()
         {
-            return from jo in Database.FixedPriceJobOrders
+            return (from jo in Database.FixedPriceJobOrders
                    select new IndexViewModel.JobOrder
                    {
                         CustomerId = jo.CustomerId,
-                         DateOfEnd  = jo.DateOfEnd,
-                         DateOfStart = jo.DateOfStart,
-                         DueDate = jo.DueDate,
-                         IsCompleted = jo.IsCompleted,
-                         Name = jo.Name,
-                         Number = jo.Number,
-                         Price = jo.Price,
-                         Id = jo.Id,
-                         OriginalId = jo.OriginalId
-                   };
+                        DateOfEnd  = jo.DateOfEnd,
+                        DateOfStart = jo.DateOfStart,
+                        DueDate = jo.DueDate,
+                        IsCompleted = jo.IsCompleted,
+                        Name = jo.Name,
+                        Number = jo.Number,
+                        Price = jo.Price,
+                        Id = jo.Id,
+                        OriginalId = jo.OriginalId
+                   }).ToArray();
         }
     }
 }
