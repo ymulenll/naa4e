@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Web.UI.Tests", "test\M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Infrastructure.Tests", "test\Merp.Infrastructure.Tests\Merp.Infrastructure.Tests.csproj", "{79913161-D802-4F66-91E6-A8F2E6ABF74C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Accountancy.CommandStack.Tests", "test\Merp.Accountancy.CommandStack.Tests\Merp.Accountancy.CommandStack.Tests.csproj", "{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,16 @@ Global
 		{79913161-D802-4F66-91E6-A8F2E6ABF74C}.Release|ARM.ActiveCfg = Release|Any CPU
 		{79913161-D802-4F66-91E6-A8F2E6ABF74C}.Release|x64.ActiveCfg = Release|Any CPU
 		{79913161-D802-4F66-91E6-A8F2E6ABF74C}.Release|x86.ActiveCfg = Release|Any CPU
+		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3}.Release|ARM.ActiveCfg = Release|Any CPU
+		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3}.Release|x64.ActiveCfg = Release|Any CPU
+		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,5 +121,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C7A39701-1B5E-4EBF-81A5-CD98A66E7CC5} = {B1D4C268-52C0-448E-AFE1-6184A9A41950}
 		{79913161-D802-4F66-91E6-A8F2E6ABF74C} = {B1D4C268-52C0-448E-AFE1-6184A9A41950}
+		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3} = {B1D4C268-52C0-448E-AFE1-6184A9A41950}
 	EndGlobalSection
 EndGlobal

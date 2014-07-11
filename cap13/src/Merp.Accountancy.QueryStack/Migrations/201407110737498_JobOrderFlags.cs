@@ -25,8 +25,7 @@ namespace Merp.Web.UI.Migrations
                         IsCompleted = c.Boolean(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
-                .PrimaryKey(t => t.Id);
-            
+                .PrimaryKey(t => t.Id);           
         }
         
         public override void Down()
