@@ -202,6 +202,7 @@
     <Compile Include="Models\IdentityModels.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\JobOrder\CreateTimeAndMaterialViewModel.cs" />
     <Compile Include="Models\JobOrder\CreateFixedPriceViewModel.cs" />
     <Compile Include="Models\JobOrder\ExtendViewModel.cs" />
     <Compile Include="Models\JobOrder\IndexViewModel.cs" />
@@ -646,6 +647,7 @@
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\JobOrder\Extend.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\JobOrder\CreateTimeAndMaterial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="Denormalizers\TimeAndMaterialJobOrderDenormalizer.cs" />
     <Compile Include="Denormalizers\FixedPriceJobOrderDenormalizer.cs" />
     <Compile Include="JobOrderExtensions.cs" />
     <Compile Include="MerpContext.cs" />
@@ -56,7 +57,12 @@
     <Compile Include="Migrations\201407110737498_JobOrderFlags.Designer.cs">
       <DependentUpon>201407110737498_JobOrderFlags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407110802472_TimeAndMaterialJobOrder.cs" />
+    <Compile Include="Migrations\201407110802472_TimeAndMaterialJobOrder.Designer.cs">
+      <DependentUpon>201407110802472_TimeAndMaterialJobOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\TimeAndMaterialJobOrder.cs" />
     <Compile Include="Model\FixedPriceJobOrder.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="Model\JobOrder.cs" />
@@ -80,6 +86,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201407110737498_JobOrderFlags.resx">
       <DependentUpon>201407110737498_JobOrderFlags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407110802472_TimeAndMaterialJobOrder.resx">
+      <DependentUpon>201407110802472_TimeAndMaterialJobOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

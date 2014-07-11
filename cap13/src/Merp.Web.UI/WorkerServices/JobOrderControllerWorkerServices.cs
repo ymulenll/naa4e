@@ -40,6 +40,18 @@ namespace Merp.Web.UI.WorkerServices
             Bus.Send(command);
         }
 
+        public void CreateTimeAndMaterialJobOrder(CreateTimeAndMaterialViewModel model)
+        {
+            var command = new CreateTimeAndMaterialJobOrderCommand(
+                    model.CustomerCode,
+                    model.HourlyFee,
+                    model.DateOfStart,
+                    model.DateOfExpiration,
+                    model.Name
+                );
+            Bus.Send(command);
+        }
+
         public void ExtendJobOrder(ExtendViewModel model)
         {
 

@@ -49,6 +49,24 @@ namespace Merp.Web.UI.Controllers
         }
 
         [HttpGet]
+        public ActionResult CreateTimeAndMaterial()
+        {
+            var model = new CreateTimeAndMaterialViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateTimeAndMaterial(CreateTimeAndMaterialViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+            WorkerServices.CreateTimeAndMaterialJobOrder(model);
+            return Redirect("/JobOrder");
+        }
+
+        [HttpGet]
         public ActionResult Extend()
         {
             var model = new ExtendViewModel();

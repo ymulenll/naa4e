@@ -28,12 +28,14 @@ namespace Merp.Web.UI
         {
             var bus = Container.Resolve<IBus>();
             bus.RegisterHandler<FixedPriceJobOrderDenormalizer>();
+            bus.RegisterHandler<TimeAndMaterialJobOrderDenormalizer>();
         }
 
         private static void RegisterSagas()
         {
             var bus = Container.Resolve<IBus>();
-            bus.RegisterSaga<FixedPriceJobOrderSaga>();  
+            bus.RegisterSaga<FixedPriceJobOrderSaga>();
+            bus.RegisterSaga<TimeAndMaterialJobOrderSaga>();  
         }
 
         private static IUnityContainer BuildUnityContainer()
