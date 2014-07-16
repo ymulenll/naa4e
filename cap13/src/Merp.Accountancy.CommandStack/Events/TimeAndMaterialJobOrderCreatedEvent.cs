@@ -11,19 +11,19 @@ namespace Merp.Accountancy.CommandStack.Events
     {
         public Guid JobOrderId { get; private set; }
         public int CustomerId { get; private set; }
-        public decimal HourlyFee { get; private set; }
+        public decimal? Value { get; private set; }
         public DateTime DateOfStart { get; private set; }
-        public DateTime dateOfExpiration { get; private set; }
+        public DateTime? DateOfExpiration { get; private set; }
         public string JobOrderName { get; private set; }
         public string JobOrderNumber { get; set; }
 
-        public TimeAndMaterialJobOrderCreatedEvent(Guid jobOrderId, int customerId, decimal hourlyFee, DateTime dateOfStart, DateTime dateOfExpiration, string jobOrderName, string jobOrderNumber)
+        public TimeAndMaterialJobOrderCreatedEvent(Guid jobOrderId, int customerId, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string jobOrderName, string jobOrderNumber)
         {
             JobOrderId = jobOrderId;
             CustomerId = customerId;
-            HourlyFee = hourlyFee;
+            Value = value;
             DateOfStart = dateOfStart;
-            dateOfExpiration = dateOfExpiration;
+            DateOfExpiration = dateOfExpiration;
             JobOrderName = jobOrderName;
             JobOrderNumber = jobOrderNumber;
         }

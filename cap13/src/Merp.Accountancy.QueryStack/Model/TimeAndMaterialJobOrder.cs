@@ -8,9 +8,8 @@ namespace Merp.Accountancy.QueryStack.Model
 {
     public class TimeAndMaterialJobOrder : JobOrder
     {
-        public decimal HourlyFee { get; set; }
-        public string Number { get; set; }
-        public DateTime DateOfExpiration { get; set; }
-        public bool IsCompleted { get; set; }
+        public decimal? Value { get; set; }
+        public DateTime? DateOfExpiration { get; set; }
+
     }
 }

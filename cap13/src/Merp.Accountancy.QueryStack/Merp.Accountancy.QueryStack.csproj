@@ -61,6 +61,14 @@
     <Compile Include="Migrations\201407110802472_TimeAndMaterialJobOrder.Designer.cs">
       <DependentUpon>201407110802472_TimeAndMaterialJobOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407160957343_TimeAndMaterialJobOrder1.cs" />
+    <Compile Include="Migrations\201407160957343_TimeAndMaterialJobOrder1.Designer.cs">
+      <DependentUpon>201407160957343_TimeAndMaterialJobOrder1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407161006002_JobOrderModel.cs" />
+    <Compile Include="Migrations\201407161006002_JobOrderModel.Designer.cs">
+      <DependentUpon>201407161006002_JobOrderModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\TimeAndMaterialJobOrder.cs" />
     <Compile Include="Model\FixedPriceJobOrder.cs" />
@@ -89,6 +97,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407110802472_TimeAndMaterialJobOrder.resx">
       <DependentUpon>201407110802472_TimeAndMaterialJobOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407160957343_TimeAndMaterialJobOrder1.resx">
+      <DependentUpon>201407160957343_TimeAndMaterialJobOrder1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407161006002_JobOrderModel.resx">
+      <DependentUpon>201407161006002_JobOrderModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

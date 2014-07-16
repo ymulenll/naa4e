@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Merp.Web.UI.Models.JobOrder
 {
-    public class ExtendViewModel
+    public class ExtendTimeAndMaterialViewModel
     {
         [Required]
         public string JobOrderNumber { get; set; }

@@ -15,9 +15,11 @@ namespace Merp.Accountancy.QueryStack.Model
         public DateTime DateOfStart { get; set; }
         public DateTime? DateOfEnd { get; set; }
         public string Name { get; set; }
+        public bool IsCompleted { get; set; }
         public bool IsFixedPrice { get; set; }
         public bool IsTimeAndMaterial { get; set; }
-
+        public string Notes { get; set; }
+        public string Number { get; set; }
         public JobOrder()
         {
             IsFixedPrice = false;

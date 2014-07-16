@@ -9,8 +9,6 @@ namespace Merp.Accountancy.QueryStack.Model
     public class FixedPriceJobOrder : JobOrder
     {
         public decimal Price { get; set; }
-        public string Number { get; set; }
         public DateTime DueDate { get; set; }
-        public bool IsCompleted { get; set; }
     }
 }

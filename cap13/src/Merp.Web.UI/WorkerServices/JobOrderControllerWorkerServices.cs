@@ -44,7 +44,7 @@ namespace Merp.Web.UI.WorkerServices
         {
             var command = new CreateTimeAndMaterialJobOrderCommand(
                     model.CustomerCode,
-                    model.HourlyFee,
+                    model.Value,
                     model.DateOfStart,
                     model.DateOfExpiration,
                     model.Name
@@ -52,24 +52,20 @@ namespace Merp.Web.UI.WorkerServices
             Bus.Send(command);
         }
 
-        public void ExtendJobOrder(ExtendViewModel model)
+        public void ExtendJobOrder(ExtendTimeAndMaterialViewModel model)
         {
 
         }
 
         public IEnumerable<IndexViewModel.JobOrder> GetList()
         {
-            return (from jo in Database.FixedPriceJobOrders
+            return (from jo in Database.JobOrders
                    select new IndexViewModel.JobOrder
                    {
                         CustomerId = jo.CustomerId,
-                        DateOfEnd  = jo.DateOfEnd,
-                        DateOfStart = jo.DateOfStart,
-                        DueDate = jo.DueDate,
                         IsCompleted = jo.IsCompleted,
                         Name = jo.Name,
                         Number = jo.Number,
-                        Price = jo.Price,
                         Id = jo.Id,
                         OriginalId = jo.OriginalId
                    }).ToArray();

@@ -31,16 +31,16 @@ namespace Merp.Accountancy.CommandStack.Sagas
             var jobOrder = TimeAndMaterialJobOrder.Factory.CreateNewInstance(
                 JobOrderNumberGenerator,
                 message.CustomerId,
-                message.Price,
+                message.Value,
                 message.DateOfStart,
-                message.DueDate,
+                message.DateOfExpiration,
                 message.JobOrderName
                 );
             this.Repository.Save(jobOrder);
             var @event = new TimeAndMaterialJobOrderCreatedEvent(
                 jobOrder.Id,
                 jobOrder.CustomerId,
-                jobOrder.HourlyFee,
+                jobOrder.Value,
                 jobOrder.DateOfStart,
                 jobOrder.DateOfExpiration,
                 jobOrder.Name,

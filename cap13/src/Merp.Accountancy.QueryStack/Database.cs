@@ -18,13 +18,5 @@ namespace Merp.Accountancy.QueryStack
                 return Context.JobOrders;
             }
         }
-
-        public IQueryable<FixedPriceJobOrder> FixedPriceJobOrders
-        {
-            get
-            {
-                return Context.FixedPriceJobOrders;
-            }
-        }
     }
 }

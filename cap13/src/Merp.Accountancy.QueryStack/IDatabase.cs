@@ -10,7 +10,5 @@ namespace Merp.Accountancy.QueryStack
     public interface IDatabase
     {
         IQueryable<JobOrder> JobOrders { get; }
-
-        IQueryable<FixedPriceJobOrder> FixedPriceJobOrders { get; }
     }
 }

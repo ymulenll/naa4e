@@ -17,10 +17,10 @@ namespace Merp.Accountancy.QueryStack.Model
             timeAndMaterialJobOrder.OriginalId = message.JobOrderId;
             timeAndMaterialJobOrder.CustomerId = message.CustomerId;
             timeAndMaterialJobOrder.DateOfStart = message.DateOfStart;
-            timeAndMaterialJobOrder.DateOfExpiration = message.dateOfExpiration;
+            timeAndMaterialJobOrder.DateOfExpiration = message.DateOfExpiration;
             timeAndMaterialJobOrder.Name = message.JobOrderName;
             timeAndMaterialJobOrder.Number = message.JobOrderNumber;
-            timeAndMaterialJobOrder.HourlyFee = message.HourlyFee;
+            timeAndMaterialJobOrder.Value = message.Value;
             timeAndMaterialJobOrder.IsCompleted = false;
             timeAndMaterialJobOrder.IsTimeAndMaterial = true;
             timeAndMaterialJobOrder.IsFixedPrice = false;

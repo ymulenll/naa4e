@@ -67,14 +67,14 @@ namespace Merp.Web.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Extend()
+        public ActionResult ExtendTimeAndMaterial()
         {
-            var model = new ExtendViewModel();
+            var model = new ExtendTimeAndMaterialViewModel();
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Extend(ExtendViewModel model)
+        public ActionResult ExtendTimeAndMaterial(ExtendTimeAndMaterialViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
