@@ -208,6 +208,7 @@
     <Compile Include="Models\JobOrder\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Support\UrlBuilder.cs" />
     <Compile Include="WorkerServices\JobOrderControllerWorkerServices.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -25,6 +25,10 @@ namespace Merp.Web.UI.Models.JobOrder
             {
                 errors.Add(new ValidationResult("The expiration date cannot precede the date of start", new string[] { "DateOfStart", "DateOfExpiration" }));
             }
+            if (!DateOfExpiration.HasValue && !Value.HasValue)
+            {
+                errors.Add(new ValidationResult("Either the expiration date or the value have to be specified", new string[] { "DateOfExpiration", "Value" }));
+            }
             return errors;
         }
     }
