@@ -39,8 +39,6 @@ namespace Merp.Web.UI
             container.RegisterType<IBus, InMemoryBus>(new InjectionConstructor(container, typeof(IEventStore)));
             container.RegisterType<IEventStore, InMemoryEventStoreImpl>();
             container.RegisterType<IRepository, Repository>();
-
-            container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
         }
 
         private static void ConfigureAccountancyBoundedContext(IUnityContainer container, IBus bus)
@@ -60,6 +58,9 @@ namespace Merp.Web.UI
 
             //Types
             container.RegisterType<Merp.Accountancy.QueryStack.IDatabase, Merp.Accountancy.QueryStack.Database>();
+
+            //Worker Services
+            container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
         }
 
         private static void ConfigureRegistryBoundedContext(IUnityContainer container, IBus bus)

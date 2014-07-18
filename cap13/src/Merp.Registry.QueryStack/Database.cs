@@ -8,5 +8,20 @@ namespace Merp.Registry.QueryStack
 {
     public class Database : IDatabase
     {
+        private RegistryDbContext Context = null;
+
+        public Database()
+        {
+            Context = new RegistryDbContext();
+            Context.Configuration.AutoDetectChangesEnabled = false;
+        }
+        public IQueryable<Model.Party> Parties
+        {
+            get
+            {
+                return Context.Parties;
+            }
+
+        }
     }
 }
