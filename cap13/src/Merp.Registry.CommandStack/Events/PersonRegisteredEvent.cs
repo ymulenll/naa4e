@@ -5,19 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Merp.Registry.CommandStack.Commands
+namespace Merp.Registry.CommandStack.Events
 {
-    public class RegisterPersonCommand : Message
+    public class PersonRegisteredEvent : DomainEvent
     {
+        public Guid PersonId { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public DateTime? DateOfBirth { get; private set; }
 
-        public RegisterPersonCommand(string firstName, string lastName, DateTime? dateOfBirth)
+        public PersonRegisteredEvent(Guid personId, string firstName, string lastName)
         {
+            PersonId = personId;
             FirstName = firstName;
             LastName = lastName;
-            DateOfBirth = dateOfBirth;
         }
     }
 }

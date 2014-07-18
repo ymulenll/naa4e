@@ -20,7 +20,7 @@ namespace Merp.Registry.CommandStack.Sagas
 
         public void Handle(RegisterPersonCommand message)
         {
-            var person = Person.Factory.CreateNewEntry();
+            var person = Person.Factory.CreateNewEntry(message.FirstName, message.LastName, message.DateOfBirth);
             Repository.Save<Person>(person);
         }
     }

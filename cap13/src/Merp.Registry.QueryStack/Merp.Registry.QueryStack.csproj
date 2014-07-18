@@ -39,7 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Denormalizers\PersonDenormalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Merp.Infrastructure\Merp.Infrastructure.csproj">
+      <Project>{a55d9702-109e-44ea-9e7e-d3b0b49ef123}</Project>
+      <Name>Merp.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Merp.Registry.CommandStack\Merp.Registry.CommandStack.csproj">
+      <Project>{c35b83a3-a7d7-4787-875f-9954fc68c874}</Project>
+      <Name>Merp.Registry.CommandStack</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -669,6 +669,14 @@
       <Project>{a55d9702-109e-44ea-9e7e-d3b0b49ef123}</Project>
       <Name>Merp.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Merp.Registry.CommandStack\Merp.Registry.CommandStack.csproj">
+      <Project>{c35b83a3-a7d7-4787-875f-9954fc68c874}</Project>
+      <Name>Merp.Registry.CommandStack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Merp.Registry.QueryStack\Merp.Registry.QueryStack.csproj">
+      <Project>{20c49cbe-1696-4edd-b96a-2efd0acd526f}</Project>
+      <Name>Merp.Registry.QueryStack</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

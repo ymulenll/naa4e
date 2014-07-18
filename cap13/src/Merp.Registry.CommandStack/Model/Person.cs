@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Merp.Registry.CommandStack.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,16 @@ namespace Merp.Registry.CommandStack.Model
 
         public static class Factory
         {
-            public static Person CreateNewEntry()
+            public static Person CreateNewEntry(string firstName, string lastName, DateTime? dateOfBirth)
             {
-                var p = new Person();
+                var p = new Person()
+                {
+                     Id = Guid.NewGuid(),
+                     FirstName = firstName,
+                     LastName = lastName
+                };
+                var e = new PersonRegisteredEvent(p.Id, p.FirstName, p.LastName);
+                p.RaiseEvent(e);
                 return p;
             }
         }

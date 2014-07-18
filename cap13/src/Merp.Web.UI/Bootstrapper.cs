@@ -8,6 +8,8 @@ using Merp.Accountancy.QueryStack.Model;
 using Merp.Infrastructure.Impl;
 using Merp.Accountancy.CommandStack.Services;
 using Merp.Accountancy.QueryStack;
+using Merp.Registry.CommandStack.Sagas;
+using Merp.Registry.QueryStack.Denormalizers;
 
 namespace Merp.Web.UI
 {
@@ -27,6 +29,8 @@ namespace Merp.Web.UI
         private static void RegisterHandlers()
         {
             var bus = Container.Resolve<IBus>();
+            bus.RegisterHandler<PersonDenormalizer>();
+
             bus.RegisterHandler<FixedPriceJobOrderDenormalizer>();
             bus.RegisterHandler<TimeAndMaterialJobOrderDenormalizer>();
         }
@@ -34,6 +38,8 @@ namespace Merp.Web.UI
         private static void RegisterSagas()
         {
             var bus = Container.Resolve<IBus>();
+            bus.RegisterSaga<PersonSaga>();
+
             bus.RegisterSaga<FixedPriceJobOrderSaga>();
             bus.RegisterSaga<TimeAndMaterialJobOrderSaga>();  
         }
