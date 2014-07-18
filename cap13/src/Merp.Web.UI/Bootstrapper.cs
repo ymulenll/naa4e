@@ -15,54 +15,65 @@ namespace Merp.Web.UI
 {
     public static class Bootstrapper
     {
-        public static IUnityContainer Container { get; private set; }
 
         public static void Initialise()
         {   
             var container = BuildUnityContainer();
-            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
-            Container = container;
-            RegisterSagas();
-            RegisterHandlers();
-        }
-
-        private static void RegisterHandlers()
-        {
-            var bus = Container.Resolve<IBus>();
-            bus.RegisterHandler<PersonDenormalizer>();
-
-            bus.RegisterHandler<FixedPriceJobOrderDenormalizer>();
-            bus.RegisterHandler<TimeAndMaterialJobOrderDenormalizer>();
-        }
-
-        private static void RegisterSagas()
-        {
-            var bus = Container.Resolve<IBus>();
-            bus.RegisterSaga<PersonSaga>();
-
-            bus.RegisterSaga<FixedPriceJobOrderSaga>();
-            bus.RegisterSaga<TimeAndMaterialJobOrderSaga>();  
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));            
+            RegisterTypes(container);
+            
+            var bus = container.Resolve<IBus>();
+            ConfigureAccountancyBoundedContext(container,bus);
+            ConfigureRegistryBoundedContext(container, bus);
         }
 
         private static IUnityContainer BuildUnityContainer()
         {
             var container = new UnityContainer();
-            RegisterTypes(container);
 
             return container;
         }
 
         public static void RegisterTypes(IUnityContainer container)
-        {
-            container.RegisterType<IDatabase, Database>();
-          
+        { 
             container.RegisterType<IBus, InMemoryBus>(new InjectionConstructor(container, typeof(IEventStore)));
             container.RegisterType<IEventStore, InMemoryEventStoreImpl>();
             container.RegisterType<IRepository, Repository>();
 
+            container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
+        }
+
+        private static void ConfigureAccountancyBoundedContext(IUnityContainer container, IBus bus)
+        {
+            //Denormalizers
+            bus.RegisterHandler<FixedPriceJobOrderDenormalizer>();
+            bus.RegisterHandler<TimeAndMaterialJobOrderDenormalizer>();
+
+            //Handlers
+
+            //Sagas
+            bus.RegisterSaga<FixedPriceJobOrderSaga>();
+            bus.RegisterSaga<TimeAndMaterialJobOrderSaga>();  
+
+            //Services
             container.RegisterType<IJobOrderNumberGenerator, JobOrderNumberGenerator>();
 
-            container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
+            //Types
+            container.RegisterType<Merp.Accountancy.QueryStack.IDatabase, Merp.Accountancy.QueryStack.Database>();
+        }
+
+        private static void ConfigureRegistryBoundedContext(IUnityContainer container, IBus bus)
+        {
+            //Denormalizers
+            bus.RegisterHandler<PersonDenormalizer>();
+
+            //Handlers
+
+            //Sagas
+            bus.RegisterSaga<PersonSaga>();
+
+            //Types
+            container.RegisterType<Merp.Registry.QueryStack.IDatabase, Merp.Registry.QueryStack.Database>();
         }
     }
 }

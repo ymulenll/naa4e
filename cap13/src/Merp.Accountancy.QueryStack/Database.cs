@@ -9,7 +9,12 @@ namespace Merp.Accountancy.QueryStack
 {
     public class Database : IDatabase
     {
-        private MerpContext Context = new MerpContext();
+        private MerpContext Context;
+        public Database()
+        {
+            Context = new MerpContext();
+            Context.Configuration.AutoDetectChangesEnabled = false;
+        }
 
         public IQueryable<JobOrder> JobOrders
         {
