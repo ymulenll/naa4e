@@ -37,16 +37,6 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 message.JobOrderName
                 );
             this.Repository.Save(jobOrder);
-            var @event = new TimeAndMaterialJobOrderCreatedEvent(
-                jobOrder.Id,
-                jobOrder.CustomerId,
-                jobOrder.Value,
-                jobOrder.DateOfStart,
-                jobOrder.DateOfExpiration,
-                jobOrder.Name,
-                jobOrder.Number
-                );
-            Bus.RaiseEvent(@event);
         }
     }
 }

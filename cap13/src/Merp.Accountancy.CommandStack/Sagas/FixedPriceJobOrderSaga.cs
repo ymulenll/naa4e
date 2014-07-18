@@ -39,16 +39,6 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 message.JobOrderName
                 ); 
             this.Repository.Save(jobOrder);
-            var @event = new FixedPriceJobOrderCreatedEvent(
-                jobOrder.Id,
-                jobOrder.CustomerId,
-                jobOrder.Price,
-                jobOrder.DateOfStart,
-                jobOrder.DueDate,
-                jobOrder.Name,
-                jobOrder.Number
-                );
-            Bus.RaiseEvent(@event);
         }
 
         public void Handle(ExtendFixedPriceJobOrderCommand message)
