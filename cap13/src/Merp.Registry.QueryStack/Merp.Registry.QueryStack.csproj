@@ -51,6 +51,11 @@
     <Compile Include="Database.cs" />
     <Compile Include="Denormalizers\PersonDenormalizer.cs" />
     <Compile Include="IDatabase.cs" />
+    <Compile Include="Migrations\201407181101345_Person.cs" />
+    <Compile Include="Migrations\201407181101345_Person.Designer.cs">
+      <DependentUpon>201407181101345_Person.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Party.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +74,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201407181101345_Person.resx">
+      <DependentUpon>201407181101345_Person.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

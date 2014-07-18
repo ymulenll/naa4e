@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201407161006002_JobOrderModel.Designer.cs">
       <DependentUpon>201407161006002_JobOrderModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407181059524_Refactoring.cs" />
+    <Compile Include="Migrations\201407181059524_Refactoring.Designer.cs">
+      <DependentUpon>201407181059524_Refactoring.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\TimeAndMaterialJobOrder.cs" />
     <Compile Include="Model\FixedPriceJobOrder.cs" />
@@ -103,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407161006002_JobOrderModel.resx">
       <DependentUpon>201407161006002_JobOrderModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407181059524_Refactoring.resx">
+      <DependentUpon>201407181059524_Refactoring.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
