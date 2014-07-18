@@ -1,31 +1,27 @@
-﻿using Merp.Infrastructure;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Merp.Infrastructure;
 
-namespace Merp.Accountancy.CommandStack.Events
+namespace Merp.Accountancy.CommandStack.Commands
 {
-    public class TimeAndMaterialJobOrderCreatedEvent : DomainEvent
+    public sealed class RegisterTimeAndMaterialJobOrderCommand : Command
     {
-        public Guid JobOrderId { get; private set; }
         public int CustomerId { get; private set; }
         public decimal? Value { get; private set; }
         public DateTime DateOfStart { get; private set; }
         public DateTime? DateOfExpiration { get; private set; }
         public string JobOrderName { get; private set; }
-        public string JobOrderNumber { get; set; }
 
-        public TimeAndMaterialJobOrderCreatedEvent(Guid jobOrderId, int customerId, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string jobOrderName, string jobOrderNumber)
+        public RegisterTimeAndMaterialJobOrderCommand(int customerId, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string jobOrderName)
         {
-            JobOrderId = jobOrderId;
             CustomerId = customerId;
             Value = value;
             DateOfStart = dateOfStart;
             DateOfExpiration = dateOfExpiration;
             JobOrderName = jobOrderName;
-            JobOrderNumber = jobOrderNumber;
         }
     }
 }

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 namespace Merp.Accountancy.QueryStack.Model
 {
     public class FixedPriceJobOrderDenormalizer : 
-        IHandleMessage<FixedPriceJobOrderCreatedEvent>,
+        IHandleMessage<FixedPriceJobOrderRegisteredEvent>,
         IHandleMessage<FixedPriceJobOrderExtendedEvent>
     {
-        public void Handle(FixedPriceJobOrderCreatedEvent message)
+        public void Handle(FixedPriceJobOrderRegisteredEvent message)
         {
             var fixedPriceJobOrder = new FixedPriceJobOrder();
             fixedPriceJobOrder.OriginalId = message.JobOrderId;

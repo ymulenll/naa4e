@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace Merp.Accountancy.CommandStack.Events
 {
-    public class FixedPriceJobOrderCreatedEvent : DomainEvent
+    public class TimeAndMaterialJobOrderRegisteredEvent : DomainEvent
     {
         public Guid JobOrderId { get; private set; }
         public int CustomerId { get; private set; }
-        public decimal Price { get; private set; }
+        public decimal? Value { get; private set; }
         public DateTime DateOfStart { get; private set; }
-        public DateTime DueDate { get; private set; }
+        public DateTime? DateOfExpiration { get; private set; }
         public string JobOrderName { get; private set; }
         public string JobOrderNumber { get; set; }
 
-        public FixedPriceJobOrderCreatedEvent(Guid jobOrderId, int customerId, decimal price, DateTime dateOfStart, DateTime dueDate, string jobOrderName, string jobOrderNumber)
+        public TimeAndMaterialJobOrderRegisteredEvent(Guid jobOrderId, int customerId, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string jobOrderName, string jobOrderNumber)
         {
             JobOrderId = jobOrderId;
             CustomerId = customerId;
-            Price = price;
+            Value = value;
             DateOfStart = dateOfStart;
-            DueDate = dueDate;
+            DateOfExpiration = dateOfExpiration;
             JobOrderName = jobOrderName;
             JobOrderNumber = jobOrderNumber;
         }

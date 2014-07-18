@@ -67,7 +67,7 @@ namespace Merp.Accountancy.CommandStack.Model
                     Number = jobOrderNumberGenerator.Generate(), 
                     IsCompleted = false
                 };
-                var @event = new FixedPriceJobOrderCreatedEvent(
+                var @event = new FixedPriceJobOrderRegisteredEvent(
                     jobOrder.Id,
                     jobOrder.CustomerId,
                     jobOrder.Price,

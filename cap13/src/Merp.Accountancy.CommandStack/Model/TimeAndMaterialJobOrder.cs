@@ -54,7 +54,7 @@ namespace Merp.Accountancy.CommandStack.Model
                     Number = jobOrderNumberGenerator.Generate(), 
                     IsCompleted = false
                 };
-                var @event = new TimeAndMaterialJobOrderCreatedEvent(
+                var @event = new TimeAndMaterialJobOrderRegisteredEvent(
                     jobOrder.Id,
                     jobOrder.CustomerId,
                     jobOrder.Value,

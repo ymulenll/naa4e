@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Merp.Accountancy.QueryStack.Model
 {
     public class TimeAndMaterialJobOrderDenormalizer : 
-        IHandleMessage<TimeAndMaterialJobOrderCreatedEvent>
+        IHandleMessage<TimeAndMaterialJobOrderRegisteredEvent>
     {
-        public void Handle(TimeAndMaterialJobOrderCreatedEvent message)
+        public void Handle(TimeAndMaterialJobOrderRegisteredEvent message)
         {
             var timeAndMaterialJobOrder = new TimeAndMaterialJobOrder();
             timeAndMaterialJobOrder.OriginalId = message.JobOrderId;

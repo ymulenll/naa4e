@@ -30,7 +30,7 @@ namespace Merp.Web.UI.WorkerServices
 
         public void CreateFixedPriceJobOrder(CreateFixedPriceViewModel model)
         {
-            var command = new CreateFixedPriceJobOrderCommand( 
+            var command = new RegisterFixedPriceJobOrderCommand( 
                     model.CustomerCode,
                     model.Price,
                     model.DateOfStart,
@@ -42,7 +42,7 @@ namespace Merp.Web.UI.WorkerServices
 
         public void CreateTimeAndMaterialJobOrder(CreateTimeAndMaterialViewModel model)
         {
-            var command = new CreateTimeAndMaterialJobOrderCommand(
+            var command = new RegisterTimeAndMaterialJobOrderCommand(
                     model.CustomerCode,
                     model.Value,
                     model.DateOfStart,

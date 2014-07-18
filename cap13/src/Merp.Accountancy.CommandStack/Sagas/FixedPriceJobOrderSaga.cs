@@ -13,7 +13,7 @@ using Merp.Accountancy.CommandStack.Services;
 namespace Merp.Accountancy.CommandStack.Sagas
 {
     public sealed class FixedPriceJobOrderSaga : Saga,
-        IAmStartedBy<CreateFixedPriceJobOrderCommand>,
+        IAmStartedBy<RegisterFixedPriceJobOrderCommand>,
         IHandleMessage<ExtendFixedPriceJobOrderCommand>
     {
         public IJobOrderNumberGenerator JobOrderNumberGenerator { get; private set; }
@@ -28,7 +28,7 @@ namespace Merp.Accountancy.CommandStack.Sagas
             JobOrderNumberGenerator = jobOrderNumberGenerator;
         }
 
-        public void Handle(CreateFixedPriceJobOrderCommand message)
+        public void Handle(RegisterFixedPriceJobOrderCommand message)
         {
             var jobOrder = FixedPriceJobOrder.Factory.CreateNewInstance(
                 JobOrderNumberGenerator,

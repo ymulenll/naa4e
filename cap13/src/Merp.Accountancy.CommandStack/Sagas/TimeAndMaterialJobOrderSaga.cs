@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Merp.Accountancy.CommandStack.Sagas
 {
     public class TimeAndMaterialJobOrderSaga : Saga,
-        IAmStartedBy<CreateTimeAndMaterialJobOrderCommand>
+        IAmStartedBy<RegisterTimeAndMaterialJobOrderCommand>
     {
         public IJobOrderNumberGenerator JobOrderNumberGenerator { get; private set; }
 
@@ -26,7 +26,7 @@ namespace Merp.Accountancy.CommandStack.Sagas
             JobOrderNumberGenerator = jobOrderNumberGenerator;
         }
 
-        public void Handle(CreateTimeAndMaterialJobOrderCommand message)
+        public void Handle(RegisterTimeAndMaterialJobOrderCommand message)
         {
             var jobOrder = TimeAndMaterialJobOrder.Factory.CreateNewInstance(
                 JobOrderNumberGenerator,

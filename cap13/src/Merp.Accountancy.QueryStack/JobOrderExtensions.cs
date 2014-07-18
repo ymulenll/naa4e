@@ -9,7 +9,7 @@ namespace Merp.Accountancy.QueryStack
 {
     public static class JobOrderExtensions
     {
-        public static IQueryable<FixedPriceJobOrder> CurrentOnly(this IQueryable<FixedPriceJobOrder> jobOrders)
+        public static IQueryable<JobOrder> CurrentOnly(this IQueryable<JobOrder> jobOrders)
         {
             return jobOrders.Where(jo => jo.IsCompleted == false);
         }
