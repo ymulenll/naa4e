@@ -1,0 +1,70 @@
+﻿@model Merp.Web.UI.Areas.Registry.Models.PartyInfo
+
+
+@Html.TextBoxFor(model => model.Id, new { onblur = "" })
+@Html.TextBoxFor(model => model.Name)
+@Html.ValidationMessageFor(model => model.Id)
+@Html.ValidationMessageFor(model => model.Name)
+<script type="text/javascript">
+    @{
+        var idTextBoxName = ViewData.TemplateInfo.GetFullHtmlFieldId("Id");
+        var partyNameTextBoxName = ViewData.TemplateInfo.GetFullHtmlFieldId("Name");
+    }
+    $(function () {
+        var txtId = $("#@idTextBoxName")[0];
+        var txtPartyName = $("#@partyNameTextBoxName")[0];
+        txtId.onblur = function()
+        {
+            if (txtId.value != '')
+            {
+                $.get("/Registry/Party/GetNameById/" + txtId.value, function (data) {
+                    if (data === 'undefined') {
+                        alert('Codice sconosciuto');
+                        txtPartyName.value = '';
+                    }
+                    else {
+                        txtPartyName.value = data;
+                    }
+                })
+                .fail(function () {
+                    alert('Codice sconosciuto');
+                    txtPartyName.value = '';
+                }
+                );
+            }
+
+        }
+        $("#@partyNameTextBoxName").autocomplete({
+            source:
+                function (request, response) {
+                    $.ajax({
+                        url: "/Registry/Party/GetNamesByPattern?text=" + txtPartyName.value,
+                        dataType: "jsonp",
+                        data: {
+                            terminiRicerca: request.term
+                        },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.Name,
+                                    value: item.Name,
+                                    id: item.Id
+                                }
+                            }));
+                        }
+                    });
+                },
+            minLength: 2,
+            select: function (event, ui) {
+                txtId.value = ui.item.id;
+            },
+            open: function () {
+                $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+            },
+            close: function () {
+                $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+            }
+        });
+    });
+</script>
+
