@@ -11,5 +11,8 @@ namespace Merp.Registry.QueryStack.Model
         public int Id { get; set; }
         public Guid OriginalId { get; set; }
         public string DisplayName { get; set; }
+        public string VatIndex { get; set; }
+        public string NationalIdentificationNumber { get; set; }
+
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Merp.Registry.CommandStack.Commands
 {
-    public class RegisterCompanyCommand : Message
+    public class RegisterCompanyCommand : Command
     {
         public string CompanyName { get; private set; }
         public string VatIndex { get; private set; }

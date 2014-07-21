@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="Denormalizers\CompanyDenormalizer.cs" />
     <Compile Include="Denormalizers\PersonDenormalizer.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="Migrations\201407181101345_Person.cs" />
@@ -57,6 +58,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Party.cs" />
+    <Compile Include="Model\Company.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistryDbContext.cs" />

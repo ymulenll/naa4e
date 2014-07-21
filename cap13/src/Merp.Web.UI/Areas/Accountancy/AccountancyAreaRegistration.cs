@@ -17,7 +17,8 @@ namespace Merp.Web.UI.Areas.Accountancy
             context.MapRoute(
                 "Accountancy_default",
                 "Accountancy/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                new string[] { "Merp.Web.UI.Areas.Accountancy" }
             );
         }
     }

@@ -9,13 +9,13 @@ namespace Merp.Registry.CommandStack.Events
 {
     public class CompanyRegisteredEvent : DomainEvent
     {
-        public Guid PersonId { get; private set; }
+        public Guid CompanyId { get; private set; }
         public string CompanyName { get; private set; }
         public string VatIndex { get; private set; }
 
-        public CompanyRegisteredEvent(Guid personId, string companyName, string vatIndex)
+        public CompanyRegisteredEvent(Guid companyId, string companyName, string vatIndex)
         {
-            PersonId = personId;
+            CompanyId = companyId;
             CompanyName = companyName;
             VatIndex = vatIndex;
         }

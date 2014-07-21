@@ -17,6 +17,5 @@ namespace Merp.Accountancy.QueryStack
         }
 
         public DbSet<JobOrder> JobOrders { get; set; }
-        public DbSet<FixedPriceJobOrder> FixedPriceJobOrders { get; set; }
     }
 }

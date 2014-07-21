@@ -17,7 +17,8 @@ namespace Merp.Web.UI.Areas.Registry
             context.MapRoute(
                 "Registry_default",
                 "Registry/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                new string[] { "Merp.Web.UI.Areas.Registry" }
             );
         }
     }

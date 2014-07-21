@@ -10,6 +10,7 @@ using Merp.Accountancy.CommandStack.Services;
 using Merp.Accountancy.QueryStack;
 using Merp.Registry.CommandStack.Sagas;
 using Merp.Registry.QueryStack.Denormalizers;
+using Merp.Web.UI.Areas.Registry.WorkerServices;
 
 namespace Merp.Web.UI
 {
@@ -67,14 +68,19 @@ namespace Merp.Web.UI
         {
             //Denormalizers
             bus.RegisterHandler<PersonDenormalizer>();
+            bus.RegisterHandler<CompanyDenormalizer>();
 
             //Handlers
 
             //Sagas
+            bus.RegisterSaga<CompanySaga>();
             bus.RegisterSaga<PersonSaga>();
 
             //Types
             container.RegisterType<Merp.Registry.QueryStack.IDatabase, Merp.Registry.QueryStack.Database>();
+
+            //Worker Services
+            container.RegisterType<PersonControllerWorkerServices, PersonControllerWorkerServices>();
         }
     }
 }

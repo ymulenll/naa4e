@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Merp.Registry.CommandStack.Commands
 {
-    public class RegisterPersonCommand : Message
+    public class RegisterPersonCommand : Command
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }

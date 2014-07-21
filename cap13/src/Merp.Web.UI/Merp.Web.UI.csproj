@@ -190,7 +190,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Accountancy\AccountancyAreaRegistration.cs" />
+    <Compile Include="Areas\Registry\Controllers\PartyController.cs" />
+    <Compile Include="Areas\Registry\Controllers\PersonController.cs" />
+    <Compile Include="Areas\Registry\Models\Person\AddEntryViewModel.cs" />
     <Compile Include="Areas\Registry\RegistryAreaRegistration.cs" />
+    <Compile Include="Areas\Registry\WorkerServices\PersonControllerWorkerServices.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -320,6 +324,9 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Areas\Registry\Views\web.config" />
     <Content Include="Areas\Accountancy\Views\web.config" />
+    <Content Include="Areas\Registry\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Registry\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Registry\Views\Person\AddEntry.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -661,8 +668,8 @@
     <Folder Include="Areas\Accountancy\Controllers\" />
     <Folder Include="Areas\Accountancy\Models\" />
     <Folder Include="Areas\Accountancy\Views\Shared\" />
-    <Folder Include="Areas\Registry\Controllers\" />
-    <Folder Include="Areas\Registry\Views\Shared\" />
+    <Folder Include="Areas\Registry\Resources\" />
+    <Folder Include="Areas\Registry\Views\Party\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
