@@ -9,5 +9,7 @@ namespace Merp.Registry.CommandStack.Model
 {
     public class Party : Aggregate
     {
+        public string VatIndex { get; protected set; }
+        public string NationalIdentificationNumber { get; protected set; }
     }
 }
