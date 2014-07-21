@@ -8,7 +8,7 @@ using Merp.Registry.QueryStack.Model;
 
 namespace Merp.Registry.QueryStack
 {
-    public class RegistryDbContext : DbContext
+    class RegistryDbContext : DbContext
     {
         public RegistryDbContext()
             : base("MerpReadModel")
@@ -16,6 +16,6 @@ namespace Merp.Registry.QueryStack
             
         }
 
-        public DbSet<Party> Parties { get; private set; }
+        public DbSet<Party> Parties { get; set; }
     }
 }
