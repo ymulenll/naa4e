@@ -13,7 +13,7 @@ namespace Merp.Registry.QueryStack
         public RegistryDbContext()
             : base("MerpReadModel")
         {
-
+            
         }
 
         public DbSet<Party> Parties { get; private set; }

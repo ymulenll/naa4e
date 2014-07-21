@@ -68,7 +68,7 @@ namespace Merp.Infrastructure.Impl
             foreach(var h in handlersToNotify)
             {
                 dynamic handlerInstance = Container.Resolve(h);
-                handlerInstance.Handle(message);
+                handlerInstance.Handle((dynamic)message);
             }
         }
 
@@ -83,7 +83,7 @@ namespace Merp.Infrastructure.Impl
             foreach (var s in sagasToStartup)
             {
                 dynamic sagaInstance = Container.Resolve(s);
-                sagaInstance.Handle(message);
+                sagaInstance.Handle((dynamic)message);
             }
         }
 
@@ -98,7 +98,7 @@ namespace Merp.Infrastructure.Impl
             foreach (var s in sagasToNotify)
             {
                 dynamic sagaInstance = Container.Resolve(s);
-                sagaInstance.Handle(message);
+                sagaInstance.Handle((dynamic)message);
             }
         }
 

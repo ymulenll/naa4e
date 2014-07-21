@@ -20,7 +20,7 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
             }
             WorkerServices = workerServices;
         }
-        // GET: Registry/Person
+
         [HttpGet]
         public ActionResult AddEntry()
         {
