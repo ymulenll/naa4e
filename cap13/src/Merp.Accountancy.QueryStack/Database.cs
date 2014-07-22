@@ -9,10 +9,10 @@ namespace Merp.Accountancy.QueryStack
 {
     public class Database : IDatabase
     {
-        private MerpContext Context;
+        private AccountancyContext Context;
         public Database()
         {
-            Context = new MerpContext();
+            Context = new AccountancyContext();
             Context.Configuration.AutoDetectChangesEnabled = false;
         }
 

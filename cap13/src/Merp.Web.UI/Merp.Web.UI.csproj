@@ -190,10 +190,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Accountancy\AccountancyAreaRegistration.cs" />
+    <Compile Include="Areas\Registry\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Registry\Controllers\PartyController.cs" />
     <Compile Include="Areas\Registry\Controllers\PersonController.cs" />
+    <Compile Include="Areas\Registry\Models\Company\AddEntryViewModel.cs" />
     <Compile Include="Areas\Registry\Models\Person\AddEntryViewModel.cs" />
     <Compile Include="Areas\Registry\RegistryAreaRegistration.cs" />
+    <Compile Include="Areas\Registry\WorkerServices\CompanyControllerWorkerServices.cs" />
     <Compile Include="Areas\Registry\WorkerServices\PersonControllerWorkerServices.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -327,6 +330,7 @@
     <Content Include="Areas\Registry\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Registry\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Registry\Views\Person\AddEntry.cshtml" />
+    <Content Include="Areas\Registry\Views\Company\AddEntry.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

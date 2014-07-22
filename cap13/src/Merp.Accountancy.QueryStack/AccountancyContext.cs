@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Merp.Accountancy.QueryStack
 {
-    class MerpContext : DbContext
+    class AccountancyContext : DbContext
     {
-        public MerpContext()
+        public AccountancyContext()
             : base("MerpReadModel")
         {
 

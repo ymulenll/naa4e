@@ -52,7 +52,7 @@
     <Compile Include="Denormalizers\TimeAndMaterialJobOrderDenormalizer.cs" />
     <Compile Include="Denormalizers\FixedPriceJobOrderDenormalizer.cs" />
     <Compile Include="JobOrderExtensions.cs" />
-    <Compile Include="MerpContext.cs" />
+    <Compile Include="AccountancyContext.cs" />
     <Compile Include="Migrations\201407110737498_JobOrderFlags.cs" />
     <Compile Include="Migrations\201407110737498_JobOrderFlags.Designer.cs">
       <DependentUpon>201407110737498_JobOrderFlags.cs</DependentUpon>

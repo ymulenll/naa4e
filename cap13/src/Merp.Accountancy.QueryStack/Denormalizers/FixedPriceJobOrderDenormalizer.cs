@@ -26,7 +26,7 @@ namespace Merp.Accountancy.QueryStack.Model
             fixedPriceJobOrder.IsTimeAndMaterial = false;
             fixedPriceJobOrder.IsFixedPrice = true;
 
-            using(var db = new MerpContext())
+            using(var db = new AccountancyContext())
             {
                 db.JobOrders.Add(fixedPriceJobOrder);
                 db.SaveChanges();
@@ -35,7 +35,7 @@ namespace Merp.Accountancy.QueryStack.Model
 
         public void Handle(FixedPriceJobOrderExtendedEvent message)
         {
-            using(var db = new MerpContext())
+            using(var db = new AccountancyContext())
             {
                 var jobOrder = db.JobOrders.Select(jo => jo.Id).OfType<FixedPriceJobOrder>().Single();
                 jobOrder.DueDate = message.NewDueDate;

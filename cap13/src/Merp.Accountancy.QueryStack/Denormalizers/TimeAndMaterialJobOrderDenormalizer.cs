@@ -25,7 +25,7 @@ namespace Merp.Accountancy.QueryStack.Model
             timeAndMaterialJobOrder.IsTimeAndMaterial = true;
             timeAndMaterialJobOrder.IsFixedPrice = false;
 
-            using(var db = new MerpContext())
+            using(var db = new AccountancyContext())
             {
                 db.JobOrders.Add(timeAndMaterialJobOrder);
                 db.SaveChanges();
