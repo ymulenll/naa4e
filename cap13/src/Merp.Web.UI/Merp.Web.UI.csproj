@@ -331,6 +331,7 @@
     <Content Include="Areas\Registry\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Registry\Views\Person\AddEntry.cshtml" />
     <Content Include="Areas\Registry\Views\Company\AddEntry.cshtml" />
+    <Content Include="Areas\Accountancy\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

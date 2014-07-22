@@ -9,7 +9,7 @@
     (function (module) {
         var jobOrdersController = function ($scope, $http) {
             $scope.refreshJobOrdersList = function () {
-                var url = '/JobOrder/GetList';
+                var url = '/Accountancy/JobOrder/GetList';
                 $http.get(url).success(function (data) {
                     $scope.JobOrders = data;
                 });
@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                     <tr data-ng-repeat="jobOrder in JobOrders">
-                        <td><a href="/JobOrder/Close/{{jobOrder.OriginalId}}">[Extend]</a></td>
+                        <td><a href="/Accountancy/JobOrder/Close/{{jobOrder.OriginalId}}">[Close]</a></td>
                         <td>{{jobOrder.CustomerName}}</td>
                         <td>{{jobOrder.Name}}</td>
                     </tr>
@@ -53,10 +53,8 @@
     </div>
     <div id="CommandsBox" class="col-md-2 pull-right">
         <ul>
-            <li><a href="/JobOrder/CreateFixedPrice">Create fixed price Job Order</a></li>
-            <li><a href="/JobOrder/CreateTimeAndMaterial">Create time and material Job Order</a></li>
-            @*<li><a href="/JobOrder/Extend">Extend</a></li>
-            <li><a href="/JobOrder/Close">Close</a></li>*@
+            <li><a href="/Accountancy/JobOrder/CreateFixedPrice">Create fixed price Job Order</a></li>
+            <li><a href="/Accountancy/JobOrder/CreateTimeAndMaterial">Create time and material Job Order</a></li>
         </ul>
     </div>
 </div>
