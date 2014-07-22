@@ -1,7 +1,6 @@
 using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using Unity.Mvc4;
-using Merp.Web.UI.WorkerServices;
 using Merp.Infrastructure;
 using Merp.Accountancy.CommandStack.Sagas;
 using Merp.Accountancy.QueryStack.Model;
@@ -11,6 +10,7 @@ using Merp.Accountancy.QueryStack;
 using Merp.Registry.CommandStack.Sagas;
 using Merp.Registry.QueryStack.Denormalizers;
 using Merp.Web.UI.Areas.Registry.WorkerServices;
+using Merp.Web.UI.Areas.Accountancy.WorkerServices;
 
 namespace Merp.Web.UI
 {

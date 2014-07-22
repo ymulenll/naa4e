@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Merp.Web.UI.Models.JobOrder
+namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
 {
     public class CreateTimeAndMaterialViewModel : IValidatableObject
     {

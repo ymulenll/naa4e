@@ -1,5 +1,5 @@
-﻿using Merp.Web.UI.Models.JobOrder;
-using Merp.Web.UI.WorkerServices;
+﻿using Merp.Web.UI.Areas.Accountancy.Models.JobOrder;
+using Merp.Web.UI.Areas.Accountancy.WorkerServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using MvcMate.Web.Mvc;
 
-namespace Merp.Web.UI.Controllers
+namespace Merp.Web.UI.Areas.Accountancy.Controllers
 {
     public class JobOrderController : Controller
     {

@@ -1,10 +1,10 @@
-﻿@model Merp.Web.UI.Models.JobOrder.CreateTimeAndMaterialViewModel
+﻿@model Merp.Web.UI.Areas.Accountancy.Models.JobOrder.CreateFixedPriceViewModel
 
 @{
-    ViewBag.Title = "CreateTimeAndMaterial";
+    ViewBag.Title = "CreateFixedPrice";
 }
 
-<h2>CreateTimeAndMaterial</h2>
+<h2>CreateFixedPrice</h2>
 
 
 @using (Html.BeginForm()) 
@@ -41,18 +41,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DateOfExpiration, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DueDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateOfExpiration, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateOfExpiration, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
 

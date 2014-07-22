@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Merp.Web.UI.Models.JobOrder;
+using Merp.Web.UI.Areas.Accountancy.Models.JobOrder;
 using Merp.Accountancy.QueryStack;
 
-namespace Merp.Web.UI.WorkerServices
+namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
 {
     public class JobOrderControllerWorkerServices
     {
