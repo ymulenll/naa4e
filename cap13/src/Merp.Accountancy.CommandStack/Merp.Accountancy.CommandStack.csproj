@@ -44,6 +44,7 @@
     <Compile Include="Events\TimeAndMaterialJobOrderRegisteredEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderRegisteredEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderExtendedEvent.cs" />
+    <Compile Include="Model\JobOrder.cs" />
     <Compile Include="Model\TimeAndMaterialJobOrder.cs" />
     <Compile Include="Model\FixedPriceJobOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -19,15 +19,16 @@
             {
                 $.get("/Registry/Party/GetNameById/" + txtId.value, function (data) {
                     if (data === 'undefined') {
-                        alert('Codice sconosciuto');
+                        alert('Unknown code');
                         txtPartyName.value = '';
+
                     }
                     else {
-                        txtPartyName.value = data;
+                        txtPartyName.value = data.Name;
                     }
                 })
                 .fail(function () {
-                    alert('Codice sconosciuto');
+                    alert('Unknown code');
                     txtPartyName.value = '';
                 }
                 );

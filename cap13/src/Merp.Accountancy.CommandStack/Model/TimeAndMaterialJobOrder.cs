@@ -12,7 +12,7 @@ namespace Merp.Accountancy.CommandStack.Model
     public class TimeAndMaterialJobOrder : Aggregate
     {
         public decimal? Value { get; private set; }
-        public int CustomerId { get; private set; }
+        public Guid CustomerId { get; private set; }
         public string Number { get; private set; }
         public DateTime DateOfStart { get; private set; }
         public DateTime? DateOfExpiration { get; private set; }
@@ -40,7 +40,7 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public class Factory
         {
-            public static TimeAndMaterialJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, int customerId, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string name)
+            public static TimeAndMaterialJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string name)
             {
                 var id = Guid.NewGuid();
                 var jobOrder = new TimeAndMaterialJobOrder() 

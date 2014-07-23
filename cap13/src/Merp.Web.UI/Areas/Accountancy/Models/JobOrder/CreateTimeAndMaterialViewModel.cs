@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Merp.Web.UI.Areas.Registry.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,8 +9,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
 {
     public class CreateTimeAndMaterialViewModel : IValidatableObject
     {
-        [Required]
-        public int CustomerCode { get; set; }        
+        public PartyInfo Customer { get; set; }        
         [Required]
         public string Name { get; set; }
         [Required]

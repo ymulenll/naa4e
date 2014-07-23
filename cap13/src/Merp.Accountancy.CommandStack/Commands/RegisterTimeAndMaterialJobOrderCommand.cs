@@ -9,13 +9,13 @@ namespace Merp.Accountancy.CommandStack.Commands
 {
     public sealed class RegisterTimeAndMaterialJobOrderCommand : Command
     {
-        public int CustomerId { get; private set; }
+        public Guid CustomerId { get; private set; }
         public decimal? Value { get; private set; }
         public DateTime DateOfStart { get; private set; }
         public DateTime? DateOfExpiration { get; private set; }
         public string JobOrderName { get; private set; }
 
-        public RegisterTimeAndMaterialJobOrderCommand(int customerId, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string jobOrderName)
+        public RegisterTimeAndMaterialJobOrderCommand(Guid customerId, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string jobOrderName)
         {
             CustomerId = customerId;
             Value = value;

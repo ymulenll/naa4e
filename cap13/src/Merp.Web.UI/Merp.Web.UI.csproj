@@ -197,6 +197,7 @@
     <Compile Include="Areas\Registry\Models\Person\AddEntryViewModel.cs" />
     <Compile Include="Areas\Registry\RegistryAreaRegistration.cs" />
     <Compile Include="Areas\Registry\WorkerServices\CompanyControllerWorkerServices.cs" />
+    <Compile Include="Areas\Registry\WorkerServices\PartyControllerWorkerServices.cs" />
     <Compile Include="Areas\Registry\WorkerServices\PersonControllerWorkerServices.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -297,6 +298,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Areas\Registry\Views\web.config" />
+    <Content Include="Areas\Accountancy\Views\web.config" />
+    <Content Include="Areas\Registry\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Registry\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Registry\Views\Person\AddEntry.cshtml" />
+    <Content Include="Areas\Registry\Views\Company\AddEntry.cshtml" />
+    <Content Include="Areas\Accountancy\Views\_ViewStart.cshtml" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
@@ -325,13 +333,6 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Areas\Registry\Views\web.config" />
-    <Content Include="Areas\Accountancy\Views\web.config" />
-    <Content Include="Areas\Registry\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Registry\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Registry\Views\Person\AddEntry.cshtml" />
-    <Content Include="Areas\Registry\Views\Company\AddEntry.cshtml" />
-    <Content Include="Areas\Accountancy\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -664,9 +665,9 @@
     <Content Include="Areas\Accountancy\Views\JobOrder\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Areas\Accountancy\Views\JobOrder\ExtendTimeAndMaterial.cshtml" />
-    <Content Include="Scripts\version.json" />
     <Content Include="Areas\Accountancy\Views\JobOrder\CreateTimeAndMaterial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PartyInfo.cshtml" />
+    <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
