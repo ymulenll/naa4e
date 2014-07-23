@@ -44,7 +44,7 @@
             source:
                 function (request, response) {
                     $.ajax({
-                        url: "/Registry/Party/GetNamesByPattern?text=" + txtPartyName.value,
+                        url: "/Registry/Party/GetPartyInfoByPattern?text=" + txtPartyName.value,
                         dataType: "jsonp",
                         data: {
                             searchPattern: request.term
@@ -54,7 +54,8 @@
                                 return {
                                     label: item.Name,
                                     value: item.Name,
-                                    id: item.Id
+                                    id: item.Id,
+                                    originalId: item.OriginalId
                                 }
                             }));
                         }
@@ -63,6 +64,7 @@
             minLength: 2,
             select: function (event, ui) {
                 txtId.value = ui.item.id;
+                txtOriginalId.value = ui.item.originalId;
             },
             open: function () {
                 $(this).removeClass("ui-corner-all").addClass("ui-corner-top");

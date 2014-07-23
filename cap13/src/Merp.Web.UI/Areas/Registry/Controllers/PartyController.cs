@@ -29,14 +29,7 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetNameById(int id)
-        {
-            var model = WorkerServices.GetNameById(id);
-            return Json(model, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public ActionResult GetNamesByPattern(string text)
+        public ActionResult GetPartyInfoByPattern(string text)
         {
             var model = WorkerServices.GetNamesByPattern(text);
             return this.Jsonp(model);
@@ -45,7 +38,7 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
         [HttpGet]
         public ActionResult GetPartyInfoById(int id)
         {
-            var model = WorkerServices.GetPartyInfoById(id);
+            var model = WorkerServices.GetPartyInfoByPattern(id);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
