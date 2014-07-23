@@ -2,33 +2,38 @@
 
 
 @Html.TextBoxFor(model => model.Id, new { onblur = "" })
+@Html.HiddenFor(model => model.OriginalId, new { onblur = "" })
 @Html.TextBoxFor(model => model.Name)
 @Html.ValidationMessageFor(model => model.Id)
 @Html.ValidationMessageFor(model => model.Name)
 <script type="text/javascript">
     @{
         var idTextBoxName = ViewData.TemplateInfo.GetFullHtmlFieldId("Id");
+        var originalIdTextBoxName = ViewData.TemplateInfo.GetFullHtmlFieldId("OriginalId");
         var partyNameTextBoxName = ViewData.TemplateInfo.GetFullHtmlFieldId("Name");
     }
     $(function () {
         var txtId = $("#@idTextBoxName")[0];
+        var txtOriginalId = $("#@originalIdTextBoxName")[0];
         var txtPartyName = $("#@partyNameTextBoxName")[0];
         txtId.onblur = function()
         {
             if (txtId.value != '')
             {
-                $.get("/Registry/Party/GetNameById/" + txtId.value, function (data) {
+                $.get("/Registry/Party/GetPartyInfoById/" + txtId.value, function (data) {
                     if (data === 'undefined') {
                         alert('Unknown code');
+                        txtOriginalId.value = '';
                         txtPartyName.value = '';
-
                     }
                     else {
+                        txtOriginalId.value = data.OriginalId;
                         txtPartyName.value = data.Name;
                     }
                 })
                 .fail(function () {
                     alert('Unknown code');
+                    txtOriginalId.value = '';
                     txtPartyName.value = '';
                 }
                 );
@@ -42,7 +47,7 @@
                         url: "/Registry/Party/GetNamesByPattern?text=" + txtPartyName.value,
                         dataType: "jsonp",
                         data: {
-                            terminiRicerca: request.term
+                            searchPattern: request.term
                         },
                         success: function (data) {
                             response($.map(data, function (item) {

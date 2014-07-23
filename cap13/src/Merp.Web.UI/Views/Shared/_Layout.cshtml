@@ -11,6 +11,7 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("head", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -28,7 +29,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Job Orders", "Index", "JobOrder")</li>
+                    <li><a href="/Accountancy/JobOrder">Accountancy</a></li>
+                    <li><a href="/Registry/Party">Registry</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -45,7 +45,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
                 return View(model);
             }
             WorkerServices.CreateFixedPriceJobOrder(model);
-            return Redirect("/JobOrder");
+            return Redirect("/Accountancy/JobOrder");
         }
 
         [HttpGet]
@@ -63,7 +63,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
                 return View(model);
             }
             WorkerServices.CreateTimeAndMaterialJobOrder(model);
-            return Redirect("/JobOrder");
+            return Redirect("/Accountancy/JobOrder");
         }
 
         [HttpGet]
@@ -81,7 +81,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
                 return View(model);
             }
             WorkerServices.ExtendJobOrder(model);
-            return Redirect("/JobOrder");
+            return Redirect("/Accountancy/JobOrder");
         }
 
         [HttpGet]

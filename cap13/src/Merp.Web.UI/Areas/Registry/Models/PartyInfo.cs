@@ -10,6 +10,7 @@ namespace Merp.Web.UI.Areas.Registry.Models
     {
         [Required]
         public int Id { get; set; }
+        public Guid OriginalId { get; set; }
         public string Name { get; set; }
     }
 }

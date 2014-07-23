@@ -52,9 +52,9 @@
     <Compile Include="Denormalizers\CompanyDenormalizer.cs" />
     <Compile Include="Denormalizers\PersonDenormalizer.cs" />
     <Compile Include="IDatabase.cs" />
-    <Compile Include="Migrations\201407211518194_Registry.cs" />
-    <Compile Include="Migrations\201407211518194_Registry.Designer.cs">
-      <DependentUpon>201407211518194_Registry.cs</DependentUpon>
+    <Compile Include="Migrations\201407231536397_Parties.cs" />
+    <Compile Include="Migrations\201407231536397_Parties.Designer.cs">
+      <DependentUpon>201407231536397_Parties.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Party.cs" />
@@ -78,8 +78,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201407211518194_Registry.resx">
-      <DependentUpon>201407211518194_Registry.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407231536397_Parties.resx">
+      <DependentUpon>201407231536397_Parties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

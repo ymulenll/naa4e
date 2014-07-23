@@ -301,7 +301,6 @@
     <Content Include="Areas\Registry\Views\web.config" />
     <Content Include="Areas\Accountancy\Views\web.config" />
     <Content Include="Areas\Registry\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Registry\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Registry\Views\Person\AddEntry.cshtml" />
     <Content Include="Areas\Registry\Views\Company\AddEntry.cshtml" />
     <Content Include="Areas\Accountancy\Views\_ViewStart.cshtml" />
@@ -333,6 +332,7 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Areas\Registry\Views\Party\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -673,7 +673,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Accountancy\Views\Shared\" />
     <Folder Include="Areas\Registry\Resources\" />
-    <Folder Include="Areas\Registry\Views\Party\" />
+    <Folder Include="Areas\Registry\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

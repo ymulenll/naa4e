@@ -53,25 +53,9 @@
     <Compile Include="Denormalizers\FixedPriceJobOrderDenormalizer.cs" />
     <Compile Include="JobOrderExtensions.cs" />
     <Compile Include="AccountancyContext.cs" />
-    <Compile Include="Migrations\201407110737498_JobOrderFlags.cs" />
-    <Compile Include="Migrations\201407110737498_JobOrderFlags.Designer.cs">
-      <DependentUpon>201407110737498_JobOrderFlags.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407110802472_TimeAndMaterialJobOrder.cs" />
-    <Compile Include="Migrations\201407110802472_TimeAndMaterialJobOrder.Designer.cs">
-      <DependentUpon>201407110802472_TimeAndMaterialJobOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407160957343_TimeAndMaterialJobOrder1.cs" />
-    <Compile Include="Migrations\201407160957343_TimeAndMaterialJobOrder1.Designer.cs">
-      <DependentUpon>201407160957343_TimeAndMaterialJobOrder1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407161006002_JobOrderModel.cs" />
-    <Compile Include="Migrations\201407161006002_JobOrderModel.Designer.cs">
-      <DependentUpon>201407161006002_JobOrderModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407181059524_Refactoring.cs" />
-    <Compile Include="Migrations\201407181059524_Refactoring.Designer.cs">
-      <DependentUpon>201407181059524_Refactoring.cs</DependentUpon>
+    <Compile Include="Migrations\201407231535563_JobOrders.cs" />
+    <Compile Include="Migrations\201407231535563_JobOrders.Designer.cs">
+      <DependentUpon>201407231535563_JobOrders.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\TimeAndMaterialJobOrder.cs" />
@@ -96,20 +80,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201407110737498_JobOrderFlags.resx">
-      <DependentUpon>201407110737498_JobOrderFlags.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407110802472_TimeAndMaterialJobOrder.resx">
-      <DependentUpon>201407110802472_TimeAndMaterialJobOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407160957343_TimeAndMaterialJobOrder1.resx">
-      <DependentUpon>201407160957343_TimeAndMaterialJobOrder1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407161006002_JobOrderModel.resx">
-      <DependentUpon>201407161006002_JobOrderModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407181059524_Refactoring.resx">
-      <DependentUpon>201407181059524_Refactoring.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407231535563_JobOrders.resx">
+      <DependentUpon>201407231535563_JobOrders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

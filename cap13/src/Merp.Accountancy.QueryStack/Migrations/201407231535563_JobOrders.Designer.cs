@@ -7,13 +7,13 @@ namespace Merp.Web.UI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class TimeAndMaterialJobOrder1 : IMigrationMetadata
+    public sealed partial class JobOrders : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TimeAndMaterialJobOrder1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(JobOrders));
         
         string IMigrationMetadata.Id
         {
-            get { return "201407160957343_TimeAndMaterialJobOrder1"; }
+            get { return "201407231535563_JobOrders"; }
         }
         
         string IMigrationMetadata.Source
