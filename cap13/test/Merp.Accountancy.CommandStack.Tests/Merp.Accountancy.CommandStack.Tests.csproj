@@ -50,6 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Commands\RegisterFixedPriceJobOrderCommandFixture - Copy.cs" />
+    <Compile Include="Commands\RegisterFixedPriceJobOrderCommandFixture.cs" />
     <Compile Include="Commands\IssueInvoiceCommandFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,6 +64,10 @@
       <Project>{a55d9702-109e-44ea-9e7e-d3b0b49ef123}</Project>
       <Name>Merp.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Events\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
