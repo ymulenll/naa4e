@@ -50,8 +50,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Commands\IssueInvoiceCommandFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Merp.Accountancy.CommandStack\Merp.Accountancy.CommandStack.csproj">
+      <Project>{a30ba9d9-ce21-407a-94fb-f9c8c99564b4}</Project>
+      <Name>Merp.Accountancy.CommandStack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Merp.Infrastructure\Merp.Infrastructure.csproj">
+      <Project>{a55d9702-109e-44ea-9e7e-d3b0b49ef123}</Project>
+      <Name>Merp.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

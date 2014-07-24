@@ -22,7 +22,7 @@ namespace Merp.Web.UI.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Managed Designs s.r.l.";
 
             return View();
         }
