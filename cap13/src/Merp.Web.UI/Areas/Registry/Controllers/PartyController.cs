@@ -41,5 +41,19 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult GetParties()
+        {
+            var model = new List<object>
+                {
+                    new {name = "Andrea Saltarello", id = 1},
+                    new {name = "Managed designs S.r.l.", id = 2},
+                    new {name = "Enos Recanati", id = 3},
+                    new {name = "Mauro Servienti", id = 4}
+                };
+
+            return this.Jsonp(model);
+        }
     }
 }

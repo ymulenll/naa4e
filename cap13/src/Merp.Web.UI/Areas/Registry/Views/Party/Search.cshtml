@@ -9,21 +9,15 @@
         }());
         (function (module) {
             var partySearchToolController = function ($scope, $http) {
-                $http.jsonp('http://vimeo.com/api/v2/ugidotnet/albums.json?callback=JSON_CALLBACK').success(function (data) {
-                    $scope.parties = data;
-                });
+                //$http.jsonp('/Registry/Party/GetParties?callback=JSON_CALLBACK').success(function (data) {
+                //    $scope.parties = data;
+                //});
 
-                $scope.selectedParty;
                 $scope.orderProp = 'name';
 
                 $scope.refreshParties = function () {
-                    var url = '';
-                    if ($scope.selectedParty && $scope.selectedParty.id) {
-                        url = 'http://vimeo.com/api/v2/album/' + $scope.selectedAlbum.id + '/videos.json?callback=JSON_CALLBACK';
-                    }
-                    else {
-                        url = 'http://vimeo.com/api/v2/ugidotnet/videos.json?callback=JSON_CALLBACK';
-                    }
+                    var url = '/Registry/Party/GetParties?callback=JSON_CALLBACK&query=' + $scope.query;
+
                     $http.jsonp(url).success(function (data) {
                         $scope.parties = data;
                     });
@@ -42,13 +36,13 @@
             <div class="form-group">
                 <label class="col-lg-2 control-label" for="query">Search</label>
                 <div class="col-lg-10">
-                    <input id="query" ng-model="query" class="form-control" placeholder="Enter your query">
+                    <input id="query" data-ng-model="query" class="form-control" placeholder="Enter your query" data-ng-change="{refreshParties}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-2 control-label" for="sort">Sort by:</label>
                 <div class="col-lg-10">
-                    <select id="sort" ng-model="orderProp" class="form-control">
+                    <select id="sort" data-ng-model="orderProp" class="form-control">
                         <option value="name">Alphabetical (ascending)</option>
                         <option value="-name">Alphabetical (descending)</option>
                     </select>
@@ -58,12 +52,11 @@
         <p>Total number of items: {{parties.length}}</p>
     </div>
     <div class="row">
-        <ul class="list-unstyled" id="Parties">
-            <li class="col-md-4" style="min-height: 250px; padding-right: 5px;" ng-repeat="party in parties | filter:query | orderBy:orderProp">
-                <a href="/Registry/Party/Edit/{{party.id}}/{{party.name}}">{{party.name}}</a><br />
-                {{video.upload_date}}
-            </li>
-        </ul>
+        <table>
+            <tr data-ng-repeat="party in parties | orderBy:orderProp">
+                <td><a href="/Registry/Party/Edit/{{party.id}}/{{party.name}}">{{party.name}}</a></td>
+            </tr>
+        </table>
     </div>
 </div>
 
