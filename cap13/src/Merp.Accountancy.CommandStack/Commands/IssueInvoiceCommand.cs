@@ -12,7 +12,7 @@ namespace Merp.Accountancy.CommandStack.Commands
         public class CustomerInfo
         {
             public Guid Id { get; private set; }
-            public string CustomerName { get; private set; }
+            public string Name { get; private set; }
             public string StreetName { get; private set; }
             public string City { get; private set; }
             public string PostalCode { get; private set; }
@@ -23,7 +23,7 @@ namespace Merp.Accountancy.CommandStack.Commands
             public CustomerInfo(Guid customerId, string customerName, string streetName, string city, string postalCode, string country, string vatIndex, string nationalIdentificationNumber)
             {
                 City = city;
-                CustomerName=customerName;
+                Name=customerName;
                 Country = country;
                 Id = customerId;
                 NationalIdentificationNumber = nationalIdentificationNumber;

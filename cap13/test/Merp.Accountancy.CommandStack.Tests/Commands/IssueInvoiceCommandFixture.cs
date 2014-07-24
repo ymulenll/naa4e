@@ -52,7 +52,7 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
             Assert.AreEqual<string>(paymentTerms, sut.PaymentTerms);
             Assert.AreEqual<string>(purchaseOrderNumber, sut.PurchaseOrderNumber);
             Assert.AreEqual<Guid>(customerId, sut.Customer.Id);
-            Assert.AreEqual<string>(customerName, sut.Customer.CustomerName);
+            Assert.AreEqual<string>(customerName, sut.Customer.Name);
             Assert.AreEqual<string>(streetName, sut.Customer.StreetName);
             Assert.AreEqual<string>(city, sut.Customer.City);
             Assert.AreEqual<string>(postalCode, sut.Customer.PostalCode);

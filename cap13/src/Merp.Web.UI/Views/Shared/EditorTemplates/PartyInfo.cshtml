@@ -2,7 +2,7 @@
 
 
 @Html.TextBoxFor(model => model.Id, new { onblur = "" })
-@Html.HiddenFor(model => model.OriginalId, new { onblur = "" })
+@Html.HiddenFor(model => model.OriginalId)
 @Html.TextBoxFor(model => model.Name)
 @Html.ValidationMessageFor(model => model.Id)
 @Html.ValidationMessageFor(model => model.Name)
