@@ -20,5 +20,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.Invoice
         public decimal TotalPrice { get; set; }
         [Required]
         public string Description { get; set; }
+        public string PaymentTerms { get; set; }
+        public string PurchaseOrderNumber { get; set; }
     }
 }
