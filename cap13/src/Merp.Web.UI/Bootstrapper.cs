@@ -52,6 +52,7 @@ namespace Merp.Web.UI
 
             //Sagas
             bus.RegisterSaga<FixedPriceJobOrderSaga>();
+            bus.RegisterSaga<OutgoingInvoiceSaga>();
             bus.RegisterSaga<TimeAndMaterialJobOrderSaga>();  
 
             //Services
@@ -61,6 +62,7 @@ namespace Merp.Web.UI
             container.RegisterType<Merp.Accountancy.QueryStack.IDatabase, Merp.Accountancy.QueryStack.Database>();
 
             //Worker Services
+            container.RegisterType<InvoiceControllerWorkerServices, InvoiceControllerWorkerServices>();
             container.RegisterType<JobOrderControllerWorkerServices, JobOrderControllerWorkerServices>();
         }
 
