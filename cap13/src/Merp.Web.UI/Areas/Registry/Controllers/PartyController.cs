@@ -35,5 +35,11 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
             var model = WorkerServices.GetPartyInfoByPattern(id);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult Search()
+        {
+            return View();
+        }
     }
 }

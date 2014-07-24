@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+<div data-ng-app="partySearchTool">
+    <div class="row">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="query">Search</label>
+                <div class="col-lg-10">
+                    <input id="query" ng-model="query" class="form-control" placeholder="Enter your query">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="sort">Sort by:</label>
+                <div class="col-lg-10">
+                    <select id="sort" ng-model="orderProp" class="form-control">
+                        <option value="name">Alphabetical (ascending)</option>
+                        <option value="-name">Alphabetical (descending)</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        <p>Total number of items: {{videos.length}}</p>
+    </div>
+
+</div>
+
