@@ -2,10 +2,42 @@
 @{
     ViewBag.Title = "Search";
 }
+@section head {
+    <script type="text/javascript">
+        (function () {
+            var partySearchTool = angular.module('partySearchTool', []);
+        }());
+        (function (module) {
+            var partySearchToolController = function ($scope, $http) {
+                $http.jsonp('http://vimeo.com/api/v2/ugidotnet/albums.json?callback=JSON_CALLBACK').success(function (data) {
+                    $scope.parties = data;
+                });
 
+                $scope.selectedParty;
+                $scope.orderProp = 'name';
+
+                $scope.refreshParties = function () {
+                    var url = '';
+                    if ($scope.selectedParty && $scope.selectedParty.id) {
+                        url = 'http://vimeo.com/api/v2/album/' + $scope.selectedAlbum.id + '/videos.json?callback=JSON_CALLBACK';
+                    }
+                    else {
+                        url = 'http://vimeo.com/api/v2/ugidotnet/videos.json?callback=JSON_CALLBACK';
+                    }
+                    $http.jsonp(url).success(function (data) {
+                        $scope.parties = data;
+                    });
+                }
+
+                $scope.refreshParties();
+            }
+            module.controller('partySearchToolController', ['$scope', '$http', partySearchToolController]);
+        }(angular.module('partySearchTool')))
+    </script>
+}
 <h2>Search</h2>
-<div data-ng-app="partySearchTool">
-    <div class="row">
+<div data-ng-app="partySearchTool" data-ng-controller="partySearchToolController">
+    <div class="row" id="SearchForm">
         <form class="form-inline" role="form">
             <div class="form-group">
                 <label class="col-lg-2 control-label" for="query">Search</label>
@@ -23,8 +55,15 @@
                 </div>
             </div>
         </form>
-        <p>Total number of items: {{videos.length}}</p>
+        <p>Total number of items: {{parties.length}}</p>
     </div>
-
+    <div class="row">
+        <ul class="list-unstyled" id="Parties">
+            <li class="col-md-4" style="min-height: 250px; padding-right: 5px;" ng-repeat="party in parties | filter:query | orderBy:orderProp">
+                <a href="/Registry/Party/Edit/{{party.id}}/{{party.name}}">{{party.name}}</a><br />
+                {{video.upload_date}}
+            </li>
+        </ul>
+    </div>
 </div>
 
