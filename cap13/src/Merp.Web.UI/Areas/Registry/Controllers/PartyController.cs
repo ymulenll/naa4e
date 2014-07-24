@@ -22,12 +22,6 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
             WorkerServices = workerServices;
         }
 
-        // GET: Registry/Party
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult GetPartyInfoByPattern(string text)
         {

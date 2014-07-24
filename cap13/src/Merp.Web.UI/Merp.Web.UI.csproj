@@ -195,6 +195,7 @@
     <Compile Include="Areas\Accountancy\Models\Invoice\IssueViewModel.cs" />
     <Compile Include="Areas\Accountancy\WorkerServices\InvoiceControllerWorkerServices.cs" />
     <Compile Include="Areas\Registry\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Registry\Controllers\HomeController.cs" />
     <Compile Include="Areas\Registry\Controllers\PartyController.cs" />
     <Compile Include="Areas\Registry\Controllers\PersonController.cs" />
     <Compile Include="Areas\Registry\Models\Company\AddEntryViewModel.cs" />
@@ -336,9 +337,9 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Areas\Registry\Views\Party\Index.cshtml" />
     <Content Include="Areas\Accountancy\Views\Home\Index.cshtml" />
     <Content Include="Areas\Accountancy\Views\Invoice\Issue.cshtml" />
+    <Content Include="Areas\Registry\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -679,6 +680,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Accountancy\Views\Shared\" />
     <Folder Include="Areas\Registry\Resources\" />
+    <Folder Include="Areas\Registry\Views\Party\" />
     <Folder Include="Areas\Registry\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
