@@ -36,6 +36,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Registry.QueryStack", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Registry.CommandStack", "src\Merp.Registry.CommandStack\Merp.Registry.CommandStack.csproj", "{C35B83A3-A7D7-4787-875F-9954FC68C874}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{AAA2F57B-C119-43D3-92D2-A52399C3B5BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Infrastructure.RavenDB", "src\Merp.Infrastructure.RavenDB\Merp.Infrastructure.RavenDB.csproj", "{99F143E6-8764-4D53-92FE-B6EDAA72E229}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -138,13 +142,25 @@ Global
 		{C35B83A3-A7D7-4787-875F-9954FC68C874}.Release|ARM.ActiveCfg = Release|Any CPU
 		{C35B83A3-A7D7-4787-875F-9954FC68C874}.Release|x64.ActiveCfg = Release|Any CPU
 		{C35B83A3-A7D7-4787-875F-9954FC68C874}.Release|x86.ActiveCfg = Release|Any CPU
+		{99F143E6-8764-4D53-92FE-B6EDAA72E229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F143E6-8764-4D53-92FE-B6EDAA72E229}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F143E6-8764-4D53-92FE-B6EDAA72E229}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{99F143E6-8764-4D53-92FE-B6EDAA72E229}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{99F143E6-8764-4D53-92FE-B6EDAA72E229}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{99F143E6-8764-4D53-92FE-B6EDAA72E229}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F143E6-8764-4D53-92FE-B6EDAA72E229}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F143E6-8764-4D53-92FE-B6EDAA72E229}.Release|ARM.ActiveCfg = Release|Any CPU
+		{99F143E6-8764-4D53-92FE-B6EDAA72E229}.Release|x64.ActiveCfg = Release|Any CPU
+		{99F143E6-8764-4D53-92FE-B6EDAA72E229}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{A55D9702-109E-44EA-9E7E-D3B0B49EF123} = {AAA2F57B-C119-43D3-92D2-A52399C3B5BC}
 		{C7A39701-1B5E-4EBF-81A5-CD98A66E7CC5} = {B1D4C268-52C0-448E-AFE1-6184A9A41950}
 		{79913161-D802-4F66-91E6-A8F2E6ABF74C} = {B1D4C268-52C0-448E-AFE1-6184A9A41950}
 		{7CF348DB-972B-4D3D-A289-4E4E3AEE84F3} = {B1D4C268-52C0-448E-AFE1-6184A9A41950}
+		{99F143E6-8764-4D53-92FE-B6EDAA72E229} = {AAA2F57B-C119-43D3-92D2-A52399C3B5BC}
 	EndGlobalSection
 EndGlobal

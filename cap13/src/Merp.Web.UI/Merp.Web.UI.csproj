@@ -696,6 +696,10 @@
       <Project>{9c6564d4-6628-4a91-b9d2-c1402e6bb49f}</Project>
       <Name>Merp.Accountancy.QueryStack</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Merp.Infrastructure.RavenDB\Merp.Infrastructure.RavenDB.csproj">
+      <Project>{99f143e6-8764-4d53-92fe-b6edaa72e229}</Project>
+      <Name>Merp.Infrastructure.RavenDB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Merp.Infrastructure\Merp.Infrastructure.csproj">
       <Project>{a55d9702-109e-44ea-9e7e-d3b0b49ef123}</Project>
       <Name>Merp.Infrastructure</Name>
