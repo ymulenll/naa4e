@@ -36,7 +36,7 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
                 return View(model);
             }
             WorkerServices.AddEntry(model);
-            return Redirect("/Registry/Party");
+            return Redirect("/Registry/");
         }
     }
 }

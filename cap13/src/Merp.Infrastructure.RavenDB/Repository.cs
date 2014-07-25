@@ -15,8 +15,8 @@ namespace Merp.Infrastructure.RavenDB
         {
             DocumentStore = new EmbeddableDocumentStore
             {
-                DataDirectory = "App_Data",
-                UseEmbeddedHttpServer = true
+                ConnectionStringName = "DocumentStore"
+                //UseEmbeddedHttpServer = true
             };
             DocumentStore.Initialize();
         }
