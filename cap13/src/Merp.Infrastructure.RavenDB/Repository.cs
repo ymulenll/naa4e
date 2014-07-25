@@ -18,16 +18,26 @@ namespace Merp.Infrastructure.RavenDB
                 DataDirectory = "App_Data",
                 UseEmbeddedHttpServer = true
             };
+            DocumentStore.Initialize();
         }
 
         public T GetById<T>(Guid id) where T : IAggregate
         {
-            throw new NotImplementedException();
+            using (var session = DocumentStore.OpenSession())
+            {
+                var item = (from i in session.Query<T>()
+                            where i.Id == id
+                            select i).Single();
+                return item;
+            }        
         }
 
         public void Save<T>(T item) where T : IAggregate
         {
-            throw new NotImplementedException();
+            using(var session = DocumentStore.OpenSession())
+            {
+                session.Store(item);
+            }
         }
     }
 }
