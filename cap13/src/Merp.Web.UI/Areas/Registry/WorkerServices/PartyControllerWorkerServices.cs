@@ -1,5 +1,6 @@
 ﻿using Merp.Infrastructure;
 using Merp.Registry.QueryStack;
+using Merp.Registry.QueryStack.Model;
 using Merp.Web.UI.Areas.Registry.Models;
 using Merp.Web.UI.Areas.Registry.Models.Party;
 using System;
@@ -28,10 +29,21 @@ namespace Merp.Web.UI.Areas.Registry.WorkerServices
             this.Database = database;
         }
 
-        //public string GetEditViewModel(int partyId)
-        //{
-
-        //}
+        public string GetDetailViewModel(int partyId)
+        {
+            if(Database.Parties.OfType<Company>().Where(p => p.Id == partyId).Count()==1)
+            {
+                return "Company";
+            }
+            else if (Database.Parties.OfType<Person>().Where(p => p.Id == partyId).Count() == 1)
+            {
+                return "Person";
+            }
+            else
+            {
+                return "Unknown";
+            }
+        }
 
         public IEnumerable<object> GetNamesByPattern(string text)
         {
