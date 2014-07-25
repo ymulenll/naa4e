@@ -21,6 +21,17 @@ namespace Merp.Infrastructure.RavenDB
             DocumentStore.Initialize();
         }
 
+        public IBus Bus { get; private set; }
+
+        public Repository(IBus bus)
+        {
+            if (bus == null)
+            {
+                throw new ArgumentNullException("bus");
+            }
+            Bus = bus;
+        }
+
         public T GetById<T>(Guid id) where T : IAggregate
         {
             using (var session = DocumentStore.OpenSession())
@@ -34,10 +45,23 @@ namespace Merp.Infrastructure.RavenDB
 
         public void Save<T>(T item) where T : IAggregate
         {
-            using(var session = DocumentStore.OpenSession())
+            PersistAggregate(item);
+            ManageUncommittedEvents(item);
+        }
+        private void PersistAggregate<T>(T item) where T : IAggregate
+        {
+            using (var session = DocumentStore.OpenSession())
             {
                 session.Store(item);
             }
+        }
+
+        private void ManageUncommittedEvents<T>(T item) where T : IAggregate
+        {
+            item.GetUncommittedEvents()
+                .ToList()
+                .ForEach(e => Bus.RaiseEvent(e));
+            item.ClearUncommittedEvents();
         }
     }
 }
