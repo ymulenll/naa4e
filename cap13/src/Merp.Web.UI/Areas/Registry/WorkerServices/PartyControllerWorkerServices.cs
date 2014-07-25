@@ -1,6 +1,7 @@
 ﻿using Merp.Infrastructure;
 using Merp.Registry.QueryStack;
 using Merp.Web.UI.Areas.Registry.Models;
+using Merp.Web.UI.Areas.Registry.Models.Party;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,19 @@ namespace Merp.Web.UI.Areas.Registry.WorkerServices
             var model = (from p in Database.Parties
                          where p.Id == id
                          select new PartyInfo { Id = p.Id, OriginalId = p.OriginalId, Name = p.DisplayName }).Single();
+            return model;
+        }
+
+        public IEnumerable<GetPartiesViewModel> GetParties(string query)
+        {
+            var model = from p in Database.Parties
+                        orderby p.DisplayName ascending
+                        select new GetPartiesViewModel { id = p.Id, name = p.DisplayName };
+            if(!string.IsNullOrEmpty(query) && query!="undefined")
+            {
+                model = model.Where(p => p.name.StartsWith(query));
+            }
+            model = model.Take(50);
             return model;
         }
     }

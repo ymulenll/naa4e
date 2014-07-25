@@ -199,6 +199,7 @@
     <Compile Include="Areas\Registry\Controllers\PartyController.cs" />
     <Compile Include="Areas\Registry\Controllers\PersonController.cs" />
     <Compile Include="Areas\Registry\Models\Company\AddEntryViewModel.cs" />
+    <Compile Include="Areas\Registry\Models\Party\GetPartiesViewModel.cs" />
     <Compile Include="Areas\Registry\Models\Person\AddEntryViewModel.cs" />
     <Compile Include="Areas\Registry\RegistryAreaRegistration.cs" />
     <Compile Include="Areas\Registry\WorkerServices\CompanyControllerWorkerServices.cs" />
