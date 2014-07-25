@@ -22,6 +22,32 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
             WorkerServices = workerServices;
         }
 
+        //[HttpGet]
+        //public ActionResult Edit(int id)
+        //{
+        //    switch(WorkerServices.GetEditViewModel(id))
+        //    {
+        //        case "Company":
+        //            return Redirect(string.Format("/Registry/Company/Detail/{0}", id));
+        //        case "Person":
+        //            return Redirect(string.Format("/Registry/Person/Detail/{0}", id));
+        //        default:
+        //            return RedirectToAction("Search");
+        //    }
+        //}
+
+        [HttpGet]
+        public ActionResult Detail(int? id)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Search()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult GetPartyInfoByPattern(string text)
         {
@@ -34,12 +60,6 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
         {
             var model = WorkerServices.GetPartyInfoByPattern(id);
             return Json(model, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public ActionResult Search()
-        {
-            return View();
         }
 
         [HttpGet]

@@ -28,6 +28,11 @@ namespace Merp.Web.UI.Areas.Registry.WorkerServices
             this.Database = database;
         }
 
+        //public string GetEditViewModel(int partyId)
+        //{
+
+        //}
+
         public IEnumerable<object> GetNamesByPattern(string text)
         {
             var model = from p in Database.Parties

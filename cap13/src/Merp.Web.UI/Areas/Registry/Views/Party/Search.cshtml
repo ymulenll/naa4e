@@ -9,10 +9,6 @@
         }());
         (function (module) {
             var partySearchToolController = function ($scope, $http) {
-                //$http.jsonp('/Registry/Party/GetParties?callback=JSON_CALLBACK').success(function (data) {
-                //    $scope.parties = data;
-                //});
-
                 $scope.orderProp = 'name';
 
                 $scope.refreshParties = function () {
@@ -34,14 +30,14 @@
     <div class="row" id="SearchForm">
         <form class="form-inline" role="form">
             <div class="form-group">
-                <label class="col-lg-2 control-label" for="query">Search</label>
-                <div class="col-lg-10">
+                <label class="col-lg-3 control-label" for="query">Search</label>
+                <div class="col-lg-9">
                     <input id="query" data-ng-model="query" class="form-control" placeholder="Enter your query" data-ng-change="refreshParties()">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-2 control-label" for="sort">Sort by:</label>
-                <div class="col-lg-10">
+                <label class="col-lg-3 control-label" for="sort">Sort by:</label>
+                <div class="col-lg-9">
                     <select id="sort" data-ng-model="orderProp" class="form-control">
                         <option value="name">Alphabetical (ascending)</option>
                         <option value="-name">Alphabetical (descending)</option>
@@ -54,7 +50,7 @@
     <div class="row">
         <table>
             <tr data-ng-repeat="party in parties | orderBy:orderProp">
-                <td><a href="/Registry/Party/Edit/{{party.id}}/{{party.name}}">{{party.name}}</a></td>
+                <td><a href="/Registry/Party/Detail/{{party.id}}">{{party.name}}</a></td>
             </tr>
         </table>
     </div>
