@@ -193,6 +193,7 @@
     <Compile Include="Areas\Accountancy\Controllers\HomeController.cs" />
     <Compile Include="Areas\Accountancy\Controllers\InvoiceController.cs" />
     <Compile Include="Areas\Accountancy\Models\Invoice\IssueViewModel.cs" />
+    <Compile Include="Areas\Accountancy\Models\JobOrder\FixedPriceJobOrderDetailViewModel.cs" />
     <Compile Include="Areas\Accountancy\WorkerServices\InvoiceControllerWorkerServices.cs" />
     <Compile Include="Areas\Registry\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Registry\Controllers\HomeController.cs" />

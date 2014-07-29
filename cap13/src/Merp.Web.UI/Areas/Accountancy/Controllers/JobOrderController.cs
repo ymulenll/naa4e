@@ -66,6 +66,12 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             return Redirect("/Accountancy/JobOrder");
         }
 
+        public ActionResult FixedPriceJobOrderDetail()
+        {
+            var model = new FixedPriceJobOrderDetailViewModel();
+            return View(model);
+        }
+
         [HttpGet]
         public ActionResult ExtendTimeAndMaterial()
         {

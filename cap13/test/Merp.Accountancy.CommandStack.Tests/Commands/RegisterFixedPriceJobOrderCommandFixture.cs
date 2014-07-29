@@ -15,8 +15,10 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
             decimal price = 143;
             string jobOrderName = "fake";
             Guid customerId = Guid.NewGuid();
+            string customerName = "ACME";
             var sut = new RegisterFixedPriceJobOrderCommand(
                 customerId,
+                customerName,
                 price,
                 dateOfStart,
                 dueDate,
@@ -27,6 +29,7 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
             Assert.AreEqual<decimal>(price, sut.Price);
             Assert.AreEqual<Guid>(customerId, sut.CustomerId);
             Assert.AreEqual<string>(jobOrderName, sut.JobOrderName);
+            Assert.AreEqual<string>(customerName, sut.CustomerName);
         }
     }
 }

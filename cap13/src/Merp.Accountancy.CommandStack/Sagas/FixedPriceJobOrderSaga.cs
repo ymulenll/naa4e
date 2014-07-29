@@ -33,6 +33,7 @@ namespace Merp.Accountancy.CommandStack.Sagas
             var jobOrder = FixedPriceJobOrder.Factory.CreateNewInstance(
                 JobOrderNumberGenerator,
                 message.CustomerId,
+                message.CustomerName,
                 message.Price, 
                 message.DateOfStart, 
                 message.DueDate,

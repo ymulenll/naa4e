@@ -31,6 +31,7 @@ namespace Merp.Accountancy.CommandStack.Sagas
             var jobOrder = TimeAndMaterialJobOrder.Factory.CreateNewInstance(
                 JobOrderNumberGenerator,
                 message.CustomerId,
+                message.CustomerName,
                 message.Value,
                 message.DateOfStart,
                 message.DateOfExpiration,

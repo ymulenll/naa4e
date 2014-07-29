@@ -13,6 +13,7 @@ namespace Merp.Accountancy.CommandStack.Model
     {
         public decimal? Value { get; private set; }
         public Guid CustomerId { get; private set; }
+        public string CustomerName { get; private set; }
         public string Number { get; private set; }
         public DateTime DateOfStart { get; private set; }
         public DateTime? DateOfExpiration { get; private set; }
@@ -40,13 +41,14 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public class Factory
         {
-            public static TimeAndMaterialJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string name)
+            public static TimeAndMaterialJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string name)
             {
                 var id = Guid.NewGuid();
                 var jobOrder = new TimeAndMaterialJobOrder() 
                 {
                     Id = id,
                     CustomerId = customerId,
+                    CustomerName = customerName,
                     Value = value,
                     DateOfStart= dateOfStart,
                     DateOfExpiration=dateOfExpiration,
@@ -57,6 +59,7 @@ namespace Merp.Accountancy.CommandStack.Model
                 var @event = new TimeAndMaterialJobOrderRegisteredEvent(
                     jobOrder.Id,
                     jobOrder.CustomerId,
+                    jobOrder.CustomerName,
                     jobOrder.Value,
                     jobOrder.DateOfStart,
                     jobOrder.DateOfExpiration,

@@ -16,6 +16,7 @@ namespace Merp.Accountancy.QueryStack.Model
             var timeAndMaterialJobOrder = new TimeAndMaterialJobOrder();
             timeAndMaterialJobOrder.OriginalId = message.JobOrderId;
             timeAndMaterialJobOrder.CustomerId = message.CustomerId;
+            timeAndMaterialJobOrder.CustomerName = message.CustomerName;
             timeAndMaterialJobOrder.DateOfStart = message.DateOfStart;
             timeAndMaterialJobOrder.DateOfExpiration = message.DateOfExpiration;
             timeAndMaterialJobOrder.Name = message.JobOrderName;

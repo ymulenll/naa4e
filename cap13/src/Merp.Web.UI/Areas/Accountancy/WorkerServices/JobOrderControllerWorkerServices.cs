@@ -32,6 +32,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
         {
             var command = new RegisterFixedPriceJobOrderCommand( 
                     model.Customer.OriginalId,
+                    model.Customer.Name,
                     model.Price,
                     model.DateOfStart,
                     model.DueDate,
@@ -44,6 +45,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
         {
             var command = new RegisterTimeAndMaterialJobOrderCommand(
                     model.Customer.OriginalId,
+                    model.Customer.Name,
                     model.Value,
                     model.DateOfStart,
                     model.DateOfExpiration,
@@ -63,6 +65,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
                    select new IndexViewModel.JobOrder
                    {
                         CustomerId = jo.CustomerId,
+                        CustomerName = jo.CustomerName,
                         IsCompleted = jo.IsCompleted,
                         Name = jo.Name,
                         Number = jo.Number,
