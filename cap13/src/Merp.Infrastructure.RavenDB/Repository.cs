@@ -55,6 +55,7 @@ namespace Merp.Infrastructure.RavenDB
             using (var session = DocumentStore.OpenSession())
             {
                 session.Store(item);
+                session.SaveChanges();
             }
         }
 
