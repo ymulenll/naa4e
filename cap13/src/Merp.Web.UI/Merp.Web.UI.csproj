@@ -343,6 +343,7 @@
     <Content Include="Areas\Accountancy\Views\Invoice\Issue.cshtml" />
     <Content Include="Areas\Registry\Views\Home\Index.cshtml" />
     <Content Include="Areas\Registry\Views\Party\Search.cshtml" />
+    <Content Include="Areas\Accountancy\Views\JobOrder\FixedPriceJobOrderDetail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -6,15 +6,17 @@ using System.Linq;
 using System.Web;
 using Merp.Web.UI.Areas.Accountancy.Models.JobOrder;
 using Merp.Accountancy.QueryStack;
+using Merp.Accountancy.QueryStack.Model;
 
 namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
 {
     public class JobOrderControllerWorkerServices
     {
         public IBus Bus { get; private set; }
-        public IDatabase Database { get; set; }
+        public IDatabase Database { get; private set; }
+        public IRepository Repository { get; private set; }
 
-        public JobOrderControllerWorkerServices(IBus bus, IDatabase database)
+        public JobOrderControllerWorkerServices(IBus bus, IDatabase database, IRepository repository)
         {
             if(bus==null)
             {
@@ -24,8 +26,13 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             {
                 throw new ArgumentNullException("database");
             }
+            if (repository == null)
+            {
+                throw new ArgumentNullException("repository");
+            }
             this.Bus = bus;
             this.Database = database;
+            this.Repository = repository;
         }
 
         public void CreateFixedPriceJobOrder(CreateFixedPriceViewModel model)
@@ -72,6 +79,36 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
                         Id = jo.Id,
                         OriginalId = jo.OriginalId
                    }).ToArray();
+        }
+
+        public string GetDetailViewModel(Guid jobOrderId)
+        {
+            if (Database.JobOrders.OfType<FixedPriceJobOrder>().Where(p => p.OriginalId == jobOrderId).Count() == 1)
+            {
+                return "FixedPrice";
+            }
+            else if (Database.JobOrders.OfType<TimeAndMaterialJobOrder>().Where(p => p.OriginalId == jobOrderId).Count() == 1)
+            {
+                return "TimeAndMaterial";
+            }
+            else
+            {
+                return "Unknown";
+            }
+        }
+
+        public FixedPriceJobOrderDetailViewModel GetFixedPriceJobOrderDetailViewModel(Guid jobOrderId)
+        {
+            var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.FixedPriceJobOrder>(jobOrderId);
+
+            var model = new FixedPriceJobOrderDetailViewModel();
+            model.CustomerName = jobOrder.CustomerName;
+            model.DateOfStart = jobOrder.DateOfStart;
+            model.JobOrderId = jobOrder.Id;
+            model.JobOrderNumber = jobOrder.Number;
+            model.Notes = string.Empty;
+            model.Price = jobOrder.Price;
+            return model;
         }
     }
 }

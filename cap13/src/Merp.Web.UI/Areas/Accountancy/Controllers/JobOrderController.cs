@@ -31,6 +31,20 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         }
 
         [HttpGet]
+        public ActionResult Detail(Guid? id)
+        {
+            switch (WorkerServices.GetDetailViewModel(id.Value))
+            {
+                case "FixedPrice":
+                    return Redirect(string.Format("/Accountancy/JobOrder/FixedPriceJobOrderDetail/{0}", id));
+                case "TimeAndMaterial":
+                    return Redirect(string.Format("/Accountancy/JobOrder/TimeAndMaterialJobOrderDetail/{0}", id));
+                default:
+                    return RedirectToAction("Index");
+            }
+        }
+
+        [HttpGet]
         public ActionResult CreateFixedPrice()
         {
             var model = new CreateFixedPriceViewModel();
@@ -66,9 +80,9 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             return Redirect("/Accountancy/JobOrder");
         }
 
-        public ActionResult FixedPriceJobOrderDetail()
+        public ActionResult FixedPriceJobOrderDetail(Guid? id)
         {
-            var model = new FixedPriceJobOrderDetailViewModel();
+            var model = WorkerServices.GetFixedPriceJobOrderDetailViewModel(id.Value);
             return View(model);
         }
 

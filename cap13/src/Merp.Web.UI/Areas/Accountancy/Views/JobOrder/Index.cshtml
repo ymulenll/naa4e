@@ -35,16 +35,14 @@
             <table id="JobOrdersTable" class="table table-striped">
                 <thead>
                     <tr>
-                        <td></td>
                         <td>Customer name</td>
                         <td>Job Order name</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr data-ng-repeat="jobOrder in JobOrders">
-                        <td><a href="/Accountancy/JobOrder/Close/{{jobOrder.OriginalId}}">[Close]</a></td>
                         <td>{{jobOrder.CustomerName}}</td>
-                        <td>{{jobOrder.Name}}</td>
+                        <td><a href="/Accountancy/JobOrder/Detail/{{jobOrder.OriginalId}}">{{jobOrder.Name}}</a></td>
                     </tr>
                 </tbody>
             </table>

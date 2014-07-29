@@ -18,6 +18,7 @@ namespace Merp.Infrastructure.RavenDB
                 ConnectionStringName = "DocumentStore"
                 //UseEmbeddedHttpServer = true
             };
+            DocumentStore.Conventions.AllowQueriesOnId = true; //Fix this
             DocumentStore.Initialize();
         }
 
@@ -34,6 +35,7 @@ namespace Merp.Infrastructure.RavenDB
 
         public T GetById<T>(Guid id) where T : IAggregate
         {
+            //session.Query().Where(x=>x.Id == "FixedPriceJobOrders/ac16d75e-3423-41cf-a5a9-70fb4b48088b");
             using (var session = DocumentStore.OpenSession())
             {
                 var item = (from i in session.Query<T>()
