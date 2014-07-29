@@ -56,11 +56,11 @@
     <Compile Include="IAmStartedBy.cs" />
     <Compile Include="IBus.cs" />
     <Compile Include="IHandleMessage.cs" />
-    <Compile Include="Impl\InMemoryEventStoreImpl.cs" />
+    <Compile Include="Impl\InMemoryEventStore.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Impl\Repository.cs" />
+    <Compile Include="Impl\InMemoryRepository.cs" />
     <Compile Include="Saga.cs" />
   </ItemGroup>
   <ItemGroup>
