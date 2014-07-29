@@ -19,6 +19,7 @@ namespace Merp.Accountancy.CommandStack.Commands
         public RegisterTimeAndMaterialJobOrderCommand(Guid customerId, string customerName, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string jobOrderName)
         {
             CustomerId = customerId;
+            CustomerName = customerName;
             Value = value;
             DateOfStart = dateOfStart;
             DateOfExpiration = dateOfExpiration;

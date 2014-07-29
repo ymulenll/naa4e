@@ -19,6 +19,7 @@ namespace Merp.Accountancy.CommandStack.Commands
         public RegisterFixedPriceJobOrderCommand(Guid customerId, string customerName, decimal price, DateTime dateOfStart, DateTime dueDate, string jobOrderName)
         {
             CustomerId = customerId;
+            CustomerName = customerName;
             Price = price;
             DateOfStart = dateOfStart;
             DueDate = dueDate;
