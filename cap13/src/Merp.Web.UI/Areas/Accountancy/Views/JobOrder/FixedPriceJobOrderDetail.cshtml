@@ -4,10 +4,9 @@
     ViewBag.Title = "FixedPriceJobOrderDetail";
 }
 
-<h2>FixedPriceJobOrderDetail</h2>
+<h2>@Html.DisplayFor(model => model.JobOrderName)</h2>
 
 <div>
-    <h4>FixedPriceJobOrderDetailViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -69,6 +68,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Close", "Close", new { id = Model.JobOrderId }) |
+    @Html.ActionLink("Extend", "ExtendFixedPrice", new { id = Model.JobOrderId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

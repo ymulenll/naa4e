@@ -193,6 +193,7 @@
     <Compile Include="Areas\Accountancy\Controllers\HomeController.cs" />
     <Compile Include="Areas\Accountancy\Controllers\InvoiceController.cs" />
     <Compile Include="Areas\Accountancy\Models\Invoice\IssueViewModel.cs" />
+    <Compile Include="Areas\Accountancy\Models\JobOrder\ExtendFixedPriceViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\FixedPriceJobOrderDetailViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\TimeAndMaterialJobOrderDetailViewModel.cs" />
     <Compile Include="Areas\Accountancy\WorkerServices\InvoiceControllerWorkerServices.cs" />
@@ -346,6 +347,7 @@
     <Content Include="Areas\Registry\Views\Party\Search.cshtml" />
     <Content Include="Areas\Accountancy\Views\JobOrder\FixedPriceJobOrderDetail.cshtml" />
     <Content Include="Areas\Accountancy\Views\JobOrder\TimeAndMaterialJobOrderDetail.cshtml" />
+    <Content Include="Areas\Accountancy\Views\JobOrder\ExtendFixedPrice.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

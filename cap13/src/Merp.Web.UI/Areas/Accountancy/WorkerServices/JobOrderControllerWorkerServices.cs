@@ -35,7 +35,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             this.Repository = repository;
         }
 
-        public CreateFixedPriceViewModel GetBlankCreateFixedPriceViewModel()
+        public CreateFixedPriceViewModel GetDefaultCreateFixedPriceViewModel()
         {
             var model = new CreateFixedPriceViewModel();
             model.DateOfStart = DateTime.Now;
@@ -55,7 +55,24 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             Bus.Send(command);
         }
 
-        public CreateTimeAndMaterialViewModel GetBlankCreateTimeAndMaterialViewModel()
+        public ExtendFixedPriceViewModel GetExtendFixedPriceViewModel(Guid jobOrderId)
+        {
+            var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.FixedPriceJobOrder>(jobOrderId);
+            var model = new ExtendFixedPriceViewModel();
+            model.NewDueDate = jobOrder.DueDate;
+            model.JobOrderNumber = jobOrder.Number;
+            model.JobOrderId = jobOrder.Id;
+            model.JobOrderName = jobOrder.Name;
+            model.CustomerName = jobOrder.CustomerName;
+            return model;
+        }
+
+        public void ExtendFixedPriceJobOrder(ExtendFixedPriceViewModel model)
+        {
+            //var command = new Extend
+        }
+
+        public CreateTimeAndMaterialViewModel GetDefaultCreateTimeAndMaterialViewModel()
         {
             var model = new CreateTimeAndMaterialViewModel();
             model.DateOfStart = DateTime.Now;
@@ -75,7 +92,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             Bus.Send(command);
         }
 
-        public ExtendTimeAndMaterialViewModel GetBlankExtendTimeAndMaterialViewModel(Guid jobOrderId)
+        public ExtendTimeAndMaterialViewModel GetExtendTimeAndMaterialViewModel(Guid jobOrderId)
         {
             var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.TimeAndMaterialJobOrder>(jobOrderId);
             var model = new ExtendTimeAndMaterialViewModel();
@@ -130,6 +147,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             model.DateOfStart = jobOrder.DateOfStart;
             model.JobOrderId = jobOrder.Id;
             model.JobOrderNumber = jobOrder.Number;
+            model.JobOrderName = jobOrder.Name;
             model.Notes = string.Empty;
             model.Price = jobOrder.Price;
             return model;
@@ -144,6 +162,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             model.DateOfStart = jobOrder.DateOfStart;
             model.JobOrderId = jobOrder.Id;
             model.JobOrderNumber = jobOrder.Number;
+            model.JobOrderName = jobOrder.Name;
             model.Notes = string.Empty;
             model.Value = jobOrder.Value;
             return model;

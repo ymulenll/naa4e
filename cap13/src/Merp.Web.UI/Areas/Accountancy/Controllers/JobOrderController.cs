@@ -47,7 +47,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         [HttpGet]
         public ActionResult CreateFixedPrice()
         {
-            var model = WorkerServices.GetBlankCreateFixedPriceViewModel();
+            var model = WorkerServices.GetDefaultCreateFixedPriceViewModel();
             return View(model);
         }
 
@@ -69,9 +69,27 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         }
 
         [HttpGet]
+        public ActionResult ExtendFixedPrice(Guid? id)
+        {
+            var model = WorkerServices.GetExtendFixedPriceViewModel(id.Value);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ExtendTimeAndMaterial(ExtendFixedPriceViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+            WorkerServices.ExtendFixedPriceJobOrder(model);
+            return Redirect("/Accountancy/JobOrder");
+        }
+
+        [HttpGet]
         public ActionResult CreateTimeAndMaterial()
         {
-            var model = WorkerServices.GetBlankCreateTimeAndMaterialViewModel();
+            var model = WorkerServices.GetDefaultCreateTimeAndMaterialViewModel();
             return View(model);
         }
 
@@ -95,7 +113,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         [HttpGet]
         public ActionResult ExtendTimeAndMaterial(Guid? id)
         {
-            var model = WorkerServices.GetBlankExtendTimeAndMaterialViewModel(id.Value);
+            var model = WorkerServices.GetExtendTimeAndMaterialViewModel(id.Value);
             return View(model);
         }
 

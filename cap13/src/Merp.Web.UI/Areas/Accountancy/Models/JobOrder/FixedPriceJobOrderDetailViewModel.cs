@@ -9,6 +9,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
     {
         public Guid JobOrderId { get; set; }
         public string JobOrderNumber { get; set; }
+        public string JobOrderName { get; set; }
         public string CustomerName { get; set; }
         public decimal Price { get; set; }
         public DateTime DateOfStart { get; set; }
