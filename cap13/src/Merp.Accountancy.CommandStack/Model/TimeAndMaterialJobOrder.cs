@@ -40,6 +40,34 @@ namespace Merp.Accountancy.CommandStack.Model
             throw new NotImplementedException();
         }
 
+        public void Extend(DateTime? newDateOfExpiration, decimal? value)
+        {
+            this.DateOfExpiration = newDateOfExpiration;
+            this.Value = value;
+
+            var @event = new TimeAndMaterialJobOrderExtendedEvent(
+                this.Id,
+                this.DateOfExpiration,
+                this.Value
+            );
+            RaiseEvent(@event);
+        }
+
+        public void MarkAsCompleted(DateTime dateOfCompletion)
+        {
+            if (this.DateOfStart > dateOfCompletion)
+            {
+                throw new ArgumentException("The date of completion cannot precede the date of start.", "dateOfCompletion");
+            }
+            this.DateOfCompletion = dateOfCompletion;
+            this.IsCompleted = true;
+            var @event = new TimeAndMaterialJobOrderCompletedEvent(
+                this.Id,
+                dateOfCompletion
+            );
+            RaiseEvent(@event);
+        }
+
         public class Factory
         {
             public static TimeAndMaterialJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string name)
@@ -70,34 +98,6 @@ namespace Merp.Accountancy.CommandStack.Model
                 jobOrder.RaiseEvent(@event);
                 return jobOrder;
             }
-        }
-
-        public void Extend(DateTime? newDateOfExpiration, decimal? value)
-        {
-            this.DateOfExpiration = newDateOfExpiration;
-            this.Value = value;
-
-            var @event = new TimeAndMaterialJobOrderExtendedEvent(
-                this.Id,
-                this.DateOfExpiration,
-                this.Value
-            );
-            RaiseEvent(@event);
-        }
-
-        public void MarkAsCompleted(DateTime dateOfCompletion)
-        {
-            if (this.DateOfStart > dateOfCompletion)
-            {
-                throw new ArgumentException("The date of completion cannot precede the date of start.", "dateOfCompletion");
-            }
-            this.DateOfCompletion = dateOfCompletion;
-            this.IsCompleted = true;
-            var @event = new FixedPriceJobOrderCompletedEvent(
-                this.Id,
-                dateOfCompletion
-            );
-            RaiseEvent(@event);
         }
     }
 }
