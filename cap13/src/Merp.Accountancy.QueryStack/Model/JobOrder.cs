@@ -21,7 +21,7 @@ namespace Merp.Accountancy.QueryStack.Model
         public bool IsCompleted { get; set; }
         public bool IsFixedPrice { get; set; }
         public bool IsTimeAndMaterial { get; set; }
-        public string Notes { get; set; }
+        public string Description { get; set; }
         public string Number { get; set; }
         public JobOrder()
         {

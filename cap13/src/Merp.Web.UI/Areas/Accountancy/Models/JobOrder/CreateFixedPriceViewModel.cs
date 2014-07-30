@@ -19,6 +19,8 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
         public DateTime DueDate { get; set; }
         [Required]
         public decimal Price { get; set; }
+        public string Description { get; set; }
+        public string PurchaseOrderNumber { get; set; }
 
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
