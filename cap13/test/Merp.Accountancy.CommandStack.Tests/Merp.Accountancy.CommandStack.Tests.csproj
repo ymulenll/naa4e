@@ -53,6 +53,7 @@
     <Compile Include="Commands\RegisterTimeAndMaterialJobOrderCommandFixture.cs" />
     <Compile Include="Commands\RegisterFixedPriceJobOrderCommandFixture.cs" />
     <Compile Include="Commands\IssueInvoiceCommandFixture.cs" />
+    <Compile Include="Model\FixedPriceJobOrderFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\" />
-    <Folder Include="Model\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

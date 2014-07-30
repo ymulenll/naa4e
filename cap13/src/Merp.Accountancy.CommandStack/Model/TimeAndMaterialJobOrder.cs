@@ -59,6 +59,10 @@ namespace Merp.Accountancy.CommandStack.Model
             {
                 throw new ArgumentException("The date of completion cannot precede the date of start.", "dateOfCompletion");
             }
+            if (this.IsCompleted)
+            {
+                throw new InvalidOperationException("The Job Order has already been marked as completed");
+            }
             this.DateOfCompletion = dateOfCompletion;
             this.IsCompleted = true;
             var @event = new TimeAndMaterialJobOrderCompletedEvent(

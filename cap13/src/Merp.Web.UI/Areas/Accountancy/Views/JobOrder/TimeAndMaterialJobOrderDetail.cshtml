@@ -7,7 +7,8 @@
 <h2>@Html.DisplayFor(model => model.JobOrderName)</h2>
 
 <div>
-    <h4>@Html.DisplayFor(model => model.CustomerName)</h4>
+    <h4>@Html.DisplayFor(model => model.JobOrderNumber)</h4>
+    <h5>@Html.DisplayFor(model => model.CustomerName)</h5>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -61,7 +62,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Complete", "MarkTimeAndMaterialJobOrderAsCompleted", new { id = Model.JobOrderId }) |
-    @Html.ActionLink("Extend", "ExtendTimeAndMaterial", new { id = Model.JobOrderId }) |
+    @if (!Model.IsCompleted)
+    {
+        @Html.ActionLink("Complete", "MarkTimeAndMaterialJobOrderAsCompleted", new { id = Model.JobOrderId }) <text> |</text>
+        @Html.ActionLink("Extend", "ExtendTimeAndMaterial", new { id = Model.JobOrderId })<text> |</text>
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>

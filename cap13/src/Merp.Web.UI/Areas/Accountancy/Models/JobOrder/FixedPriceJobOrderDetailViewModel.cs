@@ -15,5 +15,6 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
         public DateTime DateOfStart { get; set; }
         public DateTime DueDate { get; set; }
         public string Notes { get; set; }
+        public bool IsCompleted { get; set; }
     }
 }

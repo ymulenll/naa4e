@@ -99,6 +99,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             model.JobOrderName = jobOrder.Name;
             model.Notes = string.Empty;
             model.Price = jobOrder.Price;
+            model.IsCompleted = jobOrder.IsCompleted;
             return model;
         }
 
@@ -210,6 +211,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             model.JobOrderName = jobOrder.Name;
             model.Notes = string.Empty;
             model.Value = jobOrder.Value;
+            model.IsCompleted = jobOrder.IsCompleted;
             return model;
         }
 
