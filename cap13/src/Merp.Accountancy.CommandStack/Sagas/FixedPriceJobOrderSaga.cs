@@ -14,7 +14,8 @@ namespace Merp.Accountancy.CommandStack.Sagas
 {
     public sealed class FixedPriceJobOrderSaga : Saga,
         IAmStartedBy<RegisterFixedPriceJobOrderCommand>,
-        IHandleMessage<ExtendFixedPriceJobOrderCommand>
+        IHandleMessage<ExtendFixedPriceJobOrderCommand>,
+        IHandleMessage<MarkFixedPriceJobOrderAsCompletedCommand>
     {
         public IJobOrderNumberGenerator JobOrderNumberGenerator { get; private set; }
 
@@ -46,6 +47,13 @@ namespace Merp.Accountancy.CommandStack.Sagas
         {
             var jobOrder = Repository.GetById<FixedPriceJobOrder>(message.JobOrderId);
             jobOrder.Extend(message.NewDueDate, message.Price);
+            Repository.Save(jobOrder);
+        }
+
+        public void Handle(MarkFixedPriceJobOrderAsCompletedCommand message)
+        {
+            var jobOrder = Repository.GetById<FixedPriceJobOrder>(message.JobOrderId);
+            jobOrder.MarkAsCompleted(message.DateOfCompletion);
             Repository.Save(jobOrder);
         }
     }

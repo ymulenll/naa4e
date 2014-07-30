@@ -10,7 +10,8 @@ namespace Merp.Accountancy.QueryStack.Model
 {
     public class FixedPriceJobOrderDenormalizer : 
         IHandleMessage<FixedPriceJobOrderRegisteredEvent>,
-        IHandleMessage<FixedPriceJobOrderExtendedEvent>
+        IHandleMessage<FixedPriceJobOrderExtendedEvent>,
+        IHandleMessage<FixedPriceJobOrderCompletedEvent>
     {
         public void Handle(FixedPriceJobOrderRegisteredEvent message)
         {
@@ -41,6 +42,17 @@ namespace Merp.Accountancy.QueryStack.Model
                 var jobOrder = db.JobOrders.OfType<FixedPriceJobOrder>().Where(jo => jo.OriginalId == message.JobOrderId).Single();
                 jobOrder.DueDate = message.NewDueDate;
                 jobOrder.Price = message.Price;
+                db.SaveChanges();
+            }
+        }
+
+        public void Handle(FixedPriceJobOrderCompletedEvent message)
+        {
+            using (var db = new AccountancyContext())
+            {
+                var jobOrder = db.JobOrders.OfType<FixedPriceJobOrder>().Where(jo => jo.OriginalId == message.JobOrderId).Single();
+                jobOrder.DateOfCompletion = message.DateOfCompletion;
+                jobOrder.IsCompleted = true;
                 db.SaveChanges();
             }
         }

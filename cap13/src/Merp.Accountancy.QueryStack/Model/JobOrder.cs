@@ -14,7 +14,7 @@ namespace Merp.Accountancy.QueryStack.Model
         public Guid CustomerId { get; set; }
         public string CustomerName { get; set; }
         public DateTime DateOfStart { get; set; }
-        public DateTime? DateOfEnd { get; set; }
+        public DateTime? DateOfCompletion { get; set; }
         public string Name { get; set; }
         public bool IsCompleted { get; set; }
         public bool IsFixedPrice { get; set; }

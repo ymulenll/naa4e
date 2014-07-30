@@ -10,7 +10,8 @@ namespace Merp.Accountancy.QueryStack.Model
 {
     public class TimeAndMaterialJobOrderDenormalizer : 
         IHandleMessage<TimeAndMaterialJobOrderRegisteredEvent>, 
-        IHandleMessage<TimeAndMaterialJobOrderExtendedEvent>
+        IHandleMessage<TimeAndMaterialJobOrderExtendedEvent>,
+        IHandleMessage<TimeAndMaterialJobOrderCompletedEvent>
     {
         public void Handle(TimeAndMaterialJobOrderRegisteredEvent message)
         {
@@ -41,6 +42,17 @@ namespace Merp.Accountancy.QueryStack.Model
                 var jobOrder = db.JobOrders.OfType<TimeAndMaterialJobOrder>().Where(jo => jo.OriginalId == message.JobOrderId).Single();
                 jobOrder.DateOfExpiration = message.NewDateOfExpiration;
                 jobOrder.Value = message.Value;
+                db.SaveChanges();
+            }
+        }
+
+        public void Handle(TimeAndMaterialJobOrderCompletedEvent message)
+        {
+            using (var db = new AccountancyContext())
+            {
+                var jobOrder = db.JobOrders.OfType<TimeAndMaterialJobOrder>().Where(jo => jo.OriginalId == message.JobOrderId).Single();
+                jobOrder.DateOfCompletion = message.DateOfCompletion;
+                jobOrder.IsCompleted = true;
                 db.SaveChanges();
             }
         }

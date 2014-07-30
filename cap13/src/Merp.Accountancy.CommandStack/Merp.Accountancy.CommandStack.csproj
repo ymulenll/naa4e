@@ -41,8 +41,12 @@
   <ItemGroup>
     <Compile Include="Commands\ExtendTimeAndMaterialJobOrderCommand.cs" />
     <Compile Include="Commands\IssueInvoiceCommand.cs" />
+    <Compile Include="Commands\MarkTimeAndMaterialJobOrderAsCompletedCommand.cs" />
+    <Compile Include="Commands\MarkFixedPriceJobOrderAsCompletedCommand.cs" />
     <Compile Include="Commands\RegisterTimeAndMaterialJobOrderCommand.cs" />
     <Compile Include="Commands\ExtendFixedPriceJobOrderCommand.cs" />
+    <Compile Include="Events\TimeAndMaterialJobOrderCompletedEvent.cs" />
+    <Compile Include="Events\FixedPriceJobOrderCompletedEvent.cs" />
     <Compile Include="Events\TimeAndMaterialJobOrderExtendedEvent.cs" />
     <Compile Include="Events\TimeAndMaterialJobOrderRegisteredEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderRegisteredEvent.cs" />

@@ -17,6 +17,7 @@ namespace Merp.Accountancy.CommandStack.Model
         public string Number { get; private set; }
         public DateTime DateOfStart { get; private set; }
         public DateTime? DateOfExpiration { get; private set; }
+        public DateTime? DateOfCompletion { get; private set; }
         public string Name { get; private set; }
         public bool IsCompleted { get; private set; }
 
@@ -80,6 +81,21 @@ namespace Merp.Accountancy.CommandStack.Model
                 this.Id,
                 this.DateOfExpiration,
                 this.Value
+            );
+            RaiseEvent(@event);
+        }
+
+        public void MarkAsCompleted(DateTime dateOfCompletion)
+        {
+            if (this.DateOfStart > dateOfCompletion)
+            {
+                throw new ArgumentException("The date of completion cannot precede the date of start.", "dateOfCompletion");
+            }
+            this.DateOfCompletion = dateOfCompletion;
+            this.IsCompleted = true;
+            var @event = new FixedPriceJobOrderCompletedEvent(
+                this.Id,
+                dateOfCompletion
             );
             RaiseEvent(@event);
         }
