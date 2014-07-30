@@ -67,7 +67,7 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public class Factory
         {
-            public static FixedPriceJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, Guid managerId, string managerName, decimal price, DateTime dateOfStart, DateTime dueDate, string name)
+            public static FixedPriceJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, Guid managerId, string managerName, decimal price, DateTime dateOfStart, DateTime dueDate, string name, string purchaseOrderNumber, string description)
             {
                 var id = Guid.NewGuid();
                 var jobOrder = new FixedPriceJobOrder() 
@@ -80,7 +80,9 @@ namespace Merp.Accountancy.CommandStack.Model
                     DueDate=dueDate,
                     Name = name,
                     Number = jobOrderNumberGenerator.Generate(), 
-                    IsCompleted = false
+                    IsCompleted = false,
+                    PurchaseOrderNumber = purchaseOrderNumber,
+                    Description = description
                 };
                 var @event = new FixedPriceJobOrderRegisteredEvent(
                     jobOrder.Id,
@@ -92,7 +94,9 @@ namespace Merp.Accountancy.CommandStack.Model
                     jobOrder.DateOfStart,
                     jobOrder.DueDate,
                     jobOrder.Name,
-                    jobOrder.Number
+                    jobOrder.Number,
+                    jobOrder.PurchaseOrderNumber,
+                    jobOrder.Description
                     );
                 jobOrder.RaiseEvent(@event);
                 return jobOrder;

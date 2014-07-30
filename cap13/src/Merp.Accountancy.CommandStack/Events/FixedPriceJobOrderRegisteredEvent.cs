@@ -19,8 +19,10 @@ namespace Merp.Accountancy.CommandStack.Events
         public DateTime DueDate { get; private set; }
         public string JobOrderName { get; private set; }
         public string JobOrderNumber { get; set; }
+        public string PurchaseOrderNumber { get; private set; }
+        public string Description { get; private set; }
 
-        public FixedPriceJobOrderRegisteredEvent(Guid jobOrderId, Guid customerId, string customerName, Guid managerId, string managerName, decimal price, DateTime dateOfStart, DateTime dueDate, string jobOrderName, string jobOrderNumber)
+        public FixedPriceJobOrderRegisteredEvent(Guid jobOrderId, Guid customerId, string customerName, Guid managerId, string managerName, decimal price, DateTime dateOfStart, DateTime dueDate, string jobOrderName, string jobOrderNumber, string purchaseOrderNumber, string description)
         {
             JobOrderId = jobOrderId;
             CustomerId = customerId;
@@ -32,6 +34,8 @@ namespace Merp.Accountancy.CommandStack.Events
             DueDate = dueDate;
             JobOrderName = jobOrderName;
             JobOrderNumber = jobOrderNumber;
+            PurchaseOrderNumber = purchaseOrderNumber;
+            Description = description;
         }
     }
 }

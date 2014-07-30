@@ -40,7 +40,9 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 message.Price, 
                 message.DateOfStart, 
                 message.DueDate,
-                message.JobOrderName
+                message.JobOrderName,
+                message.PurchaseOrderNumber,
+                message.Description
                 ); 
             this.Repository.Save(jobOrder);
         }

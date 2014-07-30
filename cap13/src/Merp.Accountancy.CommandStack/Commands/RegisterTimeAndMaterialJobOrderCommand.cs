@@ -20,7 +20,7 @@ namespace Merp.Accountancy.CommandStack.Commands
         public string PurchaseOrderNumber { get; private set; }
         public string Description { get; private set; }
 
-        public RegisterTimeAndMaterialJobOrderCommand(Guid customerId, string customerName, Guid managerId, string managerName, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string jobOrderName)
+        public RegisterTimeAndMaterialJobOrderCommand(Guid customerId, string customerName, Guid managerId, string managerName, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string jobOrderName, string purchaseOrderNumber, string description)
         {
             CustomerId = customerId;
             CustomerName = customerName;
@@ -30,6 +30,8 @@ namespace Merp.Accountancy.CommandStack.Commands
             DateOfStart = dateOfStart;
             DateOfExpiration = dateOfExpiration;
             JobOrderName = jobOrderName;
+            PurchaseOrderNumber = purchaseOrderNumber;
+            Description = description;
         }
     }
 }

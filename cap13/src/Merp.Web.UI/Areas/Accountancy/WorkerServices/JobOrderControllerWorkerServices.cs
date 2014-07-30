@@ -127,7 +127,9 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
                     model.Price,
                     model.DateOfStart,
                     model.DueDate,
-                    model.Name
+                    model.Name, 
+                    model.PurchaseOrderNumber,
+                    model.Description
                 );
             Bus.Send(command);
         }
@@ -193,7 +195,9 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
                     model.Value,
                     model.DateOfStart,
                     model.DateOfExpiration,
-                    model.Name
+                    model.Name,
+                    model.PurchaseOrderNumber,
+                    model.Description
                 );
             Bus.Send(command);
         }

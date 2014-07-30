@@ -19,8 +19,10 @@ namespace Merp.Accountancy.CommandStack.Events
         public DateTime? DateOfExpiration { get; private set; }
         public string JobOrderName { get; private set; }
         public string JobOrderNumber { get; set; }
+        public string PurchaseOrderNumber { get; private set; }
+        public string Description { get; private set; }
 
-        public TimeAndMaterialJobOrderRegisteredEvent(Guid jobOrderId, Guid customerId, string customerName, Guid managerId, string managerName, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string jobOrderName, string jobOrderNumber)
+        public TimeAndMaterialJobOrderRegisteredEvent(Guid jobOrderId, Guid customerId, string customerName, Guid managerId, string managerName, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string jobOrderName, string jobOrderNumber, string purchaseOrderNumber, string description)
         {
             JobOrderId = jobOrderId;
             CustomerId = customerId;
@@ -32,6 +34,8 @@ namespace Merp.Accountancy.CommandStack.Events
             DateOfExpiration = dateOfExpiration;
             JobOrderName = jobOrderName;
             JobOrderNumber = jobOrderNumber;
+            PurchaseOrderNumber = purchaseOrderNumber;
+            Description = description;
         }
     }
 }

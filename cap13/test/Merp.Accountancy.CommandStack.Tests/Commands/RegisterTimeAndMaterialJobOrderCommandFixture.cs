@@ -18,6 +18,8 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
             string customerName = "ACME";
             Guid managerId = Guid.NewGuid();
             string managerName = "John Doe";
+            string purchaseOrderNumber = "42";
+            string description = "xyz";
             var sut = new RegisterTimeAndMaterialJobOrderCommand(
                 customerId,
                 customerName,
@@ -26,7 +28,9 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
                 value,
                 dateOfStart,
                 dateOfExpiration,
-                jobOrderName
+                jobOrderName,
+                purchaseOrderNumber,
+                description
                 );
             Assert.AreEqual<DateTime>(dateOfStart, sut.DateOfStart);
             Assert.AreEqual<DateTime?>(dateOfExpiration, sut.DateOfExpiration);
@@ -34,6 +38,10 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
             Assert.AreEqual<Guid>(customerId, sut.CustomerId);
             Assert.AreEqual<string>(jobOrderName, sut.JobOrderName);
             Assert.AreEqual<string>(customerName, sut.CustomerName);
+            Assert.AreEqual<Guid>(managerId, sut.ManagerId);
+            Assert.AreEqual<string>(managerName, sut.ManagerName);
+            Assert.AreEqual<string>(purchaseOrderNumber, sut.PurchaseOrderNumber);
+            Assert.AreEqual<string>(description, sut.Description);
         }
     }
 }
