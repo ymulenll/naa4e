@@ -98,7 +98,14 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
         {
             var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.TimeAndMaterialJobOrder>(jobOrderId);
             var model = new ExtendTimeAndMaterialViewModel();
-            model.NewDateOfExpiration = jobOrder.DateOfExpiration;
+            if(jobOrder.Value.HasValue)
+            {
+                model.Value = jobOrder.Value.Value;
+            }
+            if (jobOrder.DateOfExpiration.HasValue)
+            {
+                model.NewDateOfExpiration = jobOrder.DateOfExpiration;
+            }
             model.JobOrderNumber = jobOrder.Number;
             model.JobOrderId = jobOrder.Id;
             model.JobOrderName = jobOrder.Name;

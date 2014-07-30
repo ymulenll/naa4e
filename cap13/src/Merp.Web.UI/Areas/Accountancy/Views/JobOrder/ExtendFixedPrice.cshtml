@@ -9,7 +9,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>ExtendJobOrderViewModel</h4>
+        <h4>@Html.DisplayFor(model => model.CustomerName)</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
