@@ -14,7 +14,6 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
         public string Name { get; set; }
         [Required]
         public DateTime DateOfStart { get; set; }
-        [Required]
         public DateTime? DateOfExpiration { get; set; }
         public decimal? Value { get; set; }
 

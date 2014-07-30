@@ -47,7 +47,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         [HttpGet]
         public ActionResult CreateFixedPrice()
         {
-            var model = new CreateFixedPriceViewModel();
+            var model = WorkerServices.GetBlankCreateFixedPriceViewModel();
             return View(model);
         }
 
@@ -62,10 +62,16 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             return Redirect("/Accountancy/JobOrder");
         }
 
+        public ActionResult FixedPriceJobOrderDetail(Guid? id)
+        {
+            var model = WorkerServices.GetFixedPriceJobOrderDetailViewModel(id.Value);
+            return View(model);
+        }
+
         [HttpGet]
         public ActionResult CreateTimeAndMaterial()
         {
-            var model = new CreateTimeAndMaterialViewModel();
+            var model = WorkerServices.GetBlankCreateTimeAndMaterialViewModel();
             return View(model);
         }
 
@@ -80,16 +86,16 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             return Redirect("/Accountancy/JobOrder");
         }
 
-        public ActionResult FixedPriceJobOrderDetail(Guid? id)
+        public ActionResult TimeAndMaterialJobOrderDetail(Guid? id)
         {
-            var model = WorkerServices.GetFixedPriceJobOrderDetailViewModel(id.Value);
+            var model = WorkerServices.GetTimeAndMaterialJobOrderDetailViewModel(id.Value);
             return View(model);
         }
 
         [HttpGet]
-        public ActionResult ExtendTimeAndMaterial()
+        public ActionResult ExtendTimeAndMaterial(Guid? id)
         {
-            var model = new ExtendTimeAndMaterialViewModel();
+            var model = WorkerServices.GetBlankExtendTimeAndMaterialViewModel(id.Value);
             return View(model);
         }
 
@@ -100,7 +106,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             {
                 return View(model);
             }
-            WorkerServices.ExtendJobOrder(model);
+            WorkerServices.ExtendTimeAndMaterialJobOrder(model);
             return Redirect("/Accountancy/JobOrder");
         }
 

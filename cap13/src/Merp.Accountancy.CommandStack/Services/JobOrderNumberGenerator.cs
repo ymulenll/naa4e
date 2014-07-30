@@ -10,7 +10,7 @@ namespace Merp.Accountancy.CommandStack.Services
     {
         public string Generate()
         {
-            return string.Format("{0:yyyyMMdd}/{1}", DateTime.Now, Guid.NewGuid().GetHashCode());
+            return string.Format("{0}-{1:ddMM}/{1:yyyy}", Guid.NewGuid().GetHashCode(), DateTime.Now);
         }
     }
 }

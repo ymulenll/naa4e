@@ -6,15 +6,28 @@ using System.Web;
 
 namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
 {
-    public class ExtendTimeAndMaterialViewModel
+    public class ExtendTimeAndMaterialViewModel : IValidatableObject
     {
+        [Required]
+        public Guid JobOrderId { get; set; }
         [Required]
         public string JobOrderNumber { get; set; }
 
         [Required]
-        public DateTime ExtendedDueDate { get; set; }
+        public DateTime? NewDateOfExpiration { get; set; }
 
         [Required]
-        public decimal Value { get; set; }
+        public decimal? Value { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var results = new List<ValidationResult>();
+            if(!NewDateOfExpiration.HasValue && !Value.HasValue)
+            {
+                var result = new ValidationResult("Either the new date of expiration or the value has to be specified.", new string[] { "NewDateOfExpiration", "Value" });
+                results.Add(result);
+            }
+            return results;
+        }
     }
 }
