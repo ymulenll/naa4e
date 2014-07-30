@@ -23,6 +23,7 @@ namespace Merp.Accountancy.QueryStack.Model
         public bool IsTimeAndMaterial { get; set; }
         public string Description { get; set; }
         public string Number { get; set; }
+        public string PurchaseOrderNumber { get; set; }
         public JobOrder()
         {
             IsFixedPrice = false;

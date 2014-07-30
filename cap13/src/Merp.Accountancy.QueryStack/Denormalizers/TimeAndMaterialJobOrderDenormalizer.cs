@@ -19,12 +19,14 @@ namespace Merp.Accountancy.QueryStack.Model
             timeAndMaterialJobOrder.OriginalId = message.JobOrderId;
             timeAndMaterialJobOrder.CustomerId = message.CustomerId;
             timeAndMaterialJobOrder.CustomerName = message.CustomerName;
+            timeAndMaterialJobOrder.Description = message.Description;
             timeAndMaterialJobOrder.ManagerId = message.ManagerId;
             timeAndMaterialJobOrder.ManagerName = message.ManagerName;
             timeAndMaterialJobOrder.DateOfStart = message.DateOfStart;
             timeAndMaterialJobOrder.DateOfExpiration = message.DateOfExpiration;
             timeAndMaterialJobOrder.Name = message.JobOrderName;
             timeAndMaterialJobOrder.Number = message.JobOrderNumber;
+            timeAndMaterialJobOrder.PurchaseOrderNumber = message.PurchaseOrderNumber;
             timeAndMaterialJobOrder.Value = message.Value;
             timeAndMaterialJobOrder.IsCompleted = false;
             timeAndMaterialJobOrder.IsTimeAndMaterial = true;
