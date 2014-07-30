@@ -31,6 +31,13 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         }
 
         [HttpGet]
+        public ActionResult GetList()
+        {
+            var model = WorkerServices.GetList();
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public ActionResult Detail(Guid? id)
         {
             switch (WorkerServices.GetDetailViewModel(id.Value))
@@ -44,10 +51,11 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             }
         }
 
+        #region Fixed Price Job Orders
         [HttpGet]
         public ActionResult CreateFixedPrice()
         {
-            var model = WorkerServices.GetDefaultCreateFixedPriceViewModel();
+            var model = WorkerServices.GetCreateFixedPriceViewModel();
             return View(model);
         }
 
@@ -87,9 +95,18 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         }
 
         [HttpGet]
+        public ActionResult MarkFixedPriceJobOrderAsCompleted(Guid? id)
+        {
+            var model = WorkerServices.GetMarkFixedPriceJobOrderAsCompletedViewModel(id.Value);
+            return View(model);
+        }
+        #endregion
+
+        #region Time And Material Job Orders
+        [HttpGet]
         public ActionResult CreateTimeAndMaterial()
         {
-            var model = WorkerServices.GetDefaultCreateTimeAndMaterialViewModel();
+            var model = WorkerServices.GetCreateTimeAndMaterialViewModel();
             return View(model);
         }
 
@@ -129,10 +146,12 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetList()
+        public ActionResult MarkTimeAndMaterialJobOrderAsCompleted(Guid? id)
         {
-            var model = WorkerServices.GetList();
-            return Json(model, JsonRequestBehavior.AllowGet);
+            var model = WorkerServices.GetMarkTimeAndMaterialJobOrderAsCompletedViewModel(id.Value);
+            return View(model);
         }
+        #endregion
+        
     }
 }

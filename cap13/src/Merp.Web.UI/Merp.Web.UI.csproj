@@ -195,6 +195,8 @@
     <Compile Include="Areas\Accountancy\Models\Invoice\IssueViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\ExtendFixedPriceViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\FixedPriceJobOrderDetailViewModel.cs" />
+    <Compile Include="Areas\Accountancy\Models\JobOrder\MarkTimeAndMaterialJobOrderAsCompletedViewModel.cs" />
+    <Compile Include="Areas\Accountancy\Models\JobOrder\MarkFixedPriceJobOrderAsCompletedViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\TimeAndMaterialJobOrderDetailViewModel.cs" />
     <Compile Include="Areas\Accountancy\WorkerServices\InvoiceControllerWorkerServices.cs" />
     <Compile Include="Areas\Registry\Controllers\CompanyController.cs" />

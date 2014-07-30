@@ -35,90 +35,6 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             this.Repository = repository;
         }
 
-        public CreateFixedPriceViewModel GetDefaultCreateFixedPriceViewModel()
-        {
-            var model = new CreateFixedPriceViewModel();
-            model.DateOfStart = DateTime.Now;
-            return model;
-        }
-
-        public void CreateFixedPriceJobOrder(CreateFixedPriceViewModel model)
-        {
-            var command = new RegisterFixedPriceJobOrderCommand( 
-                    model.Customer.OriginalId,
-                    model.Customer.Name,
-                    model.Price,
-                    model.DateOfStart,
-                    model.DueDate,
-                    model.Name
-                );
-            Bus.Send(command);
-        }
-
-        public ExtendFixedPriceViewModel GetExtendFixedPriceViewModel(Guid jobOrderId)
-        {
-            var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.FixedPriceJobOrder>(jobOrderId);
-            var model = new ExtendFixedPriceViewModel();
-            model.NewDueDate = jobOrder.DueDate;
-            model.Price = jobOrder.Price;
-            model.JobOrderNumber = jobOrder.Number;
-            model.JobOrderId = jobOrder.Id;
-            model.JobOrderName = jobOrder.Name;
-            model.CustomerName = jobOrder.CustomerName;
-            return model;
-        }
-
-        public void ExtendFixedPriceJobOrder(ExtendFixedPriceViewModel model)
-        {
-            var command = new ExtendFixedPriceJobOrderCommand(model.JobOrderId, model.NewDueDate, model.Price);
-            Bus.Send(command);
-        }
-
-        public CreateTimeAndMaterialViewModel GetDefaultCreateTimeAndMaterialViewModel()
-        {
-            var model = new CreateTimeAndMaterialViewModel();
-            model.DateOfStart = DateTime.Now;
-            return model;
-        }
-
-        public void CreateTimeAndMaterialJobOrder(CreateTimeAndMaterialViewModel model)
-        {
-            var command = new RegisterTimeAndMaterialJobOrderCommand(
-                    model.Customer.OriginalId,
-                    model.Customer.Name,
-                    model.Value,
-                    model.DateOfStart,
-                    model.DateOfExpiration,
-                    model.Name
-                );
-            Bus.Send(command);
-        }
-
-        public ExtendTimeAndMaterialViewModel GetExtendTimeAndMaterialViewModel(Guid jobOrderId)
-        {
-            var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.TimeAndMaterialJobOrder>(jobOrderId);
-            var model = new ExtendTimeAndMaterialViewModel();
-            if(jobOrder.Value.HasValue)
-            {
-                model.Value = jobOrder.Value.Value;
-            }
-            if (jobOrder.DateOfExpiration.HasValue)
-            {
-                model.NewDateOfExpiration = jobOrder.DateOfExpiration;
-            }
-            model.JobOrderNumber = jobOrder.Number;
-            model.JobOrderId = jobOrder.Id;
-            model.JobOrderName = jobOrder.Name;
-            model.CustomerName = jobOrder.CustomerName;
-            return model;
-        }
-
-        public void ExtendTimeAndMaterialJobOrder(ExtendTimeAndMaterialViewModel model)
-        {
-            var command = new ExtendTimeAndMaterialJobOrderCommand(model.JobOrderId, model.NewDateOfExpiration, model.Value);
-            Bus.Send(command);
-        }
-
         public IEnumerable<IndexViewModel.JobOrder> GetList()
         {
             return (from jo in Database.JobOrders
@@ -150,6 +66,27 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             }
         }
 
+        #region Fixed Price Job Orders
+        public CreateFixedPriceViewModel GetCreateFixedPriceViewModel()
+        {
+            var model = new CreateFixedPriceViewModel();
+            model.DateOfStart = DateTime.Now;
+            return model;
+        }
+
+        public ExtendFixedPriceViewModel GetExtendFixedPriceViewModel(Guid jobOrderId)
+        {
+            var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.FixedPriceJobOrder>(jobOrderId);
+            var model = new ExtendFixedPriceViewModel();
+            model.NewDueDate = jobOrder.DueDate;
+            model.Price = jobOrder.Price;
+            model.JobOrderNumber = jobOrder.Number;
+            model.JobOrderId = jobOrder.Id;
+            model.JobOrderName = jobOrder.Name;
+            model.CustomerName = jobOrder.CustomerName;
+            return model;
+        }
+
         public FixedPriceJobOrderDetailViewModel GetFixedPriceJobOrderDetailViewModel(Guid jobOrderId)
         {
             var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.FixedPriceJobOrder>(jobOrderId);
@@ -163,6 +100,96 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             model.Notes = string.Empty;
             model.Price = jobOrder.Price;
             return model;
+        }
+
+        public MarkFixedPriceJobOrderAsCompletedViewModel GetMarkFixedPriceJobOrderAsCompletedViewModel(Guid jobOrderId)
+        {
+            var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.FixedPriceJobOrder>(jobOrderId);
+
+            var model = new MarkFixedPriceJobOrderAsCompletedViewModel();
+            model.DateOfCompletion = DateTime.Now;
+            model.CustomerName = jobOrder.CustomerName;
+            model.JobOrderId = jobOrder.Id;
+            model.JobOrderNumber = jobOrder.Number;
+            model.JobOrderName = jobOrder.Name;
+            return model;
+        }
+
+        public void CreateFixedPriceJobOrder(CreateFixedPriceViewModel model)
+        {
+            var command = new RegisterFixedPriceJobOrderCommand( 
+                    model.Customer.OriginalId,
+                    model.Customer.Name,
+                    model.Price,
+                    model.DateOfStart,
+                    model.DueDate,
+                    model.Name
+                );
+            Bus.Send(command);
+        }
+
+        public void ExtendFixedPriceJobOrder(ExtendFixedPriceViewModel model)
+        {
+            var command = new ExtendFixedPriceJobOrderCommand(model.JobOrderId, model.NewDueDate, model.Price);
+            Bus.Send(command);
+        }
+        #endregion
+
+        #region Time And Material Job Orders
+        public CreateTimeAndMaterialViewModel GetCreateTimeAndMaterialViewModel()
+        {
+            var model = new CreateTimeAndMaterialViewModel();
+            model.DateOfStart = DateTime.Now;
+            return model;
+        }
+
+        public ExtendTimeAndMaterialViewModel GetExtendTimeAndMaterialViewModel(Guid jobOrderId)
+        {
+            var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.TimeAndMaterialJobOrder>(jobOrderId);
+            var model = new ExtendTimeAndMaterialViewModel();
+            if(jobOrder.Value.HasValue)
+            {
+                model.Value = jobOrder.Value.Value;
+            }
+            if (jobOrder.DateOfExpiration.HasValue)
+            {
+                model.NewDateOfExpiration = jobOrder.DateOfExpiration;
+            }
+            model.JobOrderNumber = jobOrder.Number;
+            model.JobOrderId = jobOrder.Id;
+            model.JobOrderName = jobOrder.Name;
+            model.CustomerName = jobOrder.CustomerName;
+            return model;
+        }
+        public MarkTimeAndMaterialJobOrderAsCompletedViewModel GetMarkTimeAndMaterialJobOrderAsCompletedViewModel(Guid jobOrderId)
+        {
+            var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.TimeAndMaterialJobOrder>(jobOrderId);
+
+            var model = new MarkTimeAndMaterialJobOrderAsCompletedViewModel();
+            model.DateOfCompletion = DateTime.Now;
+            model.CustomerName = jobOrder.CustomerName;
+            model.JobOrderId = jobOrder.Id;
+            model.JobOrderNumber = jobOrder.Number;
+            model.JobOrderName = jobOrder.Name;
+            return model;
+        }
+        public void CreateTimeAndMaterialJobOrder(CreateTimeAndMaterialViewModel model)
+        {
+            var command = new RegisterTimeAndMaterialJobOrderCommand(
+                    model.Customer.OriginalId,
+                    model.Customer.Name,
+                    model.Value,
+                    model.DateOfStart,
+                    model.DateOfExpiration,
+                    model.Name
+                );
+            Bus.Send(command);
+        }
+
+        public void ExtendTimeAndMaterialJobOrder(ExtendTimeAndMaterialViewModel model)
+        {
+            var command = new ExtendTimeAndMaterialJobOrderCommand(model.JobOrderId, model.NewDateOfExpiration, model.Value);
+            Bus.Send(command);
         }
 
         public TimeAndMaterialJobOrderDetailViewModel GetTimeAndMaterialJobOrderDetailViewModel(Guid jobOrderId)
@@ -179,5 +206,8 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             model.Value = jobOrder.Value;
             return model;
         }
+
+        #endregion
+
     }
 }
