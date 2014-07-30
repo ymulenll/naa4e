@@ -35,6 +35,8 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 JobOrderNumberGenerator,
                 message.CustomerId,
                 message.CustomerName,
+                message.ManagerId,
+                message.ManagerName,
                 message.Price, 
                 message.DateOfStart, 
                 message.DueDate,

@@ -9,17 +9,11 @@ using System.Threading.Tasks;
 
 namespace Merp.Accountancy.CommandStack.Model
 {
-    public class TimeAndMaterialJobOrder : Aggregate
+    public class TimeAndMaterialJobOrder : JobOrder
     {
         public decimal? Value { get; private set; }
-        public Guid CustomerId { get; private set; }
-        public string CustomerName { get; private set; }
-        public string Number { get; private set; }
-        public DateTime DateOfStart { get; private set; }
+
         public DateTime? DateOfExpiration { get; private set; }
-        public DateTime? DateOfCompletion { get; private set; }
-        public string Name { get; private set; }
-        public bool IsCompleted { get; private set; }
 
         protected TimeAndMaterialJobOrder()
         {
@@ -74,14 +68,14 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public class Factory
         {
-            public static TimeAndMaterialJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string name)
+            public static TimeAndMaterialJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, Guid managerId, string managerName, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string name)
             {
                 var id = Guid.NewGuid();
                 var jobOrder = new TimeAndMaterialJobOrder() 
                 {
                     Id = id,
-                    CustomerId = customerId,
-                    CustomerName = customerName,
+                    Customer = new CustomerInfo(customerId, customerName),
+                    Manager = new ManagerInfo(managerId, managerName),
                     Value = value,
                     DateOfStart= dateOfStart,
                     DateOfExpiration=dateOfExpiration,
@@ -91,8 +85,10 @@ namespace Merp.Accountancy.CommandStack.Model
                 };
                 var @event = new TimeAndMaterialJobOrderRegisteredEvent(
                     jobOrder.Id,
-                    jobOrder.CustomerId,
-                    jobOrder.CustomerName,
+                    jobOrder.Customer.Id,
+                    jobOrder.Customer.Name,
+                    jobOrder.Manager.Id,
+                    jobOrder.Manager.Name,
                     jobOrder.Value,
                     jobOrder.DateOfStart,
                     jobOrder.DateOfExpiration,

@@ -11,15 +11,19 @@ namespace Merp.Accountancy.CommandStack.Commands
     {
         public Guid CustomerId { get; private set; }
         public string CustomerName { get; private set; }
+        public Guid ManagerId { get; private set; }
+        public string ManagerName { get; private set; }
         public decimal Price { get; private set; }
         public DateTime DateOfStart { get; private set; }
         public DateTime DueDate { get; private set; }
         public string JobOrderName { get; private set; }
 
-        public RegisterFixedPriceJobOrderCommand(Guid customerId, string customerName, decimal price, DateTime dateOfStart, DateTime dueDate, string jobOrderName)
+        public RegisterFixedPriceJobOrderCommand(Guid customerId, string customerName, Guid managerId, string managerName, decimal price, DateTime dateOfStart, DateTime dueDate, string jobOrderName)
         {
             CustomerId = customerId;
             CustomerName = customerName;
+            ManagerId = managerId;
+            ManagerName = managerName;
             Price = price;
             DateOfStart = dateOfStart;
             DueDate = dueDate;

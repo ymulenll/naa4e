@@ -9,7 +9,8 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
 {
     public class CreateTimeAndMaterialViewModel : IValidatableObject
     {
-        public PartyInfo Customer { get; set; }        
+        public PartyInfo Customer { get; set; }
+        public PersonInfo Manager { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

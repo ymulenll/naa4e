@@ -19,6 +19,8 @@ namespace Merp.Accountancy.QueryStack.Model
             fixedPriceJobOrder.OriginalId = message.JobOrderId;
             fixedPriceJobOrder.CustomerId = message.CustomerId;
             fixedPriceJobOrder.CustomerName = message.CustomerName;
+            fixedPriceJobOrder.ManagerId = message.ManagerId;
+            fixedPriceJobOrder.ManagerName = message.ManagerName; 
             fixedPriceJobOrder.DateOfStart = message.DateOfStart;
             fixedPriceJobOrder.DueDate = message.DueDate;
             fixedPriceJobOrder.Name = message.JobOrderName;
@@ -26,7 +28,7 @@ namespace Merp.Accountancy.QueryStack.Model
             fixedPriceJobOrder.Price = message.Price;
             fixedPriceJobOrder.IsCompleted = false;
             fixedPriceJobOrder.IsTimeAndMaterial = false;
-            fixedPriceJobOrder.IsFixedPrice = true;
+            fixedPriceJobOrder.IsFixedPrice = true; 
 
             using(var db = new AccountancyContext())
             {

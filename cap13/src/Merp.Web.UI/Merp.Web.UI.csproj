@@ -205,6 +205,7 @@
     <Compile Include="Areas\Registry\Controllers\PersonController.cs" />
     <Compile Include="Areas\Registry\Models\Company\AddEntryViewModel.cs" />
     <Compile Include="Areas\Registry\Models\Party\GetPartiesViewModel.cs" />
+    <Compile Include="Areas\Registry\Models\PersonInfo.cs" />
     <Compile Include="Areas\Registry\Models\Person\AddEntryViewModel.cs" />
     <Compile Include="Areas\Registry\RegistryAreaRegistration.cs" />
     <Compile Include="Areas\Registry\WorkerServices\CompanyControllerWorkerServices.cs" />
@@ -687,6 +688,7 @@
     <Content Include="Areas\Accountancy\Views\JobOrder\CreateTimeAndMaterial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PartyInfo.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Shared\EditorTemplates\PersonInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

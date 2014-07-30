@@ -16,9 +16,13 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
             string jobOrderName = "fake";
             Guid customerId = Guid.NewGuid();
             string customerName = "ACME";
+            Guid managerId = Guid.NewGuid();
+            string managerName = "John Doe";
             var sut = new RegisterTimeAndMaterialJobOrderCommand(
                 customerId,
                 customerName,
+                managerId,
+                managerName,
                 value,
                 dateOfStart,
                 dateOfExpiration,

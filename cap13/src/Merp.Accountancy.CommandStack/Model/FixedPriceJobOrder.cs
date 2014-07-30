@@ -9,17 +9,10 @@ using System.Threading.Tasks;
 
 namespace Merp.Accountancy.CommandStack.Model
 {
-    public class FixedPriceJobOrder : Aggregate
+    public class FixedPriceJobOrder : JobOrder
     {
         public decimal Price { get; private set; }
-        public Guid CustomerId { get; private set; }
-        public string CustomerName { get; private set; }
-        public string Number { get; private set; }
-        public DateTime DateOfStart { get; private set; }
-        public DateTime? DateOfCompletion { get; private set; }
         public DateTime DueDate { get; private set; }
-        public string Name { get; private set; }
-        public bool IsCompleted { get; private set; }
 
         protected FixedPriceJobOrder()
         {
@@ -74,14 +67,14 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public class Factory
         {
-            public static FixedPriceJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, decimal price, DateTime dateOfStart, DateTime dueDate, string name)
+            public static FixedPriceJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, Guid managerId, string managerName, decimal price, DateTime dateOfStart, DateTime dueDate, string name)
             {
                 var id = Guid.NewGuid();
                 var jobOrder = new FixedPriceJobOrder() 
                 {
                     Id = id,
-                    CustomerId = customerId,
-                    CustomerName = customerName,
+                    Customer = new CustomerInfo(customerId, customerName),
+                    Manager = new ManagerInfo(managerId, managerName),
                     Price = price,
                     DateOfStart= dateOfStart,
                     DueDate=dueDate,
@@ -91,8 +84,10 @@ namespace Merp.Accountancy.CommandStack.Model
                 };
                 var @event = new FixedPriceJobOrderRegisteredEvent(
                     jobOrder.Id,
-                    jobOrder.CustomerId,
-                    jobOrder.CustomerName,
+                    jobOrder.Customer.Id,
+                    jobOrder.Customer.Name,
+                    jobOrder.Manager.Id,
+                    jobOrder.Manager.Name,
                     jobOrder.Price,
                     jobOrder.DateOfStart,
                     jobOrder.DueDate,

@@ -36,7 +36,6 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
             }
         }
 
-
         [HttpGet]
         public ActionResult Search()
         {
@@ -44,9 +43,16 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
         }
 
         [HttpGet]
+        public ActionResult GetParties(string query)
+        {
+            var model = WorkerServices.GetParties(query);
+            return this.Jsonp(model);
+        }
+
+        [HttpGet]
         public ActionResult GetPartyInfoByPattern(string text)
         {
-            var model = WorkerServices.GetNamesByPattern(text);
+            var model = WorkerServices.GetPartyNamesByPattern(text);
             return this.Jsonp(model);
         }
 
@@ -58,10 +64,17 @@ namespace Merp.Web.UI.Areas.Registry.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetParties(string query)
+        public ActionResult GetPersonInfoByPattern(string text)
         {
-            var model = WorkerServices.GetParties(query);
+            var model = WorkerServices.GetPersonNamesByPattern(text);
             return this.Jsonp(model);
+        }
+
+        [HttpGet]
+        public ActionResult GetPersonInfoById(int id)
+        {
+            var model = WorkerServices.GetPersonInfoByPattern(id);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 }
