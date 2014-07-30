@@ -38,7 +38,7 @@ namespace Merp.Accountancy.QueryStack.Model
         {
             using (var db = new AccountancyContext())
             {
-                var jobOrder = db.JobOrders.Select(jo => jo.Id).OfType<TimeAndMaterialJobOrder>().Single();
+                var jobOrder = db.JobOrders.OfType<TimeAndMaterialJobOrder>().Where(jo => jo.OriginalId == message.JobOrderId).Single();
                 jobOrder.DateOfExpiration = message.NewDateOfExpiration;
                 jobOrder.Value = message.Value;
                 db.SaveChanges();

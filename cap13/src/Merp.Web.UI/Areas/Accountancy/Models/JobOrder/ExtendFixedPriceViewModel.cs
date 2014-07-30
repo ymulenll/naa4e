@@ -10,7 +10,6 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
     {
         [Required]
         public Guid JobOrderId { get; set; }
-        [Required]
         public string JobOrderNumber { get; set; }
         public string JobOrderName { get; set; }
         public string CustomerName { get; set; }

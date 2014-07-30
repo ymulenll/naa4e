@@ -44,6 +44,12 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
+        <div>
+            @Html.HiddenFor(model => model.JobOrderId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.JobOrderName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.JobOrderNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
     </div>
 }
 

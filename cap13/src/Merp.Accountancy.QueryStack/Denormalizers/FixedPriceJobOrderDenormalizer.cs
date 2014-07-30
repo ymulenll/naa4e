@@ -38,7 +38,7 @@ namespace Merp.Accountancy.QueryStack.Model
         {
             using(var db = new AccountancyContext())
             {
-                var jobOrder = db.JobOrders.Select(jo => jo.Id).OfType<FixedPriceJobOrder>().Single();
+                var jobOrder = db.JobOrders.OfType<FixedPriceJobOrder>().Where(jo => jo.OriginalId == message.JobOrderId).Single();
                 jobOrder.DueDate = message.NewDueDate;
                 jobOrder.Price = message.Price;
                 db.SaveChanges();

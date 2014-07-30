@@ -76,7 +76,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         }
 
         [HttpPost]
-        public ActionResult ExtendTimeAndMaterial(ExtendFixedPriceViewModel model)
+        public ActionResult ExtendFixedPrice(ExtendFixedPriceViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
