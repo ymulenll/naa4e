@@ -12,7 +12,8 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
         public Guid JobOrderId { get; set; }
         [Required]
         public string JobOrderNumber { get; set; }
-
+        public string JobOrderName { get; set; }
+        public string CustomerName { get; set; }
         [Required]
         public DateTime? NewDateOfExpiration { get; set; }
 

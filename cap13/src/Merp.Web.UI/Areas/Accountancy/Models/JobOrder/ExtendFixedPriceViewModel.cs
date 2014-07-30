@@ -15,16 +15,16 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
         public string JobOrderName { get; set; }
         public string CustomerName { get; set; }
         [Required]
-        public DateTime? NewDueDate { get; set; }
+        public DateTime NewDueDate { get; set; }
         [Required]
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
-            if(!NewDueDate.HasValue && !Price.HasValue)
+            if (Price <= 0)
             {
-                var result = new ValidationResult("Either the new due date or the price has to be specified.", new string[] { "NewDueDate", "Price" });
+                var result = new ValidationResult("Price must be higher than zero.", new string[] { "Price" });
                 results.Add(result);
             }
             return results;

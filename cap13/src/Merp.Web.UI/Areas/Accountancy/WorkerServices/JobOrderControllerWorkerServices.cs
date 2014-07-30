@@ -60,6 +60,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.FixedPriceJobOrder>(jobOrderId);
             var model = new ExtendFixedPriceViewModel();
             model.NewDueDate = jobOrder.DueDate;
+            model.Price = jobOrder.Price;
             model.JobOrderNumber = jobOrder.Number;
             model.JobOrderId = jobOrder.Id;
             model.JobOrderName = jobOrder.Name;
@@ -69,7 +70,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
 
         public void ExtendFixedPriceJobOrder(ExtendFixedPriceViewModel model)
         {
-            //var command = new Extend
+            var command = new ExtendFixedPriceJobOrderCommand(model.JobOrderId, model.NewDueDate, model.Price);
         }
 
         public CreateTimeAndMaterialViewModel GetDefaultCreateTimeAndMaterialViewModel()
@@ -98,7 +99,9 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             var model = new ExtendTimeAndMaterialViewModel();
             model.NewDateOfExpiration = jobOrder.DateOfExpiration;
             model.JobOrderNumber = jobOrder.Number;
-            model.JobOrderId = jobOrder.Id;   
+            model.JobOrderId = jobOrder.Id;
+            model.JobOrderName = jobOrder.Name;
+            model.CustomerName = jobOrder.CustomerName;
             return model;
         }
 

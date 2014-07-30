@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "ExtendJobOrder";
 }
-<h2>ExtendJobOrder</h2>
+<h2>@Html.DisplayFor(model => model.JobOrderName)</h2>
 
 @using (Html.BeginForm())
 {
