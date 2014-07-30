@@ -100,6 +100,17 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             var model = WorkerServices.GetMarkFixedPriceJobOrderAsCompletedViewModel(id.Value);
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult MarkFixedPriceJobOrderAsCompleted(MarkFixedPriceJobOrderAsCompletedViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+            WorkerServices.MarkFixedPriceJobOrderAsCompleted(model);
+            return Redirect("/Accountancy/JobOrder");
+        }
         #endregion
 
         #region Time And Material Job Orders
@@ -150,6 +161,17 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         {
             var model = WorkerServices.GetMarkTimeAndMaterialJobOrderAsCompletedViewModel(id.Value);
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult MarkTimeAndMaterialJobOrderAsCompleted(MarkTimeAndMaterialJobOrderAsCompletedViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+            WorkerServices.MarkTimeAndMaterialJobOrderAsCompleted(model);
+            return Redirect("/Accountancy/JobOrder");
         }
         #endregion
         

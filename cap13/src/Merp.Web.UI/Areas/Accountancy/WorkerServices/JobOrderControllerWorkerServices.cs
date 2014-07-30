@@ -133,6 +133,12 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             var command = new ExtendFixedPriceJobOrderCommand(model.JobOrderId, model.NewDueDate, model.Price);
             Bus.Send(command);
         }
+
+        public void MarkFixedPriceJobOrderAsCompleted(MarkFixedPriceJobOrderAsCompletedViewModel model)
+        {
+            var command = new MarkFixedPriceJobOrderAsCompletedCommand(model.JobOrderId, model.DateOfCompletion);
+            Bus.Send(command);
+        }
         #endregion
 
         #region Time And Material Job Orders
@@ -207,6 +213,11 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             return model;
         }
 
+        public void MarkTimeAndMaterialJobOrderAsCompleted(MarkTimeAndMaterialJobOrderAsCompletedViewModel model)
+        {
+            var command = new MarkTimeAndMaterialJobOrderAsCompletedCommand(model.JobOrderId, model.DateOfCompletion);
+            Bus.Send(command);
+        }
         #endregion
 
     }

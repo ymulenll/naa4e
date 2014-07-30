@@ -350,6 +350,8 @@
     <Content Include="Areas\Accountancy\Views\JobOrder\FixedPriceJobOrderDetail.cshtml" />
     <Content Include="Areas\Accountancy\Views\JobOrder\TimeAndMaterialJobOrderDetail.cshtml" />
     <Content Include="Areas\Accountancy\Views\JobOrder\ExtendFixedPrice.cshtml" />
+    <Content Include="Areas\Accountancy\Views\JobOrder\MarkFixedPriceJobOrderAsCompleted.cshtml" />
+    <Content Include="Areas\Accountancy\Views\JobOrder\MarkTimeAndMaterialJobOrderAsCompleted.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
