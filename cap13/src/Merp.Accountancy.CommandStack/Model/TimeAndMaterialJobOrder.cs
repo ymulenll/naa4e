@@ -70,5 +70,18 @@ namespace Merp.Accountancy.CommandStack.Model
                 return jobOrder;
             }
         }
+
+        public void Extend(DateTime? newDateOfExpiration, decimal? value)
+        {
+            this.DateOfExpiration = newDateOfExpiration;
+            this.Value = value;
+
+            var @event = new TimeAndMaterialJobOrderExtendedEvent(
+                this.Id,
+                this.DateOfExpiration,
+                this.Value
+            );
+            RaiseEvent(@event);
+        }
     }
 }

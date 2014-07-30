@@ -71,6 +71,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
         public void ExtendFixedPriceJobOrder(ExtendFixedPriceViewModel model)
         {
             var command = new ExtendFixedPriceJobOrderCommand(model.JobOrderId, model.NewDueDate, model.Price);
+            Bus.Send(command);
         }
 
         public CreateTimeAndMaterialViewModel GetDefaultCreateTimeAndMaterialViewModel()
@@ -107,7 +108,8 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
 
         public void ExtendTimeAndMaterialJobOrder(ExtendTimeAndMaterialViewModel model)
         {
-            //var command = new Extend
+            var command = new ExtendTimeAndMaterialJobOrderCommand(model.JobOrderId, model.NewDateOfExpiration, model.Value);
+            Bus.Send(command);
         }
 
         public IEnumerable<IndexViewModel.JobOrder> GetList()

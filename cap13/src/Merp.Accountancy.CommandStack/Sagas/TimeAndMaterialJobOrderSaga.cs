@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 namespace Merp.Accountancy.CommandStack.Sagas
 {
     public class TimeAndMaterialJobOrderSaga : Saga,
-        IAmStartedBy<RegisterTimeAndMaterialJobOrderCommand>
+        IAmStartedBy<RegisterTimeAndMaterialJobOrderCommand>,
+        IHandleMessage<ExtendTimeAndMaterialJobOrderCommand>
     {
         public IJobOrderNumberGenerator JobOrderNumberGenerator { get; private set; }
 
@@ -38,6 +39,13 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 message.JobOrderName
                 );
             this.Repository.Save(jobOrder);
+        }
+
+        public void Handle(ExtendTimeAndMaterialJobOrderCommand message)
+        {
+            var jobOrder = Repository.GetById<TimeAndMaterialJobOrder>(message.JobOrderId);
+            jobOrder.Extend(message.NewDateOfExpiration, message.Value);
+            Repository.Save(jobOrder);
         }
     }
 }

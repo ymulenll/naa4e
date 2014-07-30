@@ -39,9 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ExtendTimeAndMaterialJobOrderCommand.cs" />
     <Compile Include="Commands\IssueInvoiceCommand.cs" />
     <Compile Include="Commands\RegisterTimeAndMaterialJobOrderCommand.cs" />
     <Compile Include="Commands\ExtendFixedPriceJobOrderCommand.cs" />
+    <Compile Include="Events\TimeAndMaterialJobOrderExtendedEvent.cs" />
     <Compile Include="Events\TimeAndMaterialJobOrderRegisteredEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderRegisteredEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderExtendedEvent.cs" />
