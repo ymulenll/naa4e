@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace Merp.Accountancy.QueryStack.Model
 {
     public class TimeAndMaterialJobOrderDenormalizer : 
-        IHandleMessage<TimeAndMaterialJobOrderRegisteredEvent>
+        IHandleMessage<TimeAndMaterialJobOrderRegisteredEvent>, 
+        IHandleMessage<TimeAndMaterialJobOrderExtendedEvent>
     {
         public void Handle(TimeAndMaterialJobOrderRegisteredEvent message)
         {
@@ -33,15 +34,15 @@ namespace Merp.Accountancy.QueryStack.Model
             }
         }
 
-        //public void Handle(FixedPriceJobOrderExtendedEvent message)
-        //{
-        //    using(var db = new MerpContext())
-        //    {
-        //        var jobOrder = db.JobOrders.Select(jo => jo.Id).OfType<FixedPriceJobOrder>().Single();
-        //        jobOrder.DueDate = message.NewDueDate;
-        //        jobOrder.Price = message.Price;
-        //        db.SaveChanges();
-        //    }
-        //}
+        public void Handle(TimeAndMaterialJobOrderExtendedEvent message)
+        {
+            using (var db = new AccountancyContext())
+            {
+                var jobOrder = db.JobOrders.Select(jo => jo.Id).OfType<TimeAndMaterialJobOrder>().Single();
+                jobOrder.DateOfExpiration = message.NewDateOfExpiration;
+                jobOrder.Value = message.Value;
+                db.SaveChanges();
+            }
+        }
     }
 }
