@@ -1,4 +1,5 @@
-﻿using Merp.Infrastructure;
+﻿using Merp.Accountancy.CommandStack.Events;
+using Merp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,18 @@ namespace Merp.Accountancy.CommandStack.Model
                 Id = id;
                 Name = name;
             }
+        }
+
+        public void AssociateIncomingInvoice(Guid invoiceId)
+        {
+            var @event = new IncomingInvoiceAssociatedToJobOrderEvent(invoiceId, this.Id);
+            RaiseEvent(@event);
+        }
+
+        public void AssociateOutgoingInvoice(Guid invoiceId)
+        {
+            var @event = new OutgoingInvoiceAssociatedToJobOrderEvent(invoiceId, this.Id);
+            RaiseEvent(@event);
         }
     }
 }

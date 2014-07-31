@@ -12,6 +12,7 @@ using Merp.Registry.CommandStack.Sagas;
 using Merp.Registry.QueryStack.Denormalizers;
 using Merp.Web.UI.Areas.Registry.WorkerServices;
 using Merp.Web.UI.Areas.Accountancy.WorkerServices;
+using Merp.Accountancy.CommandStack.Handlers;
 
 
 namespace Merp.Web.UI
@@ -53,6 +54,7 @@ namespace Merp.Web.UI
             bus.RegisterHandler<TimeAndMaterialJobOrderDenormalizer>();
 
             //Handlers
+            container.RegisterType<JobOrderHandler, JobOrderHandler>();
 
             //Sagas
             bus.RegisterSaga<FixedPriceJobOrderSaga>();

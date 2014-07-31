@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AssociateOutgoingInvoiceToJobOrderCommand.cs" />
+    <Compile Include="Commands\AssociateIncomingInvoiceToJobOrderCommand.cs" />
     <Compile Include="Commands\ExtendTimeAndMaterialJobOrderCommand.cs" />
     <Compile Include="Commands\IssueInvoiceCommand.cs" />
     <Compile Include="Commands\MarkTimeAndMaterialJobOrderAsCompletedCommand.cs" />
@@ -46,6 +48,8 @@
     <Compile Include="Commands\RegisterIncomingInvoiceCommand.cs" />
     <Compile Include="Commands\RegisterTimeAndMaterialJobOrderCommand.cs" />
     <Compile Include="Commands\ExtendFixedPriceJobOrderCommand.cs" />
+    <Compile Include="Events\OutgoingInvoiceAssociatedToJobOrderEvent.cs" />
+    <Compile Include="Events\IncomingInvoiceAssociatedToJobOrderEvent.cs" />
     <Compile Include="Events\IncomingInvoiceRegisteredEvent.cs" />
     <Compile Include="Events\OutgoingInvoiceIssuedEvent.cs" />
     <Compile Include="Events\TimeAndMaterialJobOrderCompletedEvent.cs" />
@@ -54,6 +58,7 @@
     <Compile Include="Events\TimeAndMaterialJobOrderRegisteredEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderRegisteredEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderExtendedEvent.cs" />
+    <Compile Include="Handlers\JobOrderHandler.cs" />
     <Compile Include="Model\IncomingInvoice.cs" />
     <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\JobOrder.cs" />
