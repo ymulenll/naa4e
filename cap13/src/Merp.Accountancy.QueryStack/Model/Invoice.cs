@@ -8,6 +8,8 @@ namespace Merp.Accountancy.QueryStack.Model
 {
     public class Invoice
     {
+        public int Id { get; set; }
+        public Guid OriginalId { get; set; }
         public string Number { get; set; }
         public DateTime Date { get; set; }
         public Guid? JobOrderId { get; set; }

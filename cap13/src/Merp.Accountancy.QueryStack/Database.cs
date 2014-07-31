@@ -23,5 +23,13 @@ namespace Merp.Accountancy.QueryStack
                 return Context.JobOrders;
             }
         }
+
+        public IQueryable<Invoice> OutgoingInvoices
+        {
+            get
+            {
+                return Context.OutgoingInvoices;
+            }
+        }
     }
 }
