@@ -4,8 +4,8 @@
 @Html.TextBoxFor(model => model.Id, new { onblur = "" })
 @Html.HiddenFor(model => model.OriginalId)
 @Html.TextBoxFor(model => model.Name)
-@Html.ValidationMessageFor(model => model.Id)
-@Html.ValidationMessageFor(model => model.Name)
+@Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 <script type="text/javascript">
     @{
         var idTextBoxName = ViewData.TemplateInfo.GetFullHtmlFieldId("Id");
