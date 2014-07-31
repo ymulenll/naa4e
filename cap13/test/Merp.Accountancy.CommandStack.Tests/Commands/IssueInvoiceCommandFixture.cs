@@ -10,7 +10,6 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
         [TestMethod]
         public void Ctor_should_set_properties_according_to_parameters()
         {
-            string invoiceNumber = "42";
             DateTime invoiceDate = new DateTime(1990, 11, 11);
             decimal amount = 101;
             decimal taxes = 42;
@@ -27,7 +26,6 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
             string vatIndex = "04358780965";
             string nationalIdentificationNumber = "04358780965";
             var sut = new IssueInvoiceCommand(
-                invoiceNumber,
                 invoiceDate,
                 amount,
                 taxes,
@@ -43,7 +41,6 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
                 country,
                 vatIndex,
                 nationalIdentificationNumber);
-            Assert.AreEqual<string>(invoiceNumber, sut.InvoiceNumber);
             Assert.AreEqual<DateTime>(invoiceDate, sut.InvoiceDate);
             Assert.AreEqual<decimal>(amount, sut.Amount);
             Assert.AreEqual<decimal>(taxes, sut.Taxes);

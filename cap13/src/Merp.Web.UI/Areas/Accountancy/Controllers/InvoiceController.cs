@@ -24,7 +24,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         [HttpGet]
         public ActionResult Issue()
         {
-            var model = new IssueViewModel();
+            var model = WorkerServices.GetIssueViewModel();
             return View(model);
         }
 

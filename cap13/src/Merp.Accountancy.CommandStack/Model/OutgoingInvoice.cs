@@ -1,4 +1,5 @@
-﻿using Merp.Infrastructure;
+﻿using Merp.Accountancy.CommandStack.Services;
+using Merp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Merp.Accountancy.CommandStack.Model
 {
     public class OutgoingInvoice : Aggregate
     {
+        public string Number { get; private set; }
         protected OutgoingInvoice()
         {
 
@@ -16,11 +18,11 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public static class Factory
         {
-            public static OutgoingInvoice Issue(string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms)
+            public static OutgoingInvoice Issue(IInvoiceNumberGenerator generator, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms)
             {
                 var invoice = new OutgoingInvoice()
                 {
-
+                    Number = generator.Generate()
                 };
                 return invoice;
             }

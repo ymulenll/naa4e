@@ -20,19 +20,32 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             }
             this.Bus = bus;
         }
+        public IssueViewModel GetIssueViewModel()
+        {
+            var model = new IssueViewModel();
+            model.Date = DateTime.Now;
+            return model;
+        }
         public void Issue(IssueViewModel model)
         {
-            //var command = new IssueInvoiceCommand(
-            //    model.InvoiceNumber,
-            //    model.Date,
-            //    model.Amount,
-            //    model.Taxes,
-            //    model.TotalPrice,
-            //    model.Description,
-            //    model.PaymentTerms,
-            //    model.PurchaseOrderNumber
-            //    );
-            //Bus.Send(command);
+            var command = new IssueInvoiceCommand(
+                model.Date,
+                model.Amount,
+                model.Taxes,
+                model.TotalPrice,
+                model.Description,
+                model.PaymentTerms,
+                model.PurchaseOrderNumber,
+                model.Customer.OriginalId,
+                model.Customer.Name,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty
+                );
+            Bus.Send(command);
         }
     }
 }

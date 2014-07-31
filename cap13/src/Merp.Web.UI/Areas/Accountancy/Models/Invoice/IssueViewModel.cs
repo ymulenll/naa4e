@@ -11,8 +11,6 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.Invoice
     {
         public PartyInfo Customer { get; set; }
         [Required]
-        public string InvoiceNumber { get; set; }
-        [Required]
         public DateTime Date { get; set; }
         [Required]
         public decimal Amount { get; set; }

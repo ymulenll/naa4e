@@ -60,7 +60,9 @@
     <Compile Include="Sagas\FixedPriceJobOrderSaga.cs" />
     <Compile Include="Sagas\OutgoingInvoiceSaga.cs" />
     <Compile Include="Sagas\TimeAndMaterialJobOrderSaga.cs" />
+    <Compile Include="Services\IInvoiceNumberGenerator.cs" />
     <Compile Include="Services\IJobOrderNumberGenerator.cs" />
+    <Compile Include="Services\InvoiceNumberGenerator.cs" />
     <Compile Include="Services\JobOrderNumberGenerator.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Merp.Infrastructure;
+﻿using Merp.Accountancy.CommandStack.Services;
+using Merp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,6 @@ namespace Merp.Accountancy.CommandStack.Commands
         }
 
         public CustomerInfo Customer { get; private set; }
-        public string InvoiceNumber { get; private set; }
         public DateTime InvoiceDate { get; private set; }
         public decimal Amount { get; private set; }
         public decimal Taxes { get; private set; }
@@ -43,7 +43,7 @@ namespace Merp.Accountancy.CommandStack.Commands
         public string PaymentTerms { get; private set; }
         public string PurchaseOrderNumber { get; private set; }
 
-        public IssueInvoiceCommand(string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid customerId, string customerName, string streetName, string city, string postalCode, string country, string vatIndex, string nationalIdentificationNumber)
+        public IssueInvoiceCommand(DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid customerId, string customerName, string streetName, string city, string postalCode, string country, string vatIndex, string nationalIdentificationNumber)
         {
             var customer = new CustomerInfo(
                 city: city,
@@ -56,7 +56,6 @@ namespace Merp.Accountancy.CommandStack.Commands
                 vatIndex: vatIndex
             );
             Customer = customer;
-            InvoiceNumber = invoiceNumber;
             InvoiceDate = invoiceDate;
             Amount = amount;
             Taxes = taxes;
