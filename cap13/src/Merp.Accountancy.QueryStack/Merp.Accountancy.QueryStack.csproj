@@ -53,7 +53,8 @@
     <Compile Include="Denormalizers\OutgoingInvoiceDenormalizer.cs" />
     <Compile Include="Denormalizers\TimeAndMaterialJobOrderDenormalizer.cs" />
     <Compile Include="Denormalizers\FixedPriceJobOrderDenormalizer.cs" />
-    <Compile Include="JobOrderExtensions.cs" />
+    <Compile Include="Extensions\InvoiceExtensions.cs" />
+    <Compile Include="Extensions\JobOrderExtensions.cs" />
     <Compile Include="AccountancyContext.cs" />
     <Compile Include="Migrations\201407231535563_JobOrders.cs" />
     <Compile Include="Migrations\201407231535563_JobOrders.Designer.cs">
