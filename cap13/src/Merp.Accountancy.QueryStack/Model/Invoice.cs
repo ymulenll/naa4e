@@ -18,8 +18,8 @@ namespace Merp.Accountancy.QueryStack.Model
         public decimal TotalPrice { get; set; }
         public string PurchaseOrderNumber { get; set; }
         public string Description { get; set; }
-        public Party Customer { get; set; }
-
+        public PartyInfo Customer { get; set; }
+         
         public class PartyInfo
         {
             public Guid OriginalId { get; set; }

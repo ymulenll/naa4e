@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201407311158376_OutgoingInvoices.Designer.cs">
       <DependentUpon>201407311158376_OutgoingInvoices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407311227426_OutgoingInvoices_Customer.cs" />
+    <Compile Include="Migrations\201407311227426_OutgoingInvoices_Customer.Designer.cs">
+      <DependentUpon>201407311227426_OutgoingInvoices_Customer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\TimeAndMaterialJobOrder.cs" />
@@ -126,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407311158376_OutgoingInvoices.resx">
       <DependentUpon>201407311158376_OutgoingInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407311227426_OutgoingInvoices_Customer.resx">
+      <DependentUpon>201407311227426_OutgoingInvoices_Customer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
