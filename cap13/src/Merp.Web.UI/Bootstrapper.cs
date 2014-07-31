@@ -50,6 +50,7 @@ namespace Merp.Web.UI
             //Denormalizers
             bus.RegisterHandler<FixedPriceJobOrderDenormalizer>();
             bus.RegisterHandler<IncomingInvoiceDenormalizer>();
+            bus.RegisterHandler<InvoiceDenormalizer>();
             bus.RegisterHandler<OutgoingInvoiceDenormalizer>();
             bus.RegisterHandler<TimeAndMaterialJobOrderDenormalizer>();
 

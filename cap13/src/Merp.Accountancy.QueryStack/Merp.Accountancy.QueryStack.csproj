@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="Denormalizers\IncomingInvoiceDenormalizer.cs" />
+    <Compile Include="Denormalizers\InvoiceDenormalizer.cs" />
     <Compile Include="Denormalizers\OutgoingInvoiceDenormalizer.cs" />
     <Compile Include="Denormalizers\TimeAndMaterialJobOrderDenormalizer.cs" />
     <Compile Include="Denormalizers\FixedPriceJobOrderDenormalizer.cs" />
