@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="Denormalizers\OutgoingInvoiceDenormalizer.cs" />
     <Compile Include="Denormalizers\TimeAndMaterialJobOrderDenormalizer.cs" />
     <Compile Include="Denormalizers\FixedPriceJobOrderDenormalizer.cs" />
     <Compile Include="JobOrderExtensions.cs" />
@@ -78,6 +79,7 @@
       <DependentUpon>201407301715523_JobOrders_PO.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\TimeAndMaterialJobOrder.cs" />
     <Compile Include="Model\FixedPriceJobOrder.cs" />
     <Compile Include="IDatabase.cs" />

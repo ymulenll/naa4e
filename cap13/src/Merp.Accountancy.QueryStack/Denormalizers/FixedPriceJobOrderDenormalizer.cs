@@ -1,4 +1,5 @@
 ﻿using Merp.Accountancy.CommandStack.Events;
+using Merp.Accountancy.QueryStack.Model;
 using Merp.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Merp.Accountancy.QueryStack.Model
+namespace Merp.Accountancy.QueryStack.Denormalizers
 {
     public class FixedPriceJobOrderDenormalizer : 
         IHandleMessage<FixedPriceJobOrderRegisteredEvent>,

@@ -33,6 +33,7 @@ namespace Merp.Accountancy.CommandStack.Events
                 VatIndex = vatIndex;
             }
         }
+        public Guid InvoiceId { get; private set; }
         public string InvoiceNumber { get; private set; }
         public CustomerInfo Customer { get; private set; }
         public DateTime InvoiceDate { get; private set; }
@@ -43,7 +44,7 @@ namespace Merp.Accountancy.CommandStack.Events
         public string PaymentTerms { get; private set; }
         public string PurchaseOrderNumber { get; private set; }
 
-        public OutgoingInvoiceIssuedEvent(string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid customerId, string customerName, string streetName, string city, string postalCode, string country, string vatIndex, string nationalIdentificationNumber)
+        public OutgoingInvoiceIssuedEvent(Guid invoiceId, string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid customerId, string customerName, string streetName, string city, string postalCode, string country, string vatIndex, string nationalIdentificationNumber)
         {
             var customer = new CustomerInfo(
                 city: city,
@@ -56,6 +57,7 @@ namespace Merp.Accountancy.CommandStack.Events
                 vatIndex: vatIndex
             );
             Customer = customer;
+            InvoiceId = invoiceId;
             InvoiceNumber = invoiceNumber;
             InvoiceDate = invoiceDate;
             Amount = amount;

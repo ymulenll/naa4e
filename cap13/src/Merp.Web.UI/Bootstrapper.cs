@@ -7,10 +7,12 @@ using Merp.Accountancy.QueryStack.Model;
 using Merp.Infrastructure.Impl;
 using Merp.Accountancy.CommandStack.Services;
 using Merp.Accountancy.QueryStack;
+using Merp.Accountancy.QueryStack.Denormalizers;
 using Merp.Registry.CommandStack.Sagas;
 using Merp.Registry.QueryStack.Denormalizers;
 using Merp.Web.UI.Areas.Registry.WorkerServices;
 using Merp.Web.UI.Areas.Accountancy.WorkerServices;
+
 
 namespace Merp.Web.UI
 {
@@ -46,6 +48,7 @@ namespace Merp.Web.UI
         {
             //Denormalizers
             bus.RegisterHandler<FixedPriceJobOrderDenormalizer>();
+            bus.RegisterHandler<OutgoingInvoiceDenormalizer>();
             bus.RegisterHandler<TimeAndMaterialJobOrderDenormalizer>();
 
             //Handlers

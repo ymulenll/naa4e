@@ -31,6 +31,7 @@ namespace Merp.Accountancy.CommandStack.Model
             {
                 var invoice = new OutgoingInvoice()
                 {
+                    Id = Guid.NewGuid(),
                     Number = generator.Generate(),
                     Date = invoiceDate,
                     Amount=amount,
@@ -42,6 +43,7 @@ namespace Merp.Accountancy.CommandStack.Model
                     Customer = new PartyInfo(customerId, customerName, string.Empty, string.Empty, string.Empty,string.Empty, string.Empty, string.Empty)
                 };
                 var @event = new OutgoingInvoiceIssuedEvent(
+                    invoice.Id,
                     invoice.Number,
                     invoice.Date,
                     invoice.Amount,
