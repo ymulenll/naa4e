@@ -59,14 +59,36 @@ namespace Merp.Accountancy.CommandStack.Model
             }
         }
 
+        /// <summary>
+        /// Associate an incoming invoice to the current Job Order
+        /// </summary>
+        /// <param name="eventStore">The event store</param>
+        /// <param name="invoiceId">The Id of the Invoice to be associated to the current Job Order</param>
+        /// <exception cref="InvalidOperationException">Thrown if the specified invoiceId refers to an invoice which has already been associated to a Job Order</exception>
         public void AssociateIncomingInvoice(IEventStore eventStore, Guid invoiceId)
         {
+            var count = eventStore.Find<IncomingInvoiceAssociatedToJobOrderEvent>(e => e.InvoiceId == invoiceId).Count();
+            if(count>0)
+            {
+                throw new InvalidOperationException("The specified invoice has already been associated to a Job Order.");
+            }
             var @event = new IncomingInvoiceAssociatedToJobOrderEvent(invoiceId, this.Id);
             RaiseEvent(@event);
         }
 
+        /// <summary>
+        /// Associate an outgoing invoice to the current Job Order
+        /// </summary>
+        /// <param name="eventStore">The event store</param>
+        /// <param name="invoiceId">The Id of the Invoice to be associated to the current Job Order</param>
+        /// <exception cref="InvalidOperationException">Thrown if the specified invoiceId refers to an invoice which has already been associated to a Job Order</exception>
         public void AssociateOutgoingInvoice(IEventStore eventStore, Guid invoiceId)
         {
+            var count = eventStore.Find<OutgoingInvoiceAssociatedToJobOrderEvent>(e => e.InvoiceId == invoiceId).Count();
+            if (count > 0)
+            {
+                throw new InvalidOperationException("The specified invoice has already been associated to a Job Order.");
+            }
             var @event = new OutgoingInvoiceAssociatedToJobOrderEvent(invoiceId, this.Id);
             RaiseEvent(@event);
         }

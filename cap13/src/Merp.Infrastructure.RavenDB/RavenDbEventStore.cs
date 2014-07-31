@@ -20,11 +20,11 @@ namespace Merp.Infrastructure.RavenDB
             DocumentStore.Conventions.AllowQueriesOnId = true; //Fix this
             DocumentStore.Initialize();
         }
-        public IEnumerable<T> Find<T>() where T : DomainEvent
+        public IEnumerable<T> Find<T>(Func<T, bool> filter) where T : DomainEvent
         {
             using (var session = DocumentStore.OpenSession())
             {
-                var events = session.Query<T>();
+                var events = session.Query<T>().Where(filter);
                 return events;
             }
         }

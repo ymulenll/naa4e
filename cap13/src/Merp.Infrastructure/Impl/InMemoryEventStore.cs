@@ -10,11 +10,13 @@ namespace Merp.Infrastructure.Impl
     {
         private static IList<DomainEvent> occurredEvents = new List<DomainEvent>();
 
-        public IEnumerable<T> Find<T>() where T : DomainEvent
+        public IEnumerable<T> Find<T>(Func<T, bool> filter) where T : DomainEvent
         {
             var events = (from e in occurredEvents
                          where e.GetType() == typeof(T)
-                         select e).Cast<T>();
+                         select e)
+                         .Cast<T>()
+                         .Where(filter);
             return events;
         }
 
