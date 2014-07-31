@@ -354,6 +354,7 @@
     <Content Include="Areas\Accountancy\Views\JobOrder\ExtendFixedPrice.cshtml" />
     <Content Include="Areas\Accountancy\Views\JobOrder\MarkFixedPriceJobOrderAsCompleted.cshtml" />
     <Content Include="Areas\Accountancy\Views\JobOrder\MarkTimeAndMaterialJobOrderAsCompleted.cshtml" />
+    <Content Include="Areas\Accountancy\Views\Invoice\Register.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

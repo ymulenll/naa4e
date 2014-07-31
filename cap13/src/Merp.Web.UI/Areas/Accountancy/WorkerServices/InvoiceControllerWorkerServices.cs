@@ -26,6 +26,12 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             model.Date = DateTime.Now;
             return model;
         }
+        public RegisterViewModel GetRegisterViewModel()
+        {
+            var model = new RegisterViewModel();
+            model.Date = DateTime.Now;
+            return model;
+        }
         public void Issue(IssueViewModel model)
         {
             var command = new IssueInvoiceCommand(
@@ -38,6 +44,28 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
                 model.PurchaseOrderNumber,
                 model.Customer.OriginalId,
                 model.Customer.Name,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty
+                );
+            Bus.Send(command);
+        }
+        public void Register(RegisterViewModel model)
+        {
+            var command = new RegisterIncomingInvoiceCommand(
+                model.InvoiceNumber,
+                model.Date,
+                model.Amount,
+                model.Taxes,
+                model.TotalPrice,
+                model.Description,
+                model.PaymentTerms,
+                model.PurchaseOrderNumber,
+                model.Supplier.OriginalId,
+                model.Supplier.Name,
                 string.Empty,
                 string.Empty,
                 string.Empty,

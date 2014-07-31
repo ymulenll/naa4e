@@ -38,5 +38,22 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             WorkerServices.Issue(model);
             return Redirect("/Accountancy/");
         }
+        [HttpGet]
+        public ActionResult Register()
+        {
+            var model = WorkerServices.GetRegisterViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+            WorkerServices.Register(model);
+            return Redirect("/Accountancy/");
+        }
     }
 }

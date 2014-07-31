@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Merp.Web.UI.Areas.Accountancy.Models.Invoice
 {
-    public class RegisterViewModelViewModel
+    public class RegisterViewModel
     {
         public PartyInfo Supplier { get; set; }
         [Required]
