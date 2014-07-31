@@ -23,7 +23,7 @@ namespace Merp.Accountancy.QueryStack.Denormalizers
             invoice.PurchaseOrderNumber = message.PurchaseOrderNumber;
             invoice.Taxes = message.Taxes;
             invoice.TotalPrice = message.TotalPrice;
-            invoice.Customer = new Invoice.PartyInfo()
+            invoice.Supplier = new Invoice.PartyInfo()
                                 {
                                     City = message.Customer.City,
                                     Country = message.Customer.Country,
