@@ -59,13 +59,13 @@ namespace Merp.Accountancy.CommandStack.Model
             }
         }
 
-        public void AssociateIncomingInvoice(Guid invoiceId)
+        public void AssociateIncomingInvoice(IEventStore eventStore, Guid invoiceId)
         {
             var @event = new IncomingInvoiceAssociatedToJobOrderEvent(invoiceId, this.Id);
             RaiseEvent(@event);
         }
 
-        public void AssociateOutgoingInvoice(Guid invoiceId)
+        public void AssociateOutgoingInvoice(IEventStore eventStore, Guid invoiceId)
         {
             var @event = new OutgoingInvoiceAssociatedToJobOrderEvent(invoiceId, this.Id);
             RaiseEvent(@event);

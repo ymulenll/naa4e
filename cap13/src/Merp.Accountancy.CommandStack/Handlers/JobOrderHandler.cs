@@ -39,13 +39,13 @@ namespace Merp.Accountancy.CommandStack.Handlers
         public void Handle(AssociateIncomingInvoiceToJobOrderCommand message)
         {
             var jobOrder = Repository.GetById<JobOrder>(message.JobOrderId);
-            jobOrder.AssociateIncomingInvoice(message.InvoiceId);
+            jobOrder.AssociateIncomingInvoice(EventStore, message.InvoiceId);
         }
 
         public void Handle(AssociateOutgoingInvoiceToJobOrderCommand message)
         {
             var jobOrder = Repository.GetById<JobOrder>(message.JobOrderId);
-            jobOrder.AssociateOutgoingInvoice(message.InvoiceId);
+            jobOrder.AssociateOutgoingInvoice(EventStore, message.InvoiceId);
         }
     }
 }
