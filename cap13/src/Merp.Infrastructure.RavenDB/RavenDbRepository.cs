@@ -8,10 +8,10 @@ using Raven.Client.Embedded;
 
 namespace Merp.Infrastructure.RavenDB
 {
-    public class Repository : IRepository
+    public class RavenDbRepository : IRepository
     {
         private static EmbeddableDocumentStore DocumentStore { get; set; }
-        static Repository()
+        static RavenDbRepository()
         {
             DocumentStore = new EmbeddableDocumentStore
             {
@@ -24,7 +24,7 @@ namespace Merp.Infrastructure.RavenDB
 
         public IBus Bus { get; private set; }
 
-        public Repository(IBus bus)
+        public RavenDbRepository(IBus bus)
         {
             if (bus == null)
             {

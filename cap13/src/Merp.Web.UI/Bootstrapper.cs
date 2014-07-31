@@ -41,8 +41,8 @@ namespace Merp.Web.UI
         public static void RegisterTypes(IUnityContainer container)
         { 
             container.RegisterType<IBus, InMemoryBus>(new InjectionConstructor(container, typeof(IEventStore)));
-            container.RegisterType<IEventStore, InMemoryEventStore>();
-            container.RegisterType<IRepository, Merp.Infrastructure.RavenDB.Repository>();
+            container.RegisterType<IEventStore, Merp.Infrastructure.RavenDB.RavenDbEventStore>();
+            container.RegisterType<IRepository, Merp.Infrastructure.RavenDB.RavenDbRepository>();
         }
 
         private static void ConfigureAccountancyBoundedContext(IUnityContainer container, IBus bus)

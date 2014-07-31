@@ -8,6 +8,8 @@ namespace Merp.Infrastructure
 {
     public interface IEventStore
     {
+        IEnumerable<T> Find<T>() where T : DomainEvent;
+
         void Save<T>(T @event) where T : DomainEvent;
     }
 }
