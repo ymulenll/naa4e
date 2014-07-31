@@ -1,6 +1,4 @@
 ﻿using Merp.Accountancy.CommandStack.Events;
-using Merp.Accountancy.CommandStack.Services;
-using Merp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,31 +7,31 @@ using System.Threading.Tasks;
 
 namespace Merp.Accountancy.CommandStack.Model
 {
-    public class OutgoingInvoice : Invoice
+    public class IncomingInvoice : Invoice
     {
-        protected OutgoingInvoice()
+        protected IncomingInvoice()
         {
 
         }
 
         public static class Factory
         {
-            public static OutgoingInvoice Issue(IOutgoingInvoiceNumberGenerator generator, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid customerId, string customerName)
+            public static IncomingInvoice Issue(string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid customerId, string customerName)
             {
-                var invoice = new OutgoingInvoice()
+                var invoice = new IncomingInvoice()
                 {
                     Id = Guid.NewGuid(),
-                    Number = generator.Generate(),
+                    Number = invoiceNumber,
                     Date = invoiceDate,
-                    Amount=amount,
-                    Taxes=taxes,
-                    TotalPrice=totalPrice,
-                    Description=description,
+                    Amount = amount,
+                    Taxes = taxes,
+                    TotalPrice = totalPrice,
+                    Description = description,
                     PaymentTerms = paymentTerms,
                     PurchaseOrderNumber = purchaseOrderNumber,
-                    Customer = new PartyInfo(customerId, customerName, string.Empty, string.Empty, string.Empty,string.Empty, string.Empty, string.Empty)
+                    Customer = new PartyInfo(customerId, customerName, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty)
                 };
-                var @event = new OutgoingInvoiceIssuedEvent(
+                var @event = new IncomingInvoiceRegisteredEvent(
                     invoice.Id,
                     invoice.Number,
                     invoice.Date,

@@ -14,7 +14,7 @@ namespace Merp.Accountancy.QueryStack.Denormalizers
     {
         public void Handle(OutgoingInvoiceIssuedEvent message)
         {
-            var invoice = new Invoice();
+            var invoice = new OutgoingInvoice();
             invoice.Amount = message.Amount;
             invoice.Date = message.InvoiceDate;
             invoice.Description = message.Description;

@@ -55,6 +55,7 @@ namespace Merp.Web.UI
 
             //Sagas
             bus.RegisterSaga<FixedPriceJobOrderSaga>();
+            bus.RegisterSaga<IncomingInvoiceSaga>();
             bus.RegisterSaga<OutgoingInvoiceSaga>();
             bus.RegisterSaga<TimeAndMaterialJobOrderSaga>();  
 

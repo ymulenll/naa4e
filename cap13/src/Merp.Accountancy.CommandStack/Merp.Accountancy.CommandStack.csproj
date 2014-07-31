@@ -43,8 +43,10 @@
     <Compile Include="Commands\IssueInvoiceCommand.cs" />
     <Compile Include="Commands\MarkTimeAndMaterialJobOrderAsCompletedCommand.cs" />
     <Compile Include="Commands\MarkFixedPriceJobOrderAsCompletedCommand.cs" />
+    <Compile Include="Commands\RegisterIncomingInvoiceCommand.cs" />
     <Compile Include="Commands\RegisterTimeAndMaterialJobOrderCommand.cs" />
     <Compile Include="Commands\ExtendFixedPriceJobOrderCommand.cs" />
+    <Compile Include="Events\IncomingInvoiceRegisteredEvent.cs" />
     <Compile Include="Events\OutgoingInvoiceIssuedEvent.cs" />
     <Compile Include="Events\TimeAndMaterialJobOrderCompletedEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderCompletedEvent.cs" />
@@ -52,6 +54,7 @@
     <Compile Include="Events\TimeAndMaterialJobOrderRegisteredEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderRegisteredEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderExtendedEvent.cs" />
+    <Compile Include="Model\IncomingInvoice.cs" />
     <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\JobOrder.cs" />
     <Compile Include="Model\OutgoingInvoice.cs" />
@@ -60,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\RegisterFixedPriceJobOrderCommand.cs" />
     <Compile Include="Sagas\FixedPriceJobOrderSaga.cs" />
+    <Compile Include="Sagas\IncomingInvoiceSaga.cs" />
     <Compile Include="Sagas\OutgoingInvoiceSaga.cs" />
     <Compile Include="Sagas\TimeAndMaterialJobOrderSaga.cs" />
     <Compile Include="Services\IOutgoingInvoiceNumberGenerator.cs" />

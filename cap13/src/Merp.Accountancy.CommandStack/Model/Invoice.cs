@@ -11,6 +11,14 @@ namespace Merp.Accountancy.CommandStack.Model
     {
         public Guid Id { get; protected set; }
         public PartyInfo Customer { get; protected set; }
+        public string Number { get; protected set; }
+        public DateTime Date { get; protected set; }
+        public decimal Amount { get; protected set; }
+        public decimal Taxes { get; protected set; }
+        public decimal TotalPrice { get; protected set; }
+        public string Description { get; protected set; }
+        public string PaymentTerms { get; protected set; }
+        public string PurchaseOrderNumber { get; protected set; }
         
         public class PartyInfo
         {
