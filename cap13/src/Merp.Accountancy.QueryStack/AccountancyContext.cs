@@ -17,5 +17,7 @@ namespace Merp.Accountancy.QueryStack
         }
 
         public DbSet<JobOrder> JobOrders { get; set; }
+
+        public DbSet<Invoice> OutgoingInvoices { get; set; }
     }
 }
