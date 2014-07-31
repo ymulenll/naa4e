@@ -57,7 +57,7 @@ namespace Merp.Web.UI
 
             //Services
             container.RegisterType<IJobOrderNumberGenerator, JobOrderNumberGenerator>();
-            container.RegisterType<IInvoiceNumberGenerator, InvoiceNumberGenerator>();
+            container.RegisterType<IOutgoingInvoiceNumberGenerator, OutgoingInvoiceNumberGenerator>();
 
             //Types
             container.RegisterType<Merp.Accountancy.QueryStack.IDatabase, Merp.Accountancy.QueryStack.Database>();

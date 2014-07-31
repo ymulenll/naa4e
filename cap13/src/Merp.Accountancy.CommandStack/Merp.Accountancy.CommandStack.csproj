@@ -45,12 +45,14 @@
     <Compile Include="Commands\MarkFixedPriceJobOrderAsCompletedCommand.cs" />
     <Compile Include="Commands\RegisterTimeAndMaterialJobOrderCommand.cs" />
     <Compile Include="Commands\ExtendFixedPriceJobOrderCommand.cs" />
+    <Compile Include="Events\OutgoingInvoiceIssuedEvent.cs" />
     <Compile Include="Events\TimeAndMaterialJobOrderCompletedEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderCompletedEvent.cs" />
     <Compile Include="Events\TimeAndMaterialJobOrderExtendedEvent.cs" />
     <Compile Include="Events\TimeAndMaterialJobOrderRegisteredEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderRegisteredEvent.cs" />
     <Compile Include="Events\FixedPriceJobOrderExtendedEvent.cs" />
+    <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\JobOrder.cs" />
     <Compile Include="Model\OutgoingInvoice.cs" />
     <Compile Include="Model\TimeAndMaterialJobOrder.cs" />
@@ -60,9 +62,9 @@
     <Compile Include="Sagas\FixedPriceJobOrderSaga.cs" />
     <Compile Include="Sagas\OutgoingInvoiceSaga.cs" />
     <Compile Include="Sagas\TimeAndMaterialJobOrderSaga.cs" />
-    <Compile Include="Services\IInvoiceNumberGenerator.cs" />
+    <Compile Include="Services\IOutgoingInvoiceNumberGenerator.cs" />
     <Compile Include="Services\IJobOrderNumberGenerator.cs" />
-    <Compile Include="Services\InvoiceNumberGenerator.cs" />
+    <Compile Include="Services\OutgoingInvoiceNumberGenerator.cs" />
     <Compile Include="Services\JobOrderNumberGenerator.cs" />
   </ItemGroup>
   <ItemGroup>

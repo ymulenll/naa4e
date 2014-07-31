@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Merp.Accountancy.CommandStack.Services
 {
-    public interface IInvoiceNumberGenerator
+    public interface IOutgoingInvoiceNumberGenerator
     {
         string Generate();
     }
