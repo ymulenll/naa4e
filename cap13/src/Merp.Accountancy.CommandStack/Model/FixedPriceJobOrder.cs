@@ -51,20 +51,6 @@ namespace Merp.Accountancy.CommandStack.Model
             RaiseEvent(@event);
         }
 
-        public decimal CalculateBalance(IEventStore es)
-        {
-            return CalculateBalance(es, DateTime.Now);
-        }
-
-        public decimal CalculateBalance(IEventStore es, DateTime balanceDate)
-        {
-            if(es==null)
-            {
-                throw new ArgumentNullException("es");
-            }
-            throw new NotImplementedException();
-        }
-
         public class Factory
         {
             public static FixedPriceJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, Guid managerId, string managerName, decimal price, DateTime dateOfStart, DateTime dueDate, string name, string purchaseOrderNumber, string description)

@@ -24,5 +24,6 @@ namespace Merp.Infrastructure.Impl
         {
             occurredEvents.Add(@event);
         }
+
     }
 }

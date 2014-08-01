@@ -92,5 +92,27 @@ namespace Merp.Accountancy.CommandStack.Model
             var @event = new OutgoingInvoiceAssociatedToJobOrderEvent(invoiceId, this.Id);
             RaiseEvent(@event);
         }
+
+        public decimal CalculateBalance(IEventStore es)
+        {
+            return CalculateBalance(es, DateTime.Now);
+        }
+
+        public decimal CalculateBalance(IEventStore es, DateTime balanceDate)
+        {
+            if (es == null)
+            {
+                throw new ArgumentNullException("es");
+            }
+            var outgoingInvoicesIds = es.Find<OutgoingInvoiceAssociatedToJobOrderEvent>(e => e.JobOrderId == this.Id && e.TimeStamp <= balanceDate).Select(e => e.InvoiceId);
+            var earnings = es.Find<OutgoingInvoiceIssuedEvent>(e => outgoingInvoicesIds.Contains(e.InvoiceId)).Sum(e => e.Amount);
+
+            var incomingInvoicesIds = es.Find<IncomingInvoiceAssociatedToJobOrderEvent>(e => e.JobOrderId == this.Id && e.TimeStamp <= balanceDate).Select(e => e.InvoiceId);
+            var costs = es.Find<IncomingInvoiceRegisteredEvent>(e => outgoingInvoicesIds.Contains(e.InvoiceId)).Sum(e => e.Amount);
+            
+            decimal balance = earnings - costs;
+
+            return balance;
+        }
     }
 }
