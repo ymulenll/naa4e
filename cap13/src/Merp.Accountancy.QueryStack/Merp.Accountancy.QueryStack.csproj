@@ -57,45 +57,9 @@
     <Compile Include="Extensions\InvoiceExtensions.cs" />
     <Compile Include="Extensions\JobOrderExtensions.cs" />
     <Compile Include="AccountancyContext.cs" />
-    <Compile Include="Migrations\201407231535563_JobOrders.cs" />
-    <Compile Include="Migrations\201407231535563_JobOrders.Designer.cs">
-      <DependentUpon>201407231535563_JobOrders.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407291619128_JobOrder_CustomerName.cs" />
-    <Compile Include="Migrations\201407291619128_JobOrder_CustomerName.Designer.cs">
-      <DependentUpon>201407291619128_JobOrder_CustomerName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407301451473_JobOrders_DateOfCompletion.cs" />
-    <Compile Include="Migrations\201407301451473_JobOrders_DateOfCompletion.Designer.cs">
-      <DependentUpon>201407301451473_JobOrders_DateOfCompletion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407301645406_JobOrders_Manager.cs" />
-    <Compile Include="Migrations\201407301645406_JobOrders_Manager.Designer.cs">
-      <DependentUpon>201407301645406_JobOrders_Manager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407301713572_JobOrders_PO_Description.cs" />
-    <Compile Include="Migrations\201407301713572_JobOrders_PO_Description.Designer.cs">
-      <DependentUpon>201407301713572_JobOrders_PO_Description.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407301715523_JobOrders_PO.cs" />
-    <Compile Include="Migrations\201407301715523_JobOrders_PO.Designer.cs">
-      <DependentUpon>201407301715523_JobOrders_PO.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407311158376_OutgoingInvoices.cs" />
-    <Compile Include="Migrations\201407311158376_OutgoingInvoices.Designer.cs">
-      <DependentUpon>201407311158376_OutgoingInvoices.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407311227426_OutgoingInvoices_Customer.cs" />
-    <Compile Include="Migrations\201407311227426_OutgoingInvoices_Customer.Designer.cs">
-      <DependentUpon>201407311227426_OutgoingInvoices_Customer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407311251549_IncomingInvoice.cs" />
-    <Compile Include="Migrations\201407311251549_IncomingInvoice.Designer.cs">
-      <DependentUpon>201407311251549_IncomingInvoice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201407311324116_Invoices_Hierarchy.cs" />
-    <Compile Include="Migrations\201407311324116_Invoices_Hierarchy.Designer.cs">
-      <DependentUpon>201407311324116_Invoices_Hierarchy.cs</DependentUpon>
+    <Compile Include="Migrations\201408010838007_Accountancy.cs" />
+    <Compile Include="Migrations\201408010838007_Accountancy.Designer.cs">
+      <DependentUpon>201408010838007_Accountancy.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\IncomingInvoice.cs" />
@@ -123,35 +87,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201407231535563_JobOrders.resx">
-      <DependentUpon>201407231535563_JobOrders.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407291619128_JobOrder_CustomerName.resx">
-      <DependentUpon>201407291619128_JobOrder_CustomerName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407301451473_JobOrders_DateOfCompletion.resx">
-      <DependentUpon>201407301451473_JobOrders_DateOfCompletion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407301645406_JobOrders_Manager.resx">
-      <DependentUpon>201407301645406_JobOrders_Manager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407301713572_JobOrders_PO_Description.resx">
-      <DependentUpon>201407301713572_JobOrders_PO_Description.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407301715523_JobOrders_PO.resx">
-      <DependentUpon>201407301715523_JobOrders_PO.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407311158376_OutgoingInvoices.resx">
-      <DependentUpon>201407311158376_OutgoingInvoices.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407311227426_OutgoingInvoices_Customer.resx">
-      <DependentUpon>201407311227426_OutgoingInvoices_Customer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407311251549_IncomingInvoice.resx">
-      <DependentUpon>201407311251549_IncomingInvoice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407311324116_Invoices_Hierarchy.resx">
-      <DependentUpon>201407311324116_Invoices_Hierarchy.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408010838007_Accountancy.resx">
+      <DependentUpon>201408010838007_Accountancy.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

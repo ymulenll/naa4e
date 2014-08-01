@@ -16,6 +16,11 @@ namespace Merp.Accountancy.QueryStack
 
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Types().Configure(entity => entity.ToTable(string.Format("{0}_{1}", "Accountancy", entity.ClrType.Name)));
+        }
+
         public DbSet<JobOrder> JobOrders { get; set; }
 
         public DbSet<IncomingInvoice> IncomingInvoices { get; set; }

@@ -16,6 +16,11 @@ namespace Merp.Registry.QueryStack
             
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Types().Configure(entity => entity.ToTable(string.Format("{0}_{1}", "Registry", entity.ClrType.Name)));
+        }
+
         public DbSet<Party> Parties { get; set; }
     }
 }

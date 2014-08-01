@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace Merp.Accountancy.QueryStack.Model
         public string Description { get; set; }
 
 
-         
+        [ComplexType] 
         public class PartyInfo
         {
             public Guid OriginalId { get; set; }
