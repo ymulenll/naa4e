@@ -93,12 +93,12 @@ namespace Merp.Accountancy.CommandStack.Model
             RaiseEvent(@event);
         }
 
-        public decimal CalculateBalance(IEventStore es)
+        public virtual decimal CalculateBalance(IEventStore es)
         {
             return CalculateBalance(es, DateTime.Now);
         }
 
-        public decimal CalculateBalance(IEventStore es, DateTime balanceDate)
+        public virtual decimal CalculateBalance(IEventStore es, DateTime balanceDate)
         {
             if (es == null)
             {

@@ -58,6 +58,7 @@
     <Compile Include="Commands\RegisterTimeAndMaterialJobOrderCommandFixture.cs" />
     <Compile Include="Commands\RegisterFixedPriceJobOrderCommandFixture.cs" />
     <Compile Include="Commands\IssueInvoiceCommandFixture.cs" />
+    <Compile Include="Model\TimeAndMaterialJobOrderFixture.cs" />
     <Compile Include="Model\FixedPriceJobOrderFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

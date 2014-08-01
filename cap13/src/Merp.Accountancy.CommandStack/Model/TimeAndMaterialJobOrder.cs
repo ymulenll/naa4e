@@ -20,20 +20,6 @@ namespace Merp.Accountancy.CommandStack.Model
             
         }
 
-        public decimal CalculateBalance(IEventStore es)
-        {
-            return CalculateBalance(es, DateTime.Now);
-        }
-
-        public decimal CalculateBalance(IEventStore es, DateTime balanceDate)
-        {
-            if(es==null)
-            {
-                throw new ArgumentNullException("es");
-            }
-            throw new NotImplementedException();
-        }
-
         public void Extend(DateTime? newDateOfExpiration, decimal? value)
         {
             this.DateOfExpiration = newDateOfExpiration;
