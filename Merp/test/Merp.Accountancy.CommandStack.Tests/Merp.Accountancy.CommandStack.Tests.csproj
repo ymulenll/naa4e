@@ -56,11 +56,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Commands\RegisterTimeAndMaterialJobOrderCommandFixture2.cs" />
-    <Compile Include="Commands\RegisterFixedPriceJobOrderCommandFixture2.cs" />
-    <Compile Include="Commands\IssueInvoiceCommandFixture2.cs" />
-    <Compile Include="Model\TimeAndMaterialJobOrderFixture2.cs" />
-    <Compile Include="Model\FixedPriceJobOrderFixture2.cs" />
+    <Compile Include="Commands\RegisterTimeAndMaterialJobOrderCommandFixture.cs" />
+    <Compile Include="Commands\RegisterFixedPriceJobOrderCommandFixture.cs" />
+    <Compile Include="Commands\IssueInvoiceCommandFixture.cs" />
+    <Compile Include="Model\TimeAndMaterialJobOrderFixture.cs" />
+    <Compile Include="Model\FixedPriceJobOrderFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
