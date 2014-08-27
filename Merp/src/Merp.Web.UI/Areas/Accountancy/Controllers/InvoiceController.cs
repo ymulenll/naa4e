@@ -63,7 +63,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         public ActionResult ListOfIncomingInvoicesNotAssignedToAJobOrder()
         {
             var model = WorkerServices.GetListOfIncomingInvoicesNotAssignedToAJobOrderViewModel();
-            return this.Jsonp(model);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult IncomingInvoicesNotAssignedToAJobOrder()
@@ -96,7 +96,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         public ActionResult ListOfOutgoingInvoicesNotAssignedToAJobOrder()
         {
             var model = WorkerServices.GetListOfOutgoingInvoicesNotAssignedToAJobOrderViewModel();
-            return this.Jsonp(model);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult OutgoingInvoicesNotAssignedToAJobOrder()
