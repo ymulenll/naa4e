@@ -83,6 +83,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             Bus.Send(command);
         }
 
+        #region AssignIncomingInvoiceToJobOrder
         public IEnumerable<IncomingInvoicesNotAssignedToAJobOrderViewModel.Invoice> GetListOfIncomingInvoicesNotAssignedToAJobOrderViewModel()
         {
             var model = (from i in Database.IncomingInvoices.NotAssociatedToAnyJobOrder()
@@ -120,5 +121,46 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             var command = new AssociateIncomingInvoiceToJobOrderCommand(model.InvoiceOriginalId, jobOrderId);
             Bus.Send(command);
         }
+        #endregion
+
+        #region AssignOutgoingInvoiceToJobOrder
+        public IEnumerable<OutgoingInvoicesNotAssignedToAJobOrderViewModel.Invoice> GetListOfOutgoingInvoicesNotAssignedToAJobOrderViewModel()
+        {
+            var model = (from i in Database.OutgoingInvoices.NotAssociatedToAnyJobOrder()
+                         orderby i.Date
+                         select new OutgoingInvoicesNotAssignedToAJobOrderViewModel.Invoice
+                         {
+                             Amount = i.Amount,
+                             Number = i.Number,
+                             CustomerName = i.Customer.Name,
+                             OriginalId = i.OriginalId
+                         }).ToArray();
+            return model;
+        }
+
+        public AssignOutgoingInvoiceToJobOrderViewModel GetAssignOutgoingInvoiceToJobOrderViewModel(Guid invoiceId)
+        {
+            var model = (from i in Database.OutgoingInvoices
+                         where i.OriginalId == invoiceId
+                         select new AssignOutgoingInvoiceToJobOrderViewModel
+                         {
+                             Amount = i.Amount,
+                             Date = i.Date,
+                             InvoiceNumber = i.Number,
+                             InvoiceOriginalId = i.OriginalId,
+                             CustomerName = i.Customer.Name
+                         }).Single();
+            return model;
+        }
+
+        public void AssignOutgoingInvoiceToJobOrder(AssignOutgoingInvoiceToJobOrderViewModel model, string jobOrderNumber)
+        {
+            var jobOrderId = (from j in Database.JobOrders
+                              where j.Number == jobOrderNumber
+                              select j.OriginalId).Single();
+            var command = new AssociateOutgoingInvoiceToJobOrderCommand(model.InvoiceOriginalId, jobOrderId);
+            Bus.Send(command);
+        }
+        #endregion
     }
 }

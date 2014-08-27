@@ -58,15 +58,15 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             return Redirect("/Accountancy/");
         }
 
+        #region AssignIncomingInvoiceToJobOrder
         [HttpGet]
-        public ActionResult IncomingInvoicesNotAssignedToAJobOrder()
+        public ActionResult ListOfIncomingInvoicesNotAssignedToAJobOrder()
         {
             var model = WorkerServices.GetListOfIncomingInvoicesNotAssignedToAJobOrderViewModel();
             return this.Jsonp(model);
         }
-
         [HttpGet]
-        public ActionResult ListOfIncomingInvoicesNotAssignedToAJobOrder()
+        public ActionResult IncomingInvoicesNotAssignedToAJobOrder()
         {
             var model = new IncomingInvoicesNotAssignedToAJobOrderViewModel();
             return View(model);
@@ -89,5 +89,39 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             WorkerServices.AssignIncomingInvoiceToJobOrder(model, model.JobOrderNumber);
             return Redirect("/Accountancy/");
         }
+        #endregion
+
+        #region AssignOutgoingInvoiceToJobOrder
+        [HttpGet]
+        public ActionResult ListOfOutgoingInvoicesNotAssignedToAJobOrder()
+        {
+            var model = WorkerServices.GetListOfOutgoingInvoicesNotAssignedToAJobOrderViewModel();
+            return this.Jsonp(model);
+        }
+        [HttpGet]
+        public ActionResult OutgoingInvoicesNotAssignedToAJobOrder()
+        {
+            var model = new OutgoingInvoicesNotAssignedToAJobOrderViewModel();
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult AssignOutgoingInvoiceToJobOrder(Guid? id)
+        {
+            var model = WorkerServices.GetAssignOutgoingInvoiceToJobOrderViewModel(id.Value);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AssignOutgoingInvoiceToJobOrder(AssignOutgoingInvoiceToJobOrderViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+            WorkerServices.AssignOutgoingInvoiceToJobOrder(model, model.JobOrderNumber);
+            return Redirect("/Accountancy/");
+        }
+        #endregion
     }
 }

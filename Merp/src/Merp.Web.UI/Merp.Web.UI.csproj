@@ -190,7 +190,9 @@
     <Compile Include="Areas\Accountancy\AccountancyAreaRegistration.cs" />
     <Compile Include="Areas\Accountancy\Controllers\HomeController.cs" />
     <Compile Include="Areas\Accountancy\Controllers\InvoiceController.cs" />
+    <Compile Include="Areas\Accountancy\Models\Invoice\AssignOutgoingInvoiceToJobOrderViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\Invoice\AssignIncomingInvoiceToJobOrderViewModel.cs" />
+    <Compile Include="Areas\Accountancy\Models\Invoice\OutgoingInvoicesNotAssignedToAJobOrderViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\Invoice\IncomingInvoicesNotAssignedToAJobOrderViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\Invoice\RegisterViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\Invoice\IssueViewModel.cs" />
@@ -649,6 +651,8 @@
     <Content Include="startup.html" />
     <Content Include="Areas\Accountancy\Views\Invoice\IncomingInvoicesNotAssignedToAJobOrder.cshtml" />
     <Content Include="Areas\Accountancy\Views\Invoice\AssignIncomingInvoiceToJobOrder.cshtml" />
+    <Content Include="Areas\Accountancy\Views\Invoice\AssignOutgoingInvoiceToJobOrder.cshtml" />
+    <Content Include="Areas\Accountancy\Views\Invoice\OutgoingInvoicesNotAssignedToAJobOrder.cshtml" />
     <None Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
