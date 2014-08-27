@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Merp.Web.UI.Areas.Accountancy.Models.Invoice.IncomingInvoicesNotAssignedToAJobOrderViewModel>
+﻿@model Merp.Web.UI.Areas.Accountancy.Models.Invoice.IncomingInvoicesNotAssignedToAJobOrderViewModel
 
 @{
     ViewBag.Title = "IncomingInvoicesNotAssignedToAJobOrder";
@@ -10,7 +10,7 @@
     (function (module) {
         var invoicesController = function ($scope, $http) {
             $scope.refreshInvoiceList = function () {
-                var url = '/Accountancy/InvoiceController/GetListOfIncomingInvoicesNotAssignedToAJobOrder';
+                var url = '/Accountancy/Invoice/GetListOfIncomingInvoicesNotAssignedToAJobOrder';
                 $http.get(url).success(function (data) {
                     $scope.Invoices = data;
                 });
@@ -36,7 +36,7 @@
             <tbody>
                 <tr data-ng-repeat="invoice in Invoices">
                     <td>{{invoice.SupplierName}}</td>
-                    <td><a href="/Accountancy/JobOrder/Detail/{{invoice.OriginalId}}">{{invoice.Number}}</a></td>
+                    <td><a href="/Accountancy/Invoice/AssignIncomingInvoiceToJobOrder/{{invoice.OriginalId}}">{{invoice.Number}}</a></td>
                 </tr>
             </tbody>
         </table>
