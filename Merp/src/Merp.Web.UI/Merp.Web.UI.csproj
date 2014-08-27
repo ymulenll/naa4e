@@ -190,6 +190,7 @@
     <Compile Include="Areas\Accountancy\AccountancyAreaRegistration.cs" />
     <Compile Include="Areas\Accountancy\Controllers\HomeController.cs" />
     <Compile Include="Areas\Accountancy\Controllers\InvoiceController.cs" />
+    <Compile Include="Areas\Accountancy\Models\Invoice\IncomingInvoicesNotAssignedToAJobOrderViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\Invoice\RegisterViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\Invoice\IssueViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\ExtendFixedPriceViewModel.cs" />
@@ -644,6 +645,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="startup.html" />
+    <Content Include="Areas\Accountancy\Views\Home\IncomingInvoicesNotAssignedToAJobOrder.cshtml" />
     <None Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

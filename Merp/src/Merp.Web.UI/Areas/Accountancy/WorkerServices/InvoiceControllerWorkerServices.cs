@@ -1,4 +1,5 @@
 ﻿using Merp.Accountancy.CommandStack.Commands;
+using Merp.Accountancy.QueryStack;
 using Merp.Infrastructure;
 using Merp.Web.UI.Areas.Accountancy.Models.Invoice;
 using System;
@@ -11,14 +12,20 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
     public class InvoiceControllerWorkerServices
     {
         public IBus Bus { get; private set; }
+        public IDatabase Database { get; set; }
 
-        public InvoiceControllerWorkerServices(IBus bus)
+        public InvoiceControllerWorkerServices(IBus bus, IDatabase database)
         {
             if(bus==null)
             {
                 throw new ArgumentNullException("bus");
             }
+            if (database == null)
+            {
+                throw new ArgumentNullException("database");
+            }
             this.Bus = bus;
+            this.Database = database;
         }
         public IssueViewModel GetIssueViewModel()
         {
@@ -75,5 +82,20 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
                 );
             Bus.Send(command);
         }
+
+        public IEnumerable<IncomingInvoicesNotAssignedToAJobOrderViewModel.Invoice> GetListOfIncomingInvoicesNotAssignedToAJobOrder()
+        {
+            var model = (from i in Database.IncomingInvoices.NotAssociatedToAnyJobOrder()
+                        orderby i.Date
+                        select new IncomingInvoicesNotAssignedToAJobOrderViewModel.Invoice
+                        {
+                            Amount = i.Amount,
+                            Number = i.Number,
+                            SupplierName = i.Supplier.Name,
+                            OriginalId = i.OriginalId
+                        }).ToArray();
+            return model;
+        }
+
     }
 }

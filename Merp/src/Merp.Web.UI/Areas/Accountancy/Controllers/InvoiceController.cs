@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcMate.Web.Mvc;
 
 namespace Merp.Web.UI.Areas.Accountancy.Controllers
 {
@@ -38,6 +39,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             WorkerServices.Issue(model);
             return Redirect("/Accountancy/");
         }
+
         [HttpGet]
         public ActionResult Register()
         {
@@ -54,6 +56,25 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             }
             WorkerServices.Register(model);
             return Redirect("/Accountancy/");
+        }
+
+        [HttpGet]
+        public ActionResult GetListOfIncomingInvoicesNotAssignedToAJobOrder()
+        {
+            var model = WorkerServices.GetListOfIncomingInvoicesNotAssignedToAJobOrder();
+            return this.Jsonp(model);
+        }
+
+        [HttpGet]
+        public ActionResult IncomingInvoicesNotAssignedToAJobOrder()
+        {
+            var model = new IncomingInvoicesNotAssignedToAJobOrderViewModel();
+            return View(model);
+        }
+
+        public ActionResult AssignIncomingInvoiceToJobOrder()
+        {
+            return View();
         }
     }
 }
