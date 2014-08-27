@@ -10,7 +10,7 @@
     (function (module) {
         var invoicesController = function ($scope, $http) {
             $scope.refreshInvoiceList = function () {
-                var url = '/Accountancy/Invoice/GetListOfIncomingInvoicesNotAssignedToAJobOrder';
+                var url = '/Accountancy/Invoice/ListOfIncomingInvoicesNotAssignedToAJobOrder';
                 $http.get(url).success(function (data) {
                     $scope.Invoices = data;
                 });

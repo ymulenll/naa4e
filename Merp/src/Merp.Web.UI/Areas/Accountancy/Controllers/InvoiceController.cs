@@ -59,22 +59,35 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetListOfIncomingInvoicesNotAssignedToAJobOrder()
+        public ActionResult IncomingInvoicesNotAssignedToAJobOrder()
         {
-            var model = WorkerServices.GetListOfIncomingInvoicesNotAssignedToAJobOrder();
+            var model = WorkerServices.GetListOfIncomingInvoicesNotAssignedToAJobOrderViewModel();
             return this.Jsonp(model);
         }
 
         [HttpGet]
-        public ActionResult IncomingInvoicesNotAssignedToAJobOrder()
+        public ActionResult ListOfIncomingInvoicesNotAssignedToAJobOrder()
         {
             var model = new IncomingInvoicesNotAssignedToAJobOrderViewModel();
             return View(model);
         }
 
-        public ActionResult AssignIncomingInvoiceToJobOrder()
+        [HttpGet]
+        public ActionResult AssignIncomingInvoiceToJobOrder(Guid? id)
         {
-            return View();
+            var model = WorkerServices.GetAssignIncomingInvoiceToJobOrderViewModel(id.Value);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AssignIncomingInvoiceToJobOrder(AssignIncomingInvoiceToJobOrderViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+            WorkerServices.AssignIncomingInvoiceToJobOrder(model, model.JobOrderNumber);
+            return Redirect("/Accountancy/");
         }
     }
 }

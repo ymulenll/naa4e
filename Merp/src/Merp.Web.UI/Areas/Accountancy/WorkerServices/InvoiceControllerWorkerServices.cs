@@ -83,7 +83,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             Bus.Send(command);
         }
 
-        public IEnumerable<IncomingInvoicesNotAssignedToAJobOrderViewModel.Invoice> GetListOfIncomingInvoicesNotAssignedToAJobOrder()
+        public IEnumerable<IncomingInvoicesNotAssignedToAJobOrderViewModel.Invoice> GetListOfIncomingInvoicesNotAssignedToAJobOrderViewModel()
         {
             var model = (from i in Database.IncomingInvoices.NotAssociatedToAnyJobOrder()
                         orderby i.Date
@@ -97,5 +97,28 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             return model;
         }
 
+        public AssignIncomingInvoiceToJobOrderViewModel GetAssignIncomingInvoiceToJobOrderViewModel(Guid invoiceId)
+        {
+            var model = (from i in Database.IncomingInvoices
+                        where i.OriginalId == invoiceId
+                        select new AssignIncomingInvoiceToJobOrderViewModel
+                        {
+                            Amount = i.Amount,
+                            Date = i.Date,
+                            InvoiceNumber = i.Number,
+                            InvoiceOriginalId = i.OriginalId,
+                            SupplierName = i.Supplier.Name
+                        }).Single();
+            return model;
+        }
+
+        public void AssignIncomingInvoiceToJobOrder(AssignIncomingInvoiceToJobOrderViewModel model, string jobOrderNumber)
+        {
+            var jobOrderId = (from j in Database.JobOrders
+                                 where j.Number == jobOrderNumber
+                                 select j.OriginalId).Single();
+            var command = new AssociateIncomingInvoiceToJobOrderCommand(model.InvoiceOriginalId, jobOrderId);
+            Bus.Send(command);
+        }
     }
 }
