@@ -55,7 +55,7 @@ namespace Merp.Web.UI
             bus.RegisterHandler<TimeAndMaterialJobOrderDenormalizer>();
 
             //Handlers
-            container.RegisterType<JobOrderHandler, JobOrderHandler>();
+            bus.RegisterHandler<JobOrderHandler>();
 
             //Sagas
             bus.RegisterSaga<FixedPriceJobOrderSaga>();
