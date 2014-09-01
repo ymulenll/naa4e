@@ -60,6 +60,32 @@
             @Html.DisplayFor(model => model.Notes)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+
+        <dd>
+            <script type="text/javascript">
+                function evalJobOrderBalance(jobOrderId)
+                {
+                    jobOrderBalanceControl = $("#jobOrderBalance")[0];
+
+                    $.get("/Accountancy/JobOrder/EvaluateTimeAndMaterialJobOrderBalance/" + jobOrderId, function (data) {
+                        if (data === 'undefined') {
+                            jobOrderBalanceControl.innerText = 'Unable to evaluate';
+                        }
+                        else {
+                            jobOrderBalanceControl.innerText = data;
+                        }
+                    })
+                    .fail(function () {
+                        jobOrderBalanceControl.innerText = 'Unable to evaluate';
+                    }
+                    );
+                }
+            </script>
+            <span id="jobOrderBalance"></span><input type="button" value="evaluate" onclick="evalJobOrderBalance('@Model.JobOrderId');" />
+        </dd>
     </dl>
 </div>
 <p>

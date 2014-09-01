@@ -16,5 +16,6 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
         public DateTime DateOfExpiration { get; set; }
         public string Notes { get; set; }
         public bool IsCompleted { get; set; }
+        public decimal Balance { get; set; }
     }
 }

@@ -151,6 +151,13 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             var command = new MarkFixedPriceJobOrderAsCompletedCommand(model.JobOrderId, model.DateOfCompletion);
             Bus.Send(command);
         }
+
+        public decimal GetEvaluateFixedPriceJobOrderBalance(Guid jobOrderId)
+        {
+            var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.FixedPriceJobOrder>(jobOrderId);
+            var balance = jobOrder.CalculateBalance(EventStore);
+            return balance;
+        }
         #endregion
 
         #region Time And Material Job Orders
@@ -234,6 +241,13 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
         {
             var command = new MarkTimeAndMaterialJobOrderAsCompletedCommand(model.JobOrderId, model.DateOfCompletion);
             Bus.Send(command);
+        }
+
+        public decimal GetEvaluateTimeAndMaterialJobOrderBalance(Guid jobOrderId)
+        {
+            var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.TimeAndMaterialJobOrder>(jobOrderId);
+            var balance = jobOrder.CalculateBalance(EventStore);
+            return balance;
         }
         #endregion
 

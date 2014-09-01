@@ -111,6 +111,13 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             WorkerServices.MarkFixedPriceJobOrderAsCompleted(model);
             return Redirect("/Accountancy/JobOrder");
         }
+
+        [HttpGet]
+        public ActionResult EvaluateFixedPriceJobOrderBalance(Guid id)
+        {
+            var model = WorkerServices.GetEvaluateFixedPriceJobOrderBalance(id);
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Time And Material Job Orders
@@ -172,6 +179,13 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             }
             WorkerServices.MarkTimeAndMaterialJobOrderAsCompleted(model);
             return Redirect("/Accountancy/JobOrder");
+        }
+
+        [HttpGet]
+        public ActionResult EvaluateTimeAndMaterialJobOrderBalance(Guid id)
+        {
+            var model = WorkerServices.GetEvaluateTimeAndMaterialJobOrderBalance(id);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
         #endregion
         
