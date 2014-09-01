@@ -136,5 +136,11 @@ namespace Merp.Accountancy.CommandStack.Tests.Model
             //{
             //}
         }
+
+        [TestClass]
+        public class AssociateOutgoingInvoice_Method
+        {
+
+        }
     }
 }
