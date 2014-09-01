@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Merp.Infrastructure;
 using Raven.Client.Embedded;
+using Raven.Database.Server;
+using Raven.Client.Indexes;
 
 namespace Merp.Infrastructure.RavenDB
 {
@@ -13,13 +15,16 @@ namespace Merp.Infrastructure.RavenDB
         private static EmbeddableDocumentStore DocumentStore { get; set; }
         static RavenDbRepository()
         {
+            NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(8081);
             DocumentStore = new EmbeddableDocumentStore
             {
-                ConnectionStringName = "DocumentStore"
-                //UseEmbeddedHttpServer = true
+                ConnectionStringName = "DocumentStore",
+                UseEmbeddedHttpServer = true
             };
+            DocumentStore.Configuration.Port = 8081;
             DocumentStore.Conventions.AllowQueriesOnId = true; //Fix this
             DocumentStore.Initialize();
+            //IndexCreation.CreateIndexes(typeof(int).Assembly, DocumentStore);
         }
 
         public IBus Bus { get; private set; }
@@ -43,6 +48,19 @@ namespace Merp.Infrastructure.RavenDB
                             select i).Single();
                 return item;
             }        
+        }
+
+        public T GetById<T, K>(Guid id)
+            where T : IAggregate
+            where K : AbstractIndexCreationTask, new()
+        {
+            using (var session = DocumentStore.OpenSession())
+            {
+                var item = (from i in session.Query<T, K>()
+                            where i.Id == id
+                            select i).Single();
+                return item;
+            }  
         }
 
         public void Save<T>(T item) where T : IAggregate

@@ -1,4 +1,6 @@
-﻿using Raven.Client.Embedded;
+﻿using Raven.Client.Document;
+using Raven.Client.Embedded;
+using Raven.Database.Server;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +14,22 @@ namespace Merp.Infrastructure.RavenDB
         private static EmbeddableDocumentStore DocumentStore { get; set; }
         static RavenDbEventStore()
         {
+            NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(8080);
             DocumentStore = new EmbeddableDocumentStore
             {
-                ConnectionStringName = "EventStore"
-                //UseEmbeddedHttpServer = true
+                ConnectionStringName = "EventStore",
+                UseEmbeddedHttpServer = true,
+                Conventions =
+                {
+                    //FindTypeTagName = type =>
+                    //{
+                    //    if (typeof(DomainEvent).IsAssignableFrom(type))
+                    //        return "DomainEvents";
+                    //    return DocumentConvention.DefaultTypeTagName(type);
+                    //},
+                    AllowQueriesOnId = true     //Fix this
+                }
             };
-            DocumentStore.Conventions.AllowQueriesOnId = true; //Fix this
             DocumentStore.Initialize();
         }
         public IEnumerable<T> Find<T>(Func<T, bool> filter) where T : DomainEvent

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merp.Infrastructure", "src\Merp.Infrastructure\Merp.Infrastructure.csproj", "{A55D9702-109E-44EA-9E7E-D3B0B49EF123}"
 EndProject

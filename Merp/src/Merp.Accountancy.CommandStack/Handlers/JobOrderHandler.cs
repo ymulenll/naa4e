@@ -1,11 +1,12 @@
-﻿using Merp.Accountancy.CommandStack.Commands;
-using Merp.Accountancy.CommandStack.Model;
-using Merp.Infrastructure;
+﻿using Merp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Merp.Accountancy.CommandStack.Commands;
+using Merp.Accountancy.CommandStack.Model;
+using Merp.Accountancy.CommandStack.RavenDb.Indexes;
 
 namespace Merp.Accountancy.CommandStack.Handlers
 {
@@ -38,13 +39,13 @@ namespace Merp.Accountancy.CommandStack.Handlers
 
         public void Handle(AssociateIncomingInvoiceToJobOrderCommand message)
         {
-            var jobOrder = Repository.GetById<JobOrder>(message.JobOrderId);
+            var jobOrder = Repository.GetById<JobOrder, All_JobOrders>(message.JobOrderId);
             jobOrder.AssociateIncomingInvoice(EventStore, message.InvoiceId);
         }
 
         public void Handle(AssociateOutgoingInvoiceToJobOrderCommand message)
         {
-            var jobOrder = Repository.GetById<JobOrder>(message.JobOrderId);
+            var jobOrder = Repository.GetById<JobOrder, All_JobOrders>(message.JobOrderId);
             jobOrder.AssociateOutgoingInvoice(EventStore, message.InvoiceId);
         }
     }

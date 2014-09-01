@@ -51,5 +51,13 @@ namespace Merp.Infrastructure.Impl
         {
             return (T) aggregates[id];
         }
+
+
+        public T GetById<T, K>(Guid id)
+            where T : IAggregate
+            where K : Raven.Client.Indexes.AbstractIndexCreationTask, new()
+        {
+            return GetById<T>(id);
+        }
     }
 }
