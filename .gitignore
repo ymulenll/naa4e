@@ -1,5 +1,10 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
 /cap13/packages
+Merp/packages/
+LiveScore-ES/src/LiveScoreEs/packages/
+IBuyStuff-dm/src/packages/
+Merp/src/Merp.Web.UI/bin/
+Merp/test/Merp.Web.UI.Tests/bin/
