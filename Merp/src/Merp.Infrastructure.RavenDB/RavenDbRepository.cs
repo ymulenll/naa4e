@@ -24,7 +24,12 @@ namespace Merp.Infrastructure.RavenDB
             DocumentStore.Configuration.Port = 8081;
             DocumentStore.Conventions.AllowQueriesOnId = true; //Fix this
             DocumentStore.Initialize();
-            //IndexCreation.CreateIndexes(typeof(int).Assembly, DocumentStore);
+
+            /*
+             * To be modified in order to take advantage of MEF ExportProvider  
+             */
+            IndexCreation.CreateIndexes(typeof(Merp.Accountancy.CommandStack.Model.JobOrder).Assembly, DocumentStore);
+            IndexCreation.CreateIndexes(typeof(Merp.Registry.CommandStack.Model.Party).Assembly, DocumentStore);
         }
 
         public IBus Bus { get; private set; }
