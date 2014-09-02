@@ -86,7 +86,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             {
                 return View(model);
             }
-            WorkerServices.AssignIncomingInvoiceToJobOrder(model, model.JobOrderNumber);
+            WorkerServices.AssignIncomingInvoiceToJobOrder(model);
             return Redirect("/Accountancy/");
         }
         #endregion
@@ -119,7 +119,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             {
                 return View(model);
             }
-            WorkerServices.AssignOutgoingInvoiceToJobOrder(model, model.JobOrderNumber);
+            WorkerServices.AssignOutgoingInvoiceToJobOrder(model);
             return Redirect("/Accountancy/");
         }
         #endregion

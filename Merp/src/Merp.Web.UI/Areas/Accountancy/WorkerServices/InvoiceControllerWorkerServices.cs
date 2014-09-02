@@ -113,10 +113,10 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             return model;
         }
 
-        public void AssignIncomingInvoiceToJobOrder(AssignIncomingInvoiceToJobOrderViewModel model, string jobOrderNumber)
+        public void AssignIncomingInvoiceToJobOrder(AssignIncomingInvoiceToJobOrderViewModel model)
         {
             var jobOrderId = (from j in Database.JobOrders
-                                 where j.Number == jobOrderNumber
+                              where j.Number == model.JobOrderNumber
                                  select j.OriginalId).Single();
             var command = new AssociateIncomingInvoiceToJobOrderCommand(model.InvoiceOriginalId, jobOrderId);
             Bus.Send(command);
@@ -153,10 +153,10 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             return model;
         }
 
-        public void AssignOutgoingInvoiceToJobOrder(AssignOutgoingInvoiceToJobOrderViewModel model, string jobOrderNumber)
+        public void AssignOutgoingInvoiceToJobOrder(AssignOutgoingInvoiceToJobOrderViewModel model)
         {
             var jobOrderId = (from j in Database.JobOrders
-                              where j.Number == jobOrderNumber
+                              where j.Number == model.JobOrderNumber
                               select j.OriginalId).Single();
             var command = new AssociateOutgoingInvoiceToJobOrderCommand(model.InvoiceOriginalId, jobOrderId);
             Bus.Send(command);
