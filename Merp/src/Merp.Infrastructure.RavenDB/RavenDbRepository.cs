@@ -48,9 +48,10 @@ namespace Merp.Infrastructure.RavenDB
             //session.Query().Where(x=>x.Id == "FixedPriceJobOrders/ac16d75e-3423-41cf-a5a9-70fb4b48088b");
             using (var session = DocumentStore.OpenSession())
             {
+                //var item = session.Load<T>(id.ToString());
                 var item = (from i in session.Query<T>()
                             where i.Id == id
-                            select i).Single();
+                            select i).SingleOrDefault();
                 return item;
             }        
         }
@@ -61,9 +62,15 @@ namespace Merp.Infrastructure.RavenDB
         {
             using (var session = DocumentStore.OpenSession())
             {
+                //var items = session.Query<T, K>().ToList();
+                //var document = (from i in session.Query<T, K>().ToList()
+                //                where i.Id == id
+                //                select i).SingleOrDefault();
+                //var query = (from i in session.Query<T, K>()
+                //             where i.Id == id
+                //             select i);
                 var item = (from i in session.Query<T, K>()
-                            where i.Id == id
-                            select i).Single();
+                            select i).SingleOrDefault(o => o.Id == id);
                 return item;
             }  
         }

@@ -14,19 +14,19 @@ namespace Merp.Accountancy.CommandStack.RavenDb.Indexes
         public All_JobOrders()
         {
             AddMap<FixedPriceJobOrder>(jobOrders => from jo in jobOrders 
-                                        select new
-                                        {
-                                            jo.Id,
-                                            jo.Customer,
-                                            jo.Manager,
-                                            jo.Name,
-                                            jo.Number,
-                                            jo.DateOfStart,
-                                            jo.DateOfCompletion,
-                                            jo.IsCompleted,
-                                            jo.PurchaseOrderNumber,
-                                            jo.Description
-                                        });
+                                                    select new
+                                                    {
+                                                        jo.Id,
+                                                        jo.Customer,
+                                                        jo.Manager,
+                                                        jo.Name,
+                                                        jo.Number,
+                                                        jo.DateOfStart,
+                                                        jo.DateOfCompletion,
+                                                        jo.IsCompleted,
+                                                        jo.PurchaseOrderNumber,
+                                                        jo.Description
+                                                    });
 
             AddMap<TimeAndMaterialJobOrder>(jobOrders => from jo in jobOrders
                                                          select new

@@ -9,7 +9,6 @@ namespace Merp.Accountancy.CommandStack.Model
 {
     public class Invoice : Aggregate
     {
-        public Guid Id { get; protected set; }
         public PartyInfo Customer { get; protected set; }
         public string Number { get; protected set; }
         public DateTime Date { get; protected set; }
