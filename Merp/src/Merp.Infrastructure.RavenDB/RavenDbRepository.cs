@@ -22,7 +22,7 @@ namespace Merp.Infrastructure.RavenDB
                 UseEmbeddedHttpServer = true
             };
             DocumentStore.Configuration.Port = 8081;
-            DocumentStore.Conventions.AllowQueriesOnId = true; //Fix this
+            //DocumentStore.Conventions.AllowQueriesOnId = true; //Fix this
             DocumentStore.Initialize();
 
             /*
@@ -45,13 +45,10 @@ namespace Merp.Infrastructure.RavenDB
 
         public T GetById<T>(Guid id) where T : IAggregate
         {
-            //session.Query().Where(x=>x.Id == "FixedPriceJobOrders/ac16d75e-3423-41cf-a5a9-70fb4b48088b");
             using (var session = DocumentStore.OpenSession())
             {
-                //var item = session.Load<T>(id.ToString());
-                var item = (from i in session.Query<T>()
-                            where i.Id == id
-                            select i).SingleOrDefault();
+                var item = session.Load<T>(id);
+
                 return item;
             }        
         }
@@ -68,9 +65,10 @@ namespace Merp.Infrastructure.RavenDB
                 //                select i).SingleOrDefault();
                 //var query = (from i in session.Query<T, K>()
                 //             where i.Id == id
-                //             select i);
-                var item = (from i in session.Query<T, K>()
-                            select i).SingleOrDefault(o => o.Id == id);
+                ////             select i);
+                //var item = (from i in session.Query<T, K>()
+                //            select i).SingleOrDefault(o => o.Id == id);
+                var item = session.Load<T>(id);
                 return item;
             }  
         }

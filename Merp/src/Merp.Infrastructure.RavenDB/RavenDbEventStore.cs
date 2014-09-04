@@ -18,17 +18,17 @@ namespace Merp.Infrastructure.RavenDB
             DocumentStore = new EmbeddableDocumentStore
             {
                 ConnectionStringName = "EventStore",
-                UseEmbeddedHttpServer = true,
-                Conventions =
-                {
-                    //FindTypeTagName = type =>
-                    //{
-                    //    if (typeof(DomainEvent).IsAssignableFrom(type))
-                    //        return "DomainEvents";
-                    //    return DocumentConvention.DefaultTypeTagName(type);
-                    //},
-                    AllowQueriesOnId = true     //Fix this
-                }
+                UseEmbeddedHttpServer = true
+                //Conventions =
+                //{
+                //    FindTypeTagName = type =>
+                //    {
+                //        if (typeof(DomainEvent).IsAssignableFrom(type))
+                //            return "DomainEvents";
+                //        return DocumentConvention.DefaultTypeTagName(type);
+                //    },
+                //    AllowQueriesOnId = true     //Fix this
+                //}
             };
             DocumentStore.Initialize();
         }
