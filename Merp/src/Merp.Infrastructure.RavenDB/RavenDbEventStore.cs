@@ -30,6 +30,7 @@ namespace Merp.Infrastructure.RavenDB
                 //    AllowQueriesOnId = true     //Fix this
                 //}
             };
+            DocumentStore.Configuration.Port = 8080;
             DocumentStore.Initialize();
         }
         public IEnumerable<T> Find<T>(Func<T, bool> filter) where T : DomainEvent

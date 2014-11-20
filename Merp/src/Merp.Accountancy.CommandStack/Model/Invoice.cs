@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Merp.Accountancy.CommandStack.Model
 {
-    public class Invoice : Aggregate
+    public abstract class Invoice : Aggregate
     {
         public PartyInfo Customer { get; protected set; }
         public string Number { get; protected set; }
