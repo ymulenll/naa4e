@@ -56,6 +56,10 @@
     <Compile Include="Migrations\201408010828521_Registry.Designer.cs">
       <DependentUpon>201408010828521_Registry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201411121711270_Person_DateOfBirth.cs" />
+    <Compile Include="Migrations\201411121711270_Person_DateOfBirth.Designer.cs">
+      <DependentUpon>201411121711270_Person_DateOfBirth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Party.cs" />
     <Compile Include="Model\Company.cs" />
@@ -80,6 +84,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408010828521_Registry.resx">
       <DependentUpon>201408010828521_Registry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411121711270_Person_DateOfBirth.resx">
+      <DependentUpon>201411121711270_Person_DateOfBirth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
