@@ -36,7 +36,7 @@
             <tbody>
                 <tr data-ng-repeat="invoice in Invoices">
                     <td>{{invoice.CustomerName}}</td>
-                    <td><a href="/Accountancy/Invoice/AssignIncomingInvoiceToJobOrder/{{invoice.OriginalId}}">{{invoice.Number}}</a></td>
+                    <td><a href="/Accountancy/Invoice/AssignOutgoingInvoiceToJobOrder/{{invoice.OriginalId}}">{{invoice.Number}}</a></td>
                 </tr>
             </tbody>
         </table>

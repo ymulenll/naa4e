@@ -13,6 +13,8 @@
     
     <div class="form-horizontal">
         <hr />
+        @Html.HiddenFor(model => model.InvoiceNumber)
+        @Html.HiddenFor(model => model.InvoiceOriginalId)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.InvoiceNumber, htmlAttributes: new { @class = "control-label col-md-2" })
