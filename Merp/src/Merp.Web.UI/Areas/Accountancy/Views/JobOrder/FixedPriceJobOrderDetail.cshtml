@@ -4,94 +4,122 @@
     ViewBag.Title = "FixedPriceJobOrderDetail";
 }
 
-<h2>@Html.DisplayFor(model => model.JobOrderName)</h2>
 
-<div>
+
+<div class="row">
+    <h2>@Html.DisplayFor(model => model.JobOrderName)</h2>
     <h4>@Html.DisplayFor(model => model.JobOrderNumber)</h4>
     <h5>@Html.DisplayFor(model => model.CustomerName)</h5>
+    <p>
+        @if (!Model.IsCompleted)
+        {
+            @Html.ActionLink("Complete", "MarkFixedPriceJobOrderAsCompleted", new { id = Model.JobOrderId })<text> |</text>
+            @Html.ActionLink("Extend", "ExtendFixedPrice", new { id = Model.JobOrderId })<text> |</text>
+        }
+        @Html.ActionLink("Back to List", "Index")
+    </p>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.JobOrderNumber)
-        </dt>
+    <div id="tabs">
+        <ul>
+            <li><a href="#general">General</a></li>
+            <li><a href="/Accountancy/JobOrder/BalanceTrendAnalysis">Trend Analysis</a></li>
+        </ul>
+        <div id="general">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.JobOrderNumber)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.JobOrderNumber)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.JobOrderNumber)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CustomerName)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CustomerName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CustomerName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.CustomerName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfStart)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DateOfStart)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateOfStart)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.DateOfStart)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DueDate)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DueDate)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DueDate)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.DueDate)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Notes)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Notes)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Balance)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Balance)
+                    </dt>
 
-        <dd>
-            <script type="text/javascript">
-                function evalJobOrderBalance(jobOrderId) {
-                    jobOrderBalanceControl = $("#jobOrderBalance")[0];
+                    <dd>
+                        
 
-                    $.get("/Accountancy/JobOrder/EvaluateFixedPriceJobOrderBalance/" + jobOrderId, function (data) {
-                        if (data === 'undefined') {
-                            jobOrderBalanceControl.innerText = 'Unable to evaluate';
-                        }
-                        else {
-                            jobOrderBalanceControl.innerText = data;
-                        }
-                    })
-                    .fail(function () {
-                        jobOrderBalanceControl.innerText = 'Unable to evaluate';
-                    }
-                    );
-                }
-            </script>
+                        <span id="jobOrderBalance"></span><input type="button" value="evaluate" onclick="evalJobOrderBalance('@Model.JobOrderId');" />
+                    </dd>
+                </dl>
 
-            <span id="jobOrderBalance"></span><input type="button" value="evaluate" onclick="evalJobOrderBalance('@Model.JobOrderId');" />
-        </dd>
-    </dl>
+        </div>
+    </div>
+
 </div>
-<p>
-    @if (!Model.IsCompleted)
-    {
-        @Html.ActionLink("Complete", "MarkFixedPriceJobOrderAsCompleted", new { id = Model.JobOrderId })<text> |</text>
-        @Html.ActionLink("Extend", "ExtendFixedPrice", new { id = Model.JobOrderId })<text> |</text>
-    }    
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@section head
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#tabs").tabs({
+                ajaxOptions: {
+                    error: function (xhr, status, index, anchor) {
+                        $(anchor.hash).html("Unable to display trend analysis");
+                    }
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function evalJobOrderBalance(jobOrderId) {
+            jobOrderBalanceControl = $("#jobOrderBalance")[0];
+
+            $.get("/Accountancy/JobOrder/EvaluateFixedPriceJobOrderBalance/" + jobOrderId, function (data) {
+                if (data === 'undefined') {
+                    jobOrderBalanceControl.innerText = 'Unable to evaluate';
+                }
+                else {
+                    jobOrderBalanceControl.innerText = data;
+                }
+            })
+            .fail(function () {
+                jobOrderBalanceControl.innerText = 'Unable to evaluate';
+            }
+            );
+        }
+    </script>
+
+}

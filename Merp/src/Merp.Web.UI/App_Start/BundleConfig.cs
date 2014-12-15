@@ -33,19 +33,19 @@ namespace Merp.Web.UI
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/css/jqueryui").Include(
-                        "~/Content/themes/base/jquery.ui.core.css",
-                        "~/Content/themes/base/jquery.ui.resizable.css",
-                        "~/Content/themes/base/jquery.ui.selectable.css",
-                        "~/Content/themes/base/jquery.ui.accordion.css",
-                        "~/Content/themes/base/jquery.ui.autocomplete.css",
-                        "~/Content/themes/base/jquery.ui.button.css",
-                        "~/Content/themes/base/jquery.ui.dialog.css",
-                        "~/Content/themes/base/jquery.ui.slider.css",
-                        "~/Content/themes/base/jquery.ui.tabs.css",
-                        "~/Content/themes/base/jquery.ui.datepicker.css",
-                        "~/Content/themes/base/jquery.ui.progressbar.css",
-                        "~/Content/themes/base/jquery.ui.theme.css"));
+            bundles.Add(new StyleBundle("~/Content/css/jqueryui/themes/base").Include(
+                                    "~/Content/themes/base/core.css",
+                                    "~/Content/themes/base/resizable.css",
+                                    "~/Content/themes/base/selectable.css",
+                                    "~/Content/themes/base/accordion.css",
+                                    "~/Content/themes/base/autocomplete.css",
+                                    "~/Content/themes/base/button.css",
+                                    "~/Content/themes/base/dialog.css",
+                                    "~/Content/themes/base/slider.css",
+                                    "~/Content/themes/base/tabs.css",
+                                    "~/Content/themes/base/datepicker.css",
+                                    "~/Content/themes/base/progressbar.css",
+                                    "~/Content/themes/base/theme.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

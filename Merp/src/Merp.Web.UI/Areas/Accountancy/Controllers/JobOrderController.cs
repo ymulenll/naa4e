@@ -51,6 +51,11 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             }
         }
 
+        public ActionResult BalanceTrendAnalysis()
+        {
+            return View();
+        }
+
         #region Fixed Price Job Orders
         [HttpGet]
         public ActionResult CreateFixedPrice()
