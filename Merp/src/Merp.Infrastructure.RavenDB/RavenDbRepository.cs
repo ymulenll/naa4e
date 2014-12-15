@@ -59,17 +59,8 @@ namespace Merp.Infrastructure.RavenDB
         {
             using (var session = DocumentStore.OpenSession())
             {
-                //var items = session.Query<T, K>().ToList();
-                //var document = (from i in session.Query<T, K>().ToList()
-                //                where i.Id == id
-                //                select i).SingleOrDefault();
-                //var query = (from i in session.Query<T, K>()
-                //             where i.Id == id
-                ////             select i);
-                //var item = (from i in session.Query<T, K>()
-                //            select i).SingleOrDefault(o => o.Id == id);
-                var item = session.Load<T>(id);
-                return item;
+                var items = session.Query<T, K>().ToList();
+                return items.First();
             }  
         }
 
