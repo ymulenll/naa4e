@@ -11,22 +11,25 @@ namespace Merp.Registry.CommandStack.Model
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
+        
         protected Person()
         {
 
+        }
+
+        public void Apply(PersonRegisteredEvent evt)
+        {
+            this.Id = evt.PersonId;
+            this.FirstName = evt.FirstName;
+            this.LastName = evt.LastName;
         }
 
         public static class Factory
         {
             public static Person CreateNewEntry(string firstName, string lastName, DateTime? dateOfBirth)
             {
-                var p = new Person()
-                {
-                     Id = Guid.NewGuid(),
-                     FirstName = firstName,
-                     LastName = lastName
-                };
-                var e = new PersonRegisteredEvent(p.Id, p.FirstName, p.LastName);
+                var e = new PersonRegisteredEvent(Guid.NewGuid(), firstName, lastName);
+                var p = new Person();
                 p.RaiseEvent(e);
                 return p;
             }

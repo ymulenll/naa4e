@@ -41,6 +41,7 @@ namespace Merp.Infrastructure
         protected void RaiseEvent(DomainEvent @event)
         {
             uncommittedEvents.Add(@event);
+            (this as dynamic).Apply((dynamic)@event);
         }
     }
 }
