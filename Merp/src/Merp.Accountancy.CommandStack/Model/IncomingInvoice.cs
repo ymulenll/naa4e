@@ -14,42 +14,44 @@ namespace Merp.Accountancy.CommandStack.Model
 
         }
 
+        public void Apply(IncomingInvoiceRegisteredEvent evt)
+        {
+            Id = evt.InvoiceId;
+            Number = evt.InvoiceNumber;
+            Date = evt.InvoiceDate;
+            Amount = evt.Amount;
+            Taxes = evt.Taxes;
+            TotalPrice = evt.TotalPrice;
+            Description = evt.Description;
+            PaymentTerms = evt.PaymentTerms;
+            PurchaseOrderNumber = evt.PurchaseOrderNumber;
+            Customer = new PartyInfo(evt.Customer.Id, evt.Customer.Name, evt.Customer.StreetName, evt.Customer.City, evt.Customer.PostalCode, evt.Customer.Country, evt.Customer.VatIndex, evt.Customer.NationalIdentificationNumber);
+        }
+
         public static class Factory
         {
             public static IncomingInvoice Issue(string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid customerId, string customerName)
             {
-                var invoice = new IncomingInvoice()
-                {
-                    Id = Guid.NewGuid(),
-                    Number = invoiceNumber,
-                    Date = invoiceDate,
-                    Amount = amount,
-                    Taxes = taxes,
-                    TotalPrice = totalPrice,
-                    Description = description,
-                    PaymentTerms = paymentTerms,
-                    PurchaseOrderNumber = purchaseOrderNumber,
-                    Customer = new PartyInfo(customerId, customerName, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty)
-                };
                 var @event = new IncomingInvoiceRegisteredEvent(
-                    invoice.Id,
-                    invoice.Number,
-                    invoice.Date,
-                    invoice.Amount,
-                    invoice.Taxes,
-                    invoice.TotalPrice,
-                    invoice.Description,
-                    invoice.PaymentTerms,
-                    invoice.PurchaseOrderNumber,
-                    invoice.Customer.Id,
-                    invoice.Customer.Name,
-                    invoice.Customer.StreetName,
-                    invoice.Customer.City,
-                    invoice.Customer.PostalCode,
-                    invoice.Customer.Country,
-                    invoice.Customer.VatIndex,
-                    invoice.Customer.NationalIdentificationNumber
+                    Guid.NewGuid(),
+                    invoiceNumber,
+                    invoiceDate,
+                    amount,
+                    taxes,
+                    totalPrice,
+                    description,
+                    paymentTerms,
+                    purchaseOrderNumber,
+                    customerId,
+                    customerName,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty
                     );
+                var invoice = new IncomingInvoice();
                 invoice.RaiseEvent(@event);
                 return invoice;
             }
