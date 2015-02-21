@@ -19,11 +19,35 @@ namespace Merp.Accountancy.CommandStack.Model
             
         }
 
+        public void Apply(FixedPriceJobOrderExtendedEvent evt)
+        {
+            this.DueDate = evt.NewDueDate;
+            this.Price = evt.Price;
+        }
+
+        public void Apply(FixedPriceJobOrderCompletedEvent evt)
+        {
+            this.DateOfCompletion = evt.DateOfCompletion;
+            this.IsCompleted = true;
+        }
+
+        public void Apply(FixedPriceJobOrderRegisteredEvent evt)
+        {
+            Id = evt.JobOrderId;
+            Customer = new CustomerInfo(evt.CustomerId, evt.CustomerName);
+            Manager = new ManagerInfo(evt.ManagerId, evt.ManagerName);
+            Price = evt.Price;
+            DateOfStart= evt.DateOfStart;
+            DueDate=evt.DueDate;
+            Name = evt.JobOrderName;
+            Number = evt.JobOrderNumber; 
+            IsCompleted = false;
+            PurchaseOrderNumber = evt.PurchaseOrderNumber;
+            Description = evt.Description;
+        }
+
         public void Extend(DateTime newDueDate, decimal price)
         {
-            this.DueDate = newDueDate;
-            this.Price = price;
-
             var @event = new FixedPriceJobOrderExtendedEvent(
                 this.Id, 
                 this.DueDate,
@@ -42,8 +66,6 @@ namespace Merp.Accountancy.CommandStack.Model
             {
                 throw new InvalidOperationException("The Job Order has already been marked as completed");
             }
-            this.DateOfCompletion = dateOfCompletion;
-            this.IsCompleted = true;
             var @event = new FixedPriceJobOrderCompletedEvent(
                 this.Id,
                 dateOfCompletion
@@ -54,36 +76,22 @@ namespace Merp.Accountancy.CommandStack.Model
         public class Factory
         {
             public static FixedPriceJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, Guid managerId, string managerName, decimal price, DateTime dateOfStart, DateTime dueDate, string name, string purchaseOrderNumber, string description)
-            {
-                var id = Guid.NewGuid();
-                var jobOrder = new FixedPriceJobOrder() 
-                {
-                    Id = id,
-                    Customer = new CustomerInfo(customerId, customerName),
-                    Manager = new ManagerInfo(managerId, managerName),
-                    Price = price,
-                    DateOfStart= dateOfStart,
-                    DueDate=dueDate,
-                    Name = name,
-                    Number = jobOrderNumberGenerator.Generate(), 
-                    IsCompleted = false,
-                    PurchaseOrderNumber = purchaseOrderNumber,
-                    Description = description
-                };
+            { 
                 var @event = new FixedPriceJobOrderRegisteredEvent(
-                    jobOrder.Id,
-                    jobOrder.Customer.Id,
-                    jobOrder.Customer.Name,
-                    jobOrder.Manager.Id,
-                    jobOrder.Manager.Name,
-                    jobOrder.Price,
-                    jobOrder.DateOfStart,
-                    jobOrder.DueDate,
-                    jobOrder.Name,
-                    jobOrder.Number,
-                    jobOrder.PurchaseOrderNumber,
-                    jobOrder.Description
+                    Guid.NewGuid(),
+                    customerId,
+                    customerName,
+                    managerId, 
+                    managerName,
+                    price,
+                    dateOfStart,
+                    dueDate,
+                    name,
+                    jobOrderNumberGenerator.Generate(),
+                    purchaseOrderNumber,
+                    description
                     );
+                var jobOrder = new FixedPriceJobOrder();
                 jobOrder.RaiseEvent(@event);
                 return jobOrder;
             }

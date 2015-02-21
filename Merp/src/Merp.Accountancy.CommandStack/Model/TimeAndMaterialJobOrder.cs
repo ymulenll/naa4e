@@ -20,11 +20,35 @@ namespace Merp.Accountancy.CommandStack.Model
             
         }
 
+        public void Apply(TimeAndMaterialJobOrderExtendedEvent evt)
+        {
+            this.DateOfExpiration = evt.NewDateOfExpiration;
+            this.Value = evt.Value;
+        }
+
+        public void Apply(TimeAndMaterialJobOrderCompletedEvent evt)
+        { 
+            this.DateOfCompletion = evt.DateOfCompletion;
+            this.IsCompleted = true;        
+        }
+
+        public void Apply(TimeAndMaterialJobOrderRegisteredEvent evt)
+        {
+            Id = evt.JobOrderId;
+            Customer = new CustomerInfo(evt.CustomerId, evt.CustomerName);
+            Manager = new ManagerInfo(evt.ManagerId, evt.ManagerName);
+            Value = evt.Value;
+            DateOfStart = evt.DateOfStart;
+            DateOfExpiration = evt.DateOfExpiration;
+            Name = evt.JobOrderName;
+            Number = evt.JobOrderNumber; 
+            IsCompleted = false;
+            PurchaseOrderNumber = evt.PurchaseOrderNumber;
+            Description = evt.Description;
+        }
+
         public void Extend(DateTime? newDateOfExpiration, decimal? value)
         {
-            this.DateOfExpiration = newDateOfExpiration;
-            this.Value = value;
-
             var @event = new TimeAndMaterialJobOrderExtendedEvent(
                 this.Id,
                 this.DateOfExpiration,
@@ -43,8 +67,7 @@ namespace Merp.Accountancy.CommandStack.Model
             {
                 throw new InvalidOperationException("The Job Order has already been marked as completed");
             }
-            this.DateOfCompletion = dateOfCompletion;
-            this.IsCompleted = true;
+
             var @event = new TimeAndMaterialJobOrderCompletedEvent(
                 this.Id,
                 dateOfCompletion
@@ -56,35 +79,21 @@ namespace Merp.Accountancy.CommandStack.Model
         {
             public static TimeAndMaterialJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, Guid managerId, string managerName, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string name, string purchaseOrderNumber, string description)
             {
-                var id = Guid.NewGuid();
-                var jobOrder = new TimeAndMaterialJobOrder() 
-                {
-                    Id = id,
-                    Customer = new CustomerInfo(customerId, customerName),
-                    Manager = new ManagerInfo(managerId, managerName),
-                    Value = value,
-                    DateOfStart= dateOfStart,
-                    DateOfExpiration=dateOfExpiration,
-                    Name = name,
-                    Number = jobOrderNumberGenerator.Generate(), 
-                    IsCompleted = false,
-                    PurchaseOrderNumber = purchaseOrderNumber,
-                    Description = description
-                };
                 var @event = new TimeAndMaterialJobOrderRegisteredEvent(
-                    jobOrder.Id,
-                    jobOrder.Customer.Id,
-                    jobOrder.Customer.Name,
-                    jobOrder.Manager.Id,
-                    jobOrder.Manager.Name,
-                    jobOrder.Value,
-                    jobOrder.DateOfStart,
-                    jobOrder.DateOfExpiration,
-                    jobOrder.Name,
-                    jobOrder.Number,
-                    jobOrder.PurchaseOrderNumber,
-                    jobOrder.Description
+                    Guid.NewGuid(),
+                    customerId,
+                    customerName,
+                    managerId,
+                    managerName,
+                    value,
+                    dateOfStart,
+                    dateOfExpiration,
+                    name,
+                    jobOrderNumberGenerator.Generate(),
+                    purchaseOrderNumber,
+                    description
                     );
+                var jobOrder = new TimeAndMaterialJobOrder(); 
                 jobOrder.RaiseEvent(@event);
                 return jobOrder;
             }
