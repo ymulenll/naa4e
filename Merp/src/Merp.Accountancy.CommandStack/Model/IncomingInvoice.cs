@@ -9,6 +9,8 @@ namespace Merp.Accountancy.CommandStack.Model
 {
     public class IncomingInvoice : Invoice
     {
+        public PartyInfo Supplier { get; protected set; }
+
         protected IncomingInvoice()
         {
 
@@ -25,12 +27,12 @@ namespace Merp.Accountancy.CommandStack.Model
             Description = evt.Description;
             PaymentTerms = evt.PaymentTerms;
             PurchaseOrderNumber = evt.PurchaseOrderNumber;
-            Customer = new PartyInfo(evt.Customer.Id, evt.Customer.Name, evt.Customer.StreetName, evt.Customer.City, evt.Customer.PostalCode, evt.Customer.Country, evt.Customer.VatIndex, evt.Customer.NationalIdentificationNumber);
+            Supplier = new PartyInfo(evt.Supplier.Id, evt.Supplier.Name, evt.Supplier.StreetName, evt.Supplier.City, evt.Supplier.PostalCode, evt.Supplier.Country, evt.Supplier.VatIndex, evt.Supplier.NationalIdentificationNumber);
         }
 
         public static class Factory
         {
-            public static IncomingInvoice Issue(string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid customerId, string customerName)
+            public static IncomingInvoice Issue(string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid supplierId, string supplierName)
             {
                 var @event = new IncomingInvoiceRegisteredEvent(
                     Guid.NewGuid(),
@@ -42,8 +44,8 @@ namespace Merp.Accountancy.CommandStack.Model
                     description,
                     paymentTerms,
                     purchaseOrderNumber,
-                    customerId,
-                    customerName,
+                    supplierId,
+                    supplierName,
                     string.Empty,
                     string.Empty,
                     string.Empty,

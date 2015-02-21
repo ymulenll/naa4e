@@ -11,6 +11,8 @@ namespace Merp.Accountancy.CommandStack.Model
 {
     public class OutgoingInvoice : Invoice
     {
+        public PartyInfo Customer { get; protected set; }
+
         protected OutgoingInvoice()
         {
 

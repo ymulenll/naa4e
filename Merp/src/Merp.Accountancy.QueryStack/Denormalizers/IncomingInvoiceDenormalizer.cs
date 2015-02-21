@@ -25,14 +25,14 @@ namespace Merp.Accountancy.QueryStack.Denormalizers
             invoice.TotalPrice = message.TotalPrice;
             invoice.Supplier = new Invoice.PartyInfo()
                                 {
-                                    City = message.Customer.City,
-                                    Country = message.Customer.Country,
-                                    Name = message.Customer.Name,
-                                    NationalIdentificationNumber = message.Customer.NationalIdentificationNumber,
-                                    OriginalId = message.Customer.Id,
-                                    PostalCode = message.Customer.PostalCode,
-                                    StreetName = message.Customer.StreetName,
-                                    VatIndex = message.Customer.VatIndex
+                                    City = message.Supplier.City,
+                                    Country = message.Supplier.Country,
+                                    Name = message.Supplier.Name,
+                                    NationalIdentificationNumber = message.Supplier.NationalIdentificationNumber,
+                                    OriginalId = message.Supplier.Id,
+                                    PostalCode = message.Supplier.PostalCode,
+                                    StreetName = message.Supplier.StreetName,
+                                    VatIndex = message.Supplier.VatIndex
                                 };
             using(var ctx = new AccountancyContext())
             {

@@ -10,7 +10,7 @@ namespace Merp.Accountancy.CommandStack.Events
 {
     public class IncomingInvoiceRegisteredEvent : DomainEvent
     {
-        public class CustomerInfo
+        public class SupplierInfo
         {
             public Guid Id { get; private set; }
             public string Name { get; private set; }
@@ -21,12 +21,12 @@ namespace Merp.Accountancy.CommandStack.Events
             public string VatIndex { get; private set; }
             public string NationalIdentificationNumber { get; private set; }
 
-            public CustomerInfo(Guid customerId, string customerName, string streetName, string city, string postalCode, string country, string vatIndex, string nationalIdentificationNumber)
+            public SupplierInfo(Guid supplierId, string supplierName, string streetName, string city, string postalCode, string country, string vatIndex, string nationalIdentificationNumber)
             {
                 City = city;
-                Name=customerName;
+                Name=supplierName;
                 Country = country;
-                Id = customerId;
+                Id = supplierId;
                 NationalIdentificationNumber = nationalIdentificationNumber;
                 PostalCode = postalCode;
                 StreetName=streetName;
@@ -35,7 +35,7 @@ namespace Merp.Accountancy.CommandStack.Events
         }
         public Guid InvoiceId { get; private set; }
         public string InvoiceNumber { get; private set; }
-        public CustomerInfo Customer { get; private set; }
+        public SupplierInfo Supplier { get; private set; }
         public DateTime InvoiceDate { get; private set; }
         public decimal Amount { get; private set; }
         public decimal Taxes { get; private set; }
@@ -44,19 +44,19 @@ namespace Merp.Accountancy.CommandStack.Events
         public string PaymentTerms { get; private set; }
         public string PurchaseOrderNumber { get; private set; }
 
-        public IncomingInvoiceRegisteredEvent(Guid invoiceId, string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid customerId, string customerName, string streetName, string city, string postalCode, string country, string vatIndex, string nationalIdentificationNumber)
+        public IncomingInvoiceRegisteredEvent(Guid invoiceId, string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid supplierId, string supplierName, string streetName, string city, string postalCode, string country, string vatIndex, string nationalIdentificationNumber)
         {
-            var customer = new CustomerInfo(
+            var supplier = new SupplierInfo(
                 city: city,
-                customerName: customerName,
+                supplierName: supplierName,
                 country: country,
-                customerId: customerId,
+                supplierId: supplierId,
                 nationalIdentificationNumber: nationalIdentificationNumber,
                 postalCode: postalCode,
                 streetName: streetName,
                 vatIndex: vatIndex
             );
-            Customer = customer;
+            Supplier = supplier;
             InvoiceId = invoiceId;
             InvoiceNumber = invoiceNumber;
             InvoiceDate = invoiceDate;
