@@ -11,7 +11,7 @@ namespace Merp.Accountancy.CommandStack.Model
 {
     public class TimeAndMaterialJobOrder : JobOrder
     {
-        public decimal? Value { get; private set; }
+        public PositiveMoney Value { get; private set; }
 
         public DateTime? DateOfExpiration { get; private set; }
 
@@ -23,7 +23,7 @@ namespace Merp.Accountancy.CommandStack.Model
         public void Apply(TimeAndMaterialJobOrderExtendedEvent evt)
         {
             this.DateOfExpiration = evt.NewDateOfExpiration;
-            this.Value = evt.Value;
+            this.Value = new PositiveMoney(evt.Value, this.Value.Currency);
         }
 
         public void Apply(TimeAndMaterialJobOrderCompletedEvent evt)
@@ -37,7 +37,7 @@ namespace Merp.Accountancy.CommandStack.Model
             Id = evt.JobOrderId;
             Customer = new CustomerInfo(evt.CustomerId, evt.CustomerName);
             Manager = new ManagerInfo(evt.ManagerId, evt.ManagerName);
-            Value = evt.Value;
+            Value = new PositiveMoney(evt.Value, evt.Currency);
             DateOfStart = evt.DateOfStart;
             DateOfExpiration = evt.DateOfExpiration;
             Name = evt.JobOrderName;
@@ -47,12 +47,12 @@ namespace Merp.Accountancy.CommandStack.Model
             Description = evt.Description;
         }
 
-        public void Extend(DateTime? newDateOfExpiration, decimal? value)
+        public void Extend(DateTime? newDateOfExpiration, decimal value)
         {
             var @event = new TimeAndMaterialJobOrderExtendedEvent(
                 this.Id,
-                this.DateOfExpiration,
-                this.Value
+                newDateOfExpiration,
+                value
             );
             RaiseEvent(@event);
         }
@@ -77,7 +77,7 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public class Factory
         {
-            public static TimeAndMaterialJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, Guid managerId, string managerName, decimal? value, DateTime dateOfStart, DateTime? dateOfExpiration, string name, string purchaseOrderNumber, string description)
+            public static TimeAndMaterialJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, Guid managerId, string managerName, decimal value, string currency, DateTime dateOfStart, DateTime? dateOfExpiration, string name, string purchaseOrderNumber, string description)
             {
                 var @event = new TimeAndMaterialJobOrderRegisteredEvent(
                     Guid.NewGuid(),
@@ -86,6 +86,7 @@ namespace Merp.Accountancy.CommandStack.Model
                     managerId,
                     managerName,
                     value,
+                    currency,
                     dateOfStart,
                     dateOfExpiration,
                     name,

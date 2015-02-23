@@ -86,7 +86,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.FixedPriceJobOrder>(jobOrderId);
             var model = new ExtendFixedPriceViewModel();
             model.NewDueDate = jobOrder.DueDate;
-            model.Price = jobOrder.Price;
+            model.Price = jobOrder.Price.Amount;
             model.JobOrderNumber = jobOrder.Number;
             model.JobOrderId = jobOrder.Id;
             model.JobOrderName = jobOrder.Name;
@@ -105,7 +105,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             model.JobOrderNumber = jobOrder.Number;
             model.JobOrderName = jobOrder.Name;
             model.Notes = string.Empty;
-            model.Price = jobOrder.Price;
+            model.Price = jobOrder.Price.Amount;
             model.IsCompleted = jobOrder.IsCompleted;
             return model;
         }
@@ -130,7 +130,8 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
                     model.Customer.Name,
                     model.Manager.OriginalId,
                     model.Manager.Name,
-                    model.Price,
+                    model.Price.Amount,
+                    model.Price.Currency,
                     model.DateOfStart,
                     model.DueDate,
                     model.Name, 
@@ -172,10 +173,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
         {
             var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.TimeAndMaterialJobOrder>(jobOrderId);
             var model = new ExtendTimeAndMaterialViewModel();
-            if(jobOrder.Value.HasValue)
-            {
-                model.Value = jobOrder.Value.Value;
-            }
+            model.Value = jobOrder.Value.Amount;
             if (jobOrder.DateOfExpiration.HasValue)
             {
                 model.NewDateOfExpiration = jobOrder.DateOfExpiration;
@@ -205,7 +203,8 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
                     model.Customer.Name,
                     model.Manager.OriginalId,
                     model.Manager.Name,
-                    model.Value,
+                    model.Value.Amount,
+                    model.Value.Currency,
                     model.DateOfStart,
                     model.DateOfExpiration,
                     model.Name,
@@ -232,7 +231,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             model.JobOrderNumber = jobOrder.Number;
             model.JobOrderName = jobOrder.Name;
             model.Notes = string.Empty;
-            model.Value = jobOrder.Value;
+            model.Value = jobOrder.Value.Amount;
             model.IsCompleted = jobOrder.IsCompleted;
             return model;
         }

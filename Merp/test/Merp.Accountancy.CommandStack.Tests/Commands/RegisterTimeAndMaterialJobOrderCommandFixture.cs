@@ -12,7 +12,8 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
         {
             DateTime dateOfStart = new DateTime(1990, 11, 11);
             DateTime? dateOfExpiration = new DateTime(1990, 11, 12);
-            decimal? value = 143;
+            decimal value = 143;
+            string currency = "EUR";
             string jobOrderName = "fake";
             Guid customerId = Guid.NewGuid();
             string customerName = "ACME";
@@ -26,6 +27,7 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
                 managerId,
                 managerName,
                 value,
+                currency,
                 dateOfStart,
                 dateOfExpiration,
                 jobOrderName,
@@ -34,7 +36,8 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
                 );
             Assert.AreEqual<DateTime>(dateOfStart, sut.DateOfStart);
             Assert.AreEqual<DateTime?>(dateOfExpiration, sut.DateOfExpiration);
-            Assert.AreEqual<decimal?>(value, sut.Value);
+            Assert.AreEqual<decimal>(value, sut.Value);
+            Assert.AreEqual<string>(currency, sut.Currency);
             Assert.AreEqual<Guid>(customerId, sut.CustomerId);
             Assert.AreEqual<string>(jobOrderName, sut.JobOrderName);
             Assert.AreEqual<string>(customerName, sut.CustomerName);

@@ -11,9 +11,9 @@ namespace Merp.Accountancy.CommandStack.Model
 {
     public class FixedPriceJobOrder : JobOrder
     {
-        public decimal Price { get; private set; }
+        //public decimal Price { get; private set; }
         public DateTime DueDate { get; private set; }
-
+        public PositiveMoney Price { get; private set; }
         protected FixedPriceJobOrder()
         {
             
@@ -22,7 +22,7 @@ namespace Merp.Accountancy.CommandStack.Model
         public void Apply(FixedPriceJobOrderExtendedEvent evt)
         {
             this.DueDate = evt.NewDueDate;
-            this.Price = evt.Price;
+            this.Price = new PositiveMoney(evt.Price, this.Price.Currency);
         }
 
         public void Apply(FixedPriceJobOrderCompletedEvent evt)
@@ -36,7 +36,7 @@ namespace Merp.Accountancy.CommandStack.Model
             Id = evt.JobOrderId;
             Customer = new CustomerInfo(evt.CustomerId, evt.CustomerName);
             Manager = new ManagerInfo(evt.ManagerId, evt.ManagerName);
-            Price = evt.Price;
+            Price = new PositiveMoney(evt.Price, evt.Currency);
             DateOfStart= evt.DateOfStart;
             DueDate=evt.DueDate;
             Name = evt.JobOrderName;
@@ -50,8 +50,8 @@ namespace Merp.Accountancy.CommandStack.Model
         {
             var @event = new FixedPriceJobOrderExtendedEvent(
                 this.Id, 
-                this.DueDate,
-                this.Price
+                newDueDate,
+                price
             );
             RaiseEvent(@event);
         }
@@ -75,7 +75,7 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public class Factory
         {
-            public static FixedPriceJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, Guid managerId, string managerName, decimal price, DateTime dateOfStart, DateTime dueDate, string name, string purchaseOrderNumber, string description)
+            public static FixedPriceJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, string customerName, Guid managerId, string managerName, decimal price, string currency, DateTime dateOfStart, DateTime dueDate, string name, string purchaseOrderNumber, string description)
             { 
                 var @event = new FixedPriceJobOrderRegisteredEvent(
                     Guid.NewGuid(),
@@ -84,6 +84,7 @@ namespace Merp.Accountancy.CommandStack.Model
                     managerId, 
                     managerName,
                     price,
+                    currency,
                     dateOfStart,
                     dueDate,
                     name,

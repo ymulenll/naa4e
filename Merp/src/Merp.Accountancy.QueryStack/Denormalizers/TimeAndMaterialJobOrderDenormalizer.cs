@@ -28,6 +28,7 @@ namespace Merp.Accountancy.QueryStack.Denormalizers
             timeAndMaterialJobOrder.Name = message.JobOrderName;
             timeAndMaterialJobOrder.Number = message.JobOrderNumber;
             timeAndMaterialJobOrder.PurchaseOrderNumber = message.PurchaseOrderNumber;
+            timeAndMaterialJobOrder.Currency = message.Currency;
             timeAndMaterialJobOrder.Value = message.Value;
             timeAndMaterialJobOrder.IsCompleted = false;
             timeAndMaterialJobOrder.IsTimeAndMaterial = true;

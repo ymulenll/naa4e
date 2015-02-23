@@ -219,6 +219,7 @@
     <Compile Include="Areas\Accountancy\Models\JobOrder\MarkTimeAndMaterialJobOrderAsCompletedViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\MarkFixedPriceJobOrderAsCompletedViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\TimeAndMaterialJobOrderDetailViewModel.cs" />
+    <Compile Include="Areas\Accountancy\Models\PositiveMoney.cs" />
     <Compile Include="Areas\Accountancy\WorkerServices\InvoiceControllerWorkerServices.cs" />
     <Compile Include="Areas\Registry\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Registry\Controllers\HomeController.cs" />
@@ -644,6 +645,7 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Areas\Accountancy\Views\JobOrder\BalanceTrendAnalysis.cshtml" />
+    <Content Include="Areas\Accountancy\Views\Shared\EditorTemplates\PositiveMoney.cshtml" />
     <None Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -669,7 +671,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Accountancy\Views\Shared\" />
     <Folder Include="Areas\Registry\Resources\" />
     <Folder Include="Areas\Registry\Views\Shared\" />
   </ItemGroup>

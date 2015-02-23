@@ -71,7 +71,9 @@
     <Compile Include="Model\IncomingInvoice.cs" />
     <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\JobOrder.cs" />
+    <Compile Include="Model\Money.cs" />
     <Compile Include="Model\OutgoingInvoice.cs" />
+    <Compile Include="Model\PositiveMoney.cs" />
     <Compile Include="Model\TimeAndMaterialJobOrder.cs" />
     <Compile Include="Model\FixedPriceJobOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

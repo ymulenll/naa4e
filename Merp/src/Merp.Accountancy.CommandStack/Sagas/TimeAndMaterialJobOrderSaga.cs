@@ -37,6 +37,7 @@ namespace Merp.Accountancy.CommandStack.Sagas
                 message.ManagerId,
                 message.ManagerName,
                 message.Value,
+                message.Currency,
                 message.DateOfStart,
                 message.DateOfExpiration,
                 message.JobOrderName,

@@ -12,16 +12,20 @@ namespace Merp.Accountancy.QueryStack.Model
         public int Id { get; set; }
         public Guid OriginalId { get; set; }
         public Guid CustomerId { get; set; }
+        [Required]
         public string CustomerName { get; set; }
         public Guid ManagerId { get; set; }
+        [Required]
         public string ManagerName { get; set; }
         public DateTime DateOfStart { get; set; }
         public DateTime? DateOfCompletion { get; set; }
+        [Required]
         public string Name { get; set; }
         public bool IsCompleted { get; set; }
         public bool IsFixedPrice { get; set; }
         public bool IsTimeAndMaterial { get; set; }
         public string Description { get; set; }
+        [Required]
         public string Number { get; set; }
         public string PurchaseOrderNumber { get; set; }
         public JobOrder()

@@ -16,7 +16,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
         [Required]
         public DateTime DateOfStart { get; set; }
         public DateTime? DateOfExpiration { get; set; }
-        public decimal? Value { get; set; }
+        public PositiveMoney Value { get; set; }
         public string Description { get; set; }
         public string PurchaseOrderNumber { get; set; }
 
@@ -27,10 +27,10 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
             {
                 errors.Add(new ValidationResult("The expiration date cannot precede the date of start", new string[] { "DateOfStart", "DateOfExpiration" }));
             }
-            if (!DateOfExpiration.HasValue && !Value.HasValue)
-            {
-                errors.Add(new ValidationResult("Either the expiration date or the value have to be specified", new string[] { "DateOfExpiration", "Value" }));
-            }
+            //if (!DateOfExpiration.HasValue && !Value.HasValue)
+            //{
+            //    errors.Add(new ValidationResult("Either the expiration date or the value have to be specified", new string[] { "DateOfExpiration", "Value" }));
+            //}
             return errors;
         }
     }

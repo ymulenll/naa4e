@@ -28,6 +28,7 @@ namespace Merp.Accountancy.QueryStack.Denormalizers
             fixedPriceJobOrder.Name = message.JobOrderName;
             fixedPriceJobOrder.Number = message.JobOrderNumber;
             fixedPriceJobOrder.Price = message.Price;
+            fixedPriceJobOrder.Currency = message.Currency;
             fixedPriceJobOrder.PurchaseOrderNumber = message.PurchaseOrderNumber;
             fixedPriceJobOrder.IsCompleted = false;
             fixedPriceJobOrder.IsTimeAndMaterial = false;

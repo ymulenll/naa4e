@@ -17,21 +17,21 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
         public DateTime? NewDateOfExpiration { get; set; }
 
         [Required]
-        public decimal? Value { get; set; }
+        public decimal Value { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
-            if (!NewDateOfExpiration.HasValue && !Value.HasValue)
-            {
-                var result = new ValidationResult("Either the new date of expiration or the value must be set.", new string[] { "NewDateOfExpiration", "Value" });
-                results.Add(result);
-            }
-            if(Value.HasValue && Value.Value <= 0)
-            {
-                var result = new ValidationResult("If specified, the value must be higher than zero.", new string[] { "Value" });
-                results.Add(result);
-            }
+            //if (!NewDateOfExpiration.HasValue && !Value.HasValue)
+            //{
+            //    var result = new ValidationResult("Either the new date of expiration or the value must be set.", new string[] { "NewDateOfExpiration", "Value" });
+            //    results.Add(result);
+            //}
+            //if(Value.HasValue && Value.Value <= 0)
+            //{
+            //    var result = new ValidationResult("If specified, the value must be higher than zero.", new string[] { "Value" });
+            //    results.Add(result);
+            //}
             return results;
         }
     }

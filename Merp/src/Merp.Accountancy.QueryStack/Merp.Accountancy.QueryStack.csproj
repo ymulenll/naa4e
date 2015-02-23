@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201408010838007_Accountancy.Designer.cs">
       <DependentUpon>201408010838007_Accountancy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502232212064_JobOrder-Currency.cs" />
+    <Compile Include="Migrations\201502232212064_JobOrder-Currency.Designer.cs">
+      <DependentUpon>201502232212064_JobOrder-Currency.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\IncomingInvoice.cs" />
     <Compile Include="Model\Invoice.cs" />
@@ -91,6 +95,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201408010838007_Accountancy.resx">
       <DependentUpon>201408010838007_Accountancy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502232212064_JobOrder-Currency.resx">
+      <DependentUpon>201502232212064_JobOrder-Currency.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
