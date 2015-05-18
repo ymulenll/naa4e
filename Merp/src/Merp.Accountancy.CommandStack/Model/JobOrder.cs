@@ -59,6 +59,16 @@ namespace Merp.Accountancy.CommandStack.Model
             }
         }
 
+        public void Apply(IncomingInvoiceAssociatedToJobOrderEvent evt)
+        {
+            
+        }
+
+        public void Apply(OutgoingInvoiceAssociatedToJobOrderEvent evt)
+        {
+
+        }
+
         /// <summary>
         /// Associate an incoming invoice to the current Job Order
         /// </summary>
@@ -70,7 +80,7 @@ namespace Merp.Accountancy.CommandStack.Model
             var count = eventStore.Find<IncomingInvoiceAssociatedToJobOrderEvent>(e => e.InvoiceId == invoiceId).Count();
             if(count>0)
             {
-                throw new InvalidOperationException("The specified invoice has already been associated to a Job Order.");
+                throw new InvalidOperationException("The specified invoice is already associated to a Job Order.");
             }
             var @event = new IncomingInvoiceAssociatedToJobOrderEvent(invoiceId, this.Id);
             RaiseEvent(@event);
@@ -87,7 +97,7 @@ namespace Merp.Accountancy.CommandStack.Model
             var count = eventStore.Find<OutgoingInvoiceAssociatedToJobOrderEvent>(e => e.InvoiceId == invoiceId).Count();
             if (count > 0)
             {
-                throw new InvalidOperationException("The specified invoice has already been associated to a Job Order.");
+                throw new InvalidOperationException("The specified invoice is already associated to a Job Order.");
             }
             var @event = new OutgoingInvoiceAssociatedToJobOrderEvent(invoiceId, this.Id);
             RaiseEvent(@event);

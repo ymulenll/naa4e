@@ -13,7 +13,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
         public string CustomerName { get; set; }
         public decimal Value { get; set; }
         public DateTime DateOfStart { get; set; }
-        public DateTime DateOfExpiration { get; set; }
+        public DateTime? DateOfExpiration { get; set; }
         public string Notes { get; set; }
         public bool IsCompleted { get; set; }
         public decimal Balance { get; set; }

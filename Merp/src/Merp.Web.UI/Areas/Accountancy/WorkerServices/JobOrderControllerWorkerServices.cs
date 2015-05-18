@@ -101,6 +101,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             var model = new FixedPriceJobOrderDetailViewModel();
             model.CustomerName = jobOrder.Customer.Name;
             model.DateOfStart = jobOrder.DateOfStart;
+            model.DueDate = jobOrder.DueDate;
             model.JobOrderId = jobOrder.Id;
             model.JobOrderNumber = jobOrder.Number;
             model.JobOrderName = jobOrder.Name;
@@ -227,6 +228,7 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             var model = new TimeAndMaterialJobOrderDetailViewModel();
             model.CustomerName = jobOrder.Customer.Name;
             model.DateOfStart = jobOrder.DateOfStart;
+            model.DateOfExpiration = jobOrder.DateOfExpiration;
             model.JobOrderId = jobOrder.Id;
             model.JobOrderNumber = jobOrder.Number;
             model.JobOrderName = jobOrder.Name;
