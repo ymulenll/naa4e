@@ -8,11 +8,13 @@
     }());
     (function (module) {
         var balanceController = function ($scope, $http) {
+            $scope.dateFrom;
+            $scope.dateTo;
             $scope.refreshBalance = function () {
                 var jobOrderId = '@Model.JobOrderId';
-                if (dateFrom != null && dateFrom !== '' && dateTo != null && dateTo !== '')
+                if ($scope.dateFrom != null && $scope.dateFrom !== '' && $scope.dateTo != null && $scope.dateTo !== '')
                 {
-                    var url = '/Accountancy/JobOrder/GetBalance/?jobOrderId=' + jobOrderId + '&dateFrom=' + dateFrom.value + '&dateTo=' + dateTo.value;
+                    var url = '/Accountancy/JobOrder/GetBalance/?jobOrderId=' + jobOrderId + '&dateFrom=' + dateFrom.value + '&dateTo=' + dateTo.value + '&scale=' + $scope.scale;
                     $http.get(url).success(function (data) {
                         $scope.Balances = data;
                     });
@@ -26,11 +28,19 @@
     <form class="form-inline">
         <div class="form-group">
             <label class="sr-only" for="dateFrom">Date From</label>
-            <input type="date" class="form-control" id="dateFrom" placeholder="Date From">
+            <input type="date" class="form-control" id="dateFrom"  data-ng-model="dateFrom" placeholder="Date From">
         </div>
         <div class="form-group">
             <label class="sr-only" for="dateTo">Date To</label>
-            <input type="date" class="form-control" id="dateTo" placeholder="Date To">
+            <input type="date" class="form-control" id="dateTo" data-ng-model="dateTo" placeholder="Date To">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="scale">Scale</label>
+            <select data-ng-model="scale">
+                <option>Daily</option>
+                <option>Weekly</option>
+                <option>Monthly</option>
+            </select>
         </div>
         <button type="button" class="btn btn-default" data-ng-click="refreshBalance()">Apply</button>
     </form>
@@ -40,7 +50,7 @@
             <td>Balance</td>
         </tr>
         <tr data-ng-repeat="balance in Balances">
-            <td>{{balance.Date | date:'dd-MM-yyyy'}}</td>
+            <td>{{balance.Date.slice(6, -2) | date:'dd-MM-yyyy'}}</td>
             <td>{{balance.Balance}}</td>
         </tr>
     </table>

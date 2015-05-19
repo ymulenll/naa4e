@@ -34,7 +34,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         public ActionResult GetList()
         {
             var model = WorkerServices.GetList();
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return this.Jsonp(model);
         }
 
         [HttpGet]
