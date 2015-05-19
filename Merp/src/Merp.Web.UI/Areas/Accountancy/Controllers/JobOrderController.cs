@@ -51,9 +51,16 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             }
         }
 
-        public ActionResult BalanceTrendAnalysis()
+        [HttpGet]
+        public ActionResult GetBalance()
         {
-            return View();
+            var model = new List<GetBalanceViewModel>()
+                                {
+                                    new GetBalanceViewModel() { Date = DateTime.Now, Balance = 5.0M },
+                                    new GetBalanceViewModel() { Date = DateTime.Now.AddMonths(1), Balance = 1.0M },
+                                    new GetBalanceViewModel() { Date = DateTime.Now.AddMonths(2), Balance = 8.0M }
+                                };
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         #region Fixed Price Job Orders
