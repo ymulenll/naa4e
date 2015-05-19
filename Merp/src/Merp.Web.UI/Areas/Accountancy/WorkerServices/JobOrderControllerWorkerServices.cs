@@ -56,6 +56,22 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
                    }).ToArray();
         }
 
+        public IEnumerable<BalanceViewModel> GetBalanceViewModel(Guid jobOrderId, DateTime dateFrom, DateTime dateTo)
+        {
+            var model = from b in new List<BalanceViewModel>()
+                                {
+                                    new BalanceViewModel() { Date = DateTime.Now, Balance = 5.0M },
+                                    new BalanceViewModel() { Date = DateTime.Now.AddDays(2), Balance = 3.0M },
+                                    new BalanceViewModel() { Date = DateTime.Now.AddDays(10), Balance = 5.0M },
+                                    new BalanceViewModel() { Date = DateTime.Now.AddDays(20), Balance = 1.0M },
+                                    new BalanceViewModel() { Date = DateTime.Now.AddMonths(1), Balance = 8.0M }
+                                }
+                        where b.Date >= dateFrom && b.Date <= dateTo
+                        orderby b.Date
+                        select b;
+            return model;
+        }
+
         public string GetDetailViewModel(Guid jobOrderId)
         {
             if (Database.JobOrders.OfType<FixedPriceJobOrder>().Where(p => p.OriginalId == jobOrderId).Count() == 1)

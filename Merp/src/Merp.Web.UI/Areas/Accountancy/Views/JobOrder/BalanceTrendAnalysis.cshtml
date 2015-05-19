@@ -10,7 +10,7 @@
         var balanceController = function ($scope, $http) {
             $scope.refreshBalance = function () {
                 var jobOrderId = '@Model.JobOrderId';
-                if (dateFrom != null && dateFrom != '' && dateTo != null && dateTo != '')
+                if (dateFrom != null && dateFrom !== '' && dateTo != null && dateTo !== '')
                 {
                     var url = '/Accountancy/JobOrder/GetBalance/?jobOrderId=' + jobOrderId + '&dateFrom=' + dateFrom.value + '&dateTo=' + dateTo.value;
                     $http.get(url).success(function (data) {
@@ -18,7 +18,6 @@
                     });
                 }
             }
-            //$scope.refreshJobOrdersList();
         }
         module.controller('balanceController', ['$scope', '$http', balanceController]);
     }(angular.module('myApp')))
@@ -41,7 +40,7 @@
             <td>Balance</td>
         </tr>
         <tr data-ng-repeat="balance in Balances">
-            <td>{{balance.Date | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+            <td>{{balance.Date | date:'dd-MM-yyyy'}}</td>
             <td>{{balance.Balance}}</td>
         </tr>
     </table>

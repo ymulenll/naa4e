@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
 {
-    public class GetBalanceViewModel
+    public class BalanceViewModel
     {
         public DateTime Date { get; set; }
         public decimal Balance { get; set; }
