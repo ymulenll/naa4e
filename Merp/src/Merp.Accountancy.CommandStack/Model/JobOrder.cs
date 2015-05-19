@@ -114,12 +114,22 @@ namespace Merp.Accountancy.CommandStack.Model
             {
                 throw new ArgumentNullException("es");
             }
-            var outgoingInvoicesIds = es.Find<OutgoingInvoiceAssociatedToJobOrderEvent>(e => e.JobOrderId == this.Id && e.TimeStamp <= balanceDate).Select(e => e.InvoiceId);
-            var earnings = es.Find<OutgoingInvoiceIssuedEvent>(e => outgoingInvoicesIds.Contains(e.InvoiceId)).Sum(e => e.Amount);
+            var outgoingInvoicesIds = es
+                .Find<OutgoingInvoiceAssociatedToJobOrderEvent>(e => e.JobOrderId == this.Id && e.TimeStamp <= balanceDate)
+                .Select(e => e.InvoiceId)
+                .ToArray();
+            var earnings = es
+                .Find<OutgoingInvoiceIssuedEvent>(e => outgoingInvoicesIds.Contains(e.InvoiceId))
+                .Sum(e => e.Amount);
 
-            var incomingInvoicesIds = es.Find<IncomingInvoiceAssociatedToJobOrderEvent>(e => e.JobOrderId == this.Id && e.TimeStamp <= balanceDate).Select(e => e.InvoiceId);
-            var costs = es.Find<IncomingInvoiceRegisteredEvent>(e => outgoingInvoicesIds.Contains(e.InvoiceId)).Sum(e => e.Amount);
-            
+            var incomingInvoicesIds = es
+                .Find<IncomingInvoiceAssociatedToJobOrderEvent>(e => e.JobOrderId == this.Id && e.TimeStamp <= balanceDate)
+                .Select(e => e.InvoiceId)
+                .ToArray();
+            var costs = es
+                .Find<IncomingInvoiceRegisteredEvent>(e => incomingInvoicesIds.Any(id => e.InvoiceId == id))
+                .Sum(e => e.Amount);
+
             decimal balance = earnings - costs;
 
             return balance;
