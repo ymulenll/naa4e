@@ -7,6 +7,7 @@ using System.Web;
 using Merp.Web.UI.Areas.Accountancy.Models.JobOrder;
 using Merp.Accountancy.QueryStack;
 using Merp.Accountancy.QueryStack.Model;
+using Merp.Accountancy.CommandStack.RavenDb.Indexes;
 
 namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
 {
@@ -58,17 +59,16 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
 
         public IEnumerable<BalanceViewModel> GetBalanceViewModel(Guid jobOrderId, DateTime dateFrom, DateTime dateTo)
         {
-            var model = from b in new List<BalanceViewModel>()
-                                {
-                                    new BalanceViewModel() { Date = DateTime.Now, Balance = 5.0M },
-                                    new BalanceViewModel() { Date = DateTime.Now.AddDays(2), Balance = 3.0M },
-                                    new BalanceViewModel() { Date = DateTime.Now.AddDays(10), Balance = 5.0M },
-                                    new BalanceViewModel() { Date = DateTime.Now.AddDays(20), Balance = 1.0M },
-                                    new BalanceViewModel() { Date = DateTime.Now.AddMonths(1), Balance = 8.0M }
-                                }
-                        where b.Date >= dateFrom && b.Date <= dateTo
-                        orderby b.Date
-                        select b;
+            var model = new List<BalanceViewModel>();
+            foreach (DateTime day in EachDay(dateFrom, dateTo))
+            {
+                var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.JobOrder, All_JobOrders>(jobOrderId);
+                var balance = new BalanceViewModel() { 
+                                        Date = day, 
+                                        Balance = jobOrder.CalculateBalance(EventStore, day) 
+                };
+                model.Add(balance);
+            }
             return model;
         }
 
@@ -268,5 +268,10 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
         }
         #endregion
 
+        private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+        {
+            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
+                yield return day;
+        }
     }
 }
