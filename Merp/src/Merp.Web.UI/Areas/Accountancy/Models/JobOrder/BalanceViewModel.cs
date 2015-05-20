@@ -9,5 +9,12 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
     {
         public DateTime Date { get; set; }
         public decimal Balance { get; set; }
+
+        public enum Scale
+        {
+            Daily,
+            Weekly,
+            Monthly
+        }
     }
 }

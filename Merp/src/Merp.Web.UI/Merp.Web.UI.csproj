@@ -223,7 +223,7 @@
     <Compile Include="Areas\Accountancy\Models\Invoice\IssueViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\ExtendFixedPriceViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\FixedPriceJobOrderDetailViewModel.cs" />
-    <Compile Include="Areas\Accountancy\Models\JobOrder\GetBalanceViewModel.cs" />
+    <Compile Include="Areas\Accountancy\Models\JobOrder\BalanceViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\MarkTimeAndMaterialJobOrderAsCompletedViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\MarkFixedPriceJobOrderAsCompletedViewModel.cs" />
     <Compile Include="Areas\Accountancy\Models\JobOrder\TimeAndMaterialJobOrderDetailViewModel.cs" />
@@ -342,6 +342,8 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />

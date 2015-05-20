@@ -52,7 +52,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetBalance(Guid? jobOrderId, DateTime? dateFrom, DateTime? dateTo)
+        public ActionResult GetBalance(Guid? jobOrderId, DateTime? dateFrom, DateTime? dateTo, BalanceViewModel.Scale scale)
         {
             if(!jobOrderId.HasValue || !dateFrom.HasValue || !dateTo.HasValue)
                 return new HttpStatusCodeResult(400, "Invalid parameters"); 
