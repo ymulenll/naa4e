@@ -16,8 +16,7 @@
             };
             $scope.refreshBalance = function () {
                 var jobOrderId = '@Model';
-                if ($scope.dateFrom != null && $scope.dateFrom !== '' && $scope.dateTo != null && $scope.dateTo !== '')
-                {
+                if ($scope.dateFrom != null && $scope.dateFrom !== '' && $scope.dateTo != null && $scope.dateTo !== '') {
                     var url = '/Accountancy/JobOrder/GetBalance/?jobOrderId=' + jobOrderId + '&dateFrom=' + dateFrom.value + '&dateTo=' + dateTo.value + '&scale=' + $scope.scale;
                     $http.get(url).success(function (data) {
                         $scope.Balances = data;
@@ -37,37 +36,45 @@
     }(angular.module('myApp', ['chart.js'])))
 </script>
 <div data-ng-controller="balanceController" data-ng-app="myApp">
-    <form class="form-inline">
-        <div class="form-group">
-            <label class="sr-only" for="dateFrom">Date From</label>
-            <input type="date" class="form-control" id="dateFrom"  data-ng-model="dateFrom" placeholder="Date From">
+    <div class="row">
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="dateFrom">Date From</label>
+                <input type="date" class="form-control" id="dateFrom" data-ng-model="dateFrom" placeholder="Date From">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="dateTo">Date To</label>
+                <input type="date" class="form-control" id="dateTo" data-ng-model="dateTo" placeholder="Date To">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="scale">Scale</label>
+                <select data-ng-model="scale">
+                    <option selected="selected">Daily</option>
+                    <option>Weekly</option>
+                    <option>Monthly</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-default" data-ng-click="refreshBalance()">Apply</button>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <canvas id="line" class="chart chart-line" data="data"
+                    labels="labels" legend="false" series="series"
+                    click="onClick"></canvas>
         </div>
-        <div class="form-group">
-            <label class="sr-only" for="dateTo">Date To</label>
-            <input type="date" class="form-control" id="dateTo" data-ng-model="dateTo" placeholder="Date To">
+        <div class="col-md-4">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <td>Date</td>
+                    <td>Balance</td>
+                </tr>
+                <tr data-ng-repeat="balance in Balances">
+                    <td>{{balance.Date | date:'dd-MM-yyyy'}}</td>
+                    <td>{{balance.Balance}}</td>
+                </tr>
+            </table>
         </div>
-        <div class="form-group">
-            <label class="sr-only" for="scale">Scale</label>
-            <select data-ng-model="scale">
-                <option selected="selected">Daily</option>
-                <option>Weekly</option>
-                <option>Monthly</option>
-            </select>
-        </div>
-        <button type="button" class="btn btn-default" data-ng-click="refreshBalance()">Apply</button>
-    </form>
-    <table class="table table-striped table-hover">
-        <tr>
-            <td>Date</td>
-            <td>Balance</td>
-        </tr>
-        <tr data-ng-repeat="balance in Balances">
-            <td>{{balance.Date | date:'dd-MM-yyyy'}}</td>
-            <td>{{balance.Balance}}</td>
-        </tr>
-    </table>
-    <canvas id="line" class="chart chart-line" data="data"
-            labels="labels" legend="false" series="series"
-            click="onClick"></canvas> 
+    </div>
 </div>
 
