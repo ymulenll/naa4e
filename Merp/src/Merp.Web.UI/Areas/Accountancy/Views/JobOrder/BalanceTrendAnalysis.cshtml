@@ -1,4 +1,4 @@
-﻿@model Merp.Web.UI.Areas.Accountancy.Models.JobOrder.FixedPriceJobOrderDetailViewModel
+﻿@model System.Guid
 @{
     Layout = "";
 }
@@ -11,7 +11,7 @@
             $scope.dateFrom;
             $scope.dateTo;
             $scope.refreshBalance = function () {
-                var jobOrderId = '@Model.JobOrderId';
+                var jobOrderId = '@Model';
                 if ($scope.dateFrom != null && $scope.dateFrom !== '' && $scope.dateTo != null && $scope.dateTo !== '')
                 {
                     var url = '/Accountancy/JobOrder/GetBalance/?jobOrderId=' + jobOrderId + '&dateFrom=' + dateFrom.value + '&dateTo=' + dateTo.value + '&scale=' + $scope.scale;
