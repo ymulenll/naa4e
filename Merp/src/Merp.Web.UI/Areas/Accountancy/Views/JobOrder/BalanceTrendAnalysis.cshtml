@@ -10,6 +10,10 @@
         var balanceController = function ($scope, $http) {
             $scope.dateFrom;
             $scope.dateTo;
+            $scope.series = ['balance'];
+            $scope.onClick = function (points, evt) {
+                console.log(points, evt);
+            };
             $scope.refreshBalance = function () {
                 var jobOrderId = '@Model';
                 if ($scope.dateFrom != null && $scope.dateFrom !== '' && $scope.dateTo != null && $scope.dateTo !== '')
@@ -17,12 +21,20 @@
                     var url = '/Accountancy/JobOrder/GetBalance/?jobOrderId=' + jobOrderId + '&dateFrom=' + dateFrom.value + '&dateTo=' + dateTo.value + '&scale=' + $scope.scale;
                     $http.get(url).success(function (data) {
                         $scope.Balances = data;
+                        $scope.labels = [];
+                        angular.forEach($scope.Balances, function (balance) {
+                            $scope.labels.push(balance.Date);
+                        });
+                        $scope.data = [[]];
+                        angular.forEach($scope.Balances, function (balance) {
+                            $scope.data[0].push(balance.Balance);
+                        });
                     });
                 }
             }
         }
         module.controller('balanceController', ['$scope', '$http', balanceController]);
-    }(angular.module('myApp')))
+    }(angular.module('myApp', ['chart.js'])))
 </script>
 <div data-ng-controller="balanceController" data-ng-app="myApp">
     <form class="form-inline">
@@ -54,5 +66,8 @@
             <td>{{balance.Balance}}</td>
         </tr>
     </table>
+    <canvas id="line" class="chart chart-line" data="data"
+            labels="labels" legend="false" series="series"
+            click="onClick"></canvas> 
 </div>
 

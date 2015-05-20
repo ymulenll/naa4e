@@ -14,6 +14,9 @@ namespace Merp.Web.UI
             bundles.Add(new ScriptBundle("~/bundles/chartjs").Include(
                         "~/Scripts/Chart.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular-chartjs").Include(
+                        "~/Scripts/angular-chart.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -35,6 +38,9 @@ namespace Merp.Web.UI
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/angular-chartjs").Include(
+                      "~/Content/angular-chartjs"));
 
             bundles.Add(new StyleBundle("~/Content/css/jqueryui/themes/base").Include(
                                     "~/Content/themes/base/core.css",
