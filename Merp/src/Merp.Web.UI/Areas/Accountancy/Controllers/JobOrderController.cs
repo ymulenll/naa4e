@@ -56,7 +56,7 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         {
             if(!jobOrderId.HasValue || !dateFrom.HasValue || !dateTo.HasValue)
                 return new HttpStatusCodeResult(400, "Invalid parameters"); 
-            var model = WorkerServices.GetBalanceViewModel(jobOrderId.Value, dateFrom.Value, dateTo.Value);
+            var model = WorkerServices.GetBalanceViewModel(jobOrderId.Value, dateFrom.Value, dateTo.Value, scale);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 

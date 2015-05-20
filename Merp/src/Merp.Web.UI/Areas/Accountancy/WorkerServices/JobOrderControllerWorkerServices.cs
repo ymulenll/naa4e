@@ -57,10 +57,11 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
                    }).ToArray();
         }
 
-        public IEnumerable<BalanceViewModel> GetBalanceViewModel(Guid jobOrderId, DateTime dateFrom, DateTime dateTo)
+        public IEnumerable<BalanceViewModel> GetBalanceViewModel(Guid jobOrderId, DateTime dateFrom, DateTime dateTo, BalanceViewModel.Scale scale)
         {
             var model = new List<BalanceViewModel>();
-            foreach (DateTime day in EachDay(dateFrom, dateTo))
+            var step = scale == BalanceViewModel.Scale.Weekly ? 7 : 1;
+            foreach (DateTime day in EachDay(dateFrom, dateTo, step))
             {
                 var jobOrder = Repository.GetById<Merp.Accountancy.CommandStack.Model.JobOrder, All_JobOrders>(jobOrderId);
                 var balance = new BalanceViewModel() { 
@@ -268,9 +269,9 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
         }
         #endregion
 
-        private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+        private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru, int step)
         {
-            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
+            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(step))
                 yield return day;
         }
     }
