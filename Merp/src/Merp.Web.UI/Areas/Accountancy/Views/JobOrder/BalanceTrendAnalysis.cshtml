@@ -23,7 +23,7 @@
                         $scope.Balances = data;
                         $scope.labels = [];
                         angular.forEach($scope.Balances, function (balance) {
-                            $scope.labels.push(balance.Date);
+                            $scope.labels.push(moment(balance.Date).format("DD/MM/YYYY"));
                         });
                         $scope.data = [[]];
                         angular.forEach($scope.Balances, function (balance) {
@@ -62,7 +62,7 @@
             <td>Balance</td>
         </tr>
         <tr data-ng-repeat="balance in Balances">
-            <td>{{balance.Date.slice(6, -2) | date:'dd-MM-yyyy'}}</td>
+            <td>{{balance.Date | date:'dd-MM-yyyy'}}</td>
             <td>{{balance.Balance}}</td>
         </tr>
     </table>

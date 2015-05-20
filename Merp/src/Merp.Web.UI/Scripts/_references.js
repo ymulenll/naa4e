@@ -23,3 +23,5 @@
 /// <reference path="angular.min.js" />
 /// <reference path="chart.min.js" />
 /// <reference path="angular-chart.js" />
+/// <reference path="moment-with-locales.min.js" />
+/// <reference path="moment.min.js" />
