@@ -23,5 +23,20 @@ namespace Merp.Accountancy.QueryStack
         {
             return _NotAssociatedToAnyJobOrder(invoices);
         }
+
+        private static IQueryable<T> _PerJobOrder<T>(this IQueryable<T> invoices, Guid jobOrderId) where T : Invoice
+        {
+            return invoices.Where(i => i.JobOrderId == jobOrderId);
+        }
+
+        public static IQueryable<IncomingInvoice> PerJobOrder(this IQueryable<IncomingInvoice> invoices, Guid jobOrderId)
+        {
+            return _PerJobOrder(invoices, jobOrderId);
+        }
+
+        public static IQueryable<OutgoingInvoice> PerJobOrder(this IQueryable<OutgoingInvoice> invoices, Guid jobOrderId)
+        {
+            return _PerJobOrder(invoices, jobOrderId);
+        }
     }
 }

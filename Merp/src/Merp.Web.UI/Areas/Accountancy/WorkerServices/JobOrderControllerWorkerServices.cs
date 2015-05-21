@@ -125,6 +125,25 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             model.Notes = string.Empty;
             model.Price = jobOrder.Price.Amount;
             model.IsCompleted = jobOrder.IsCompleted;
+            model.IncomingInvoices = (from i in Database.IncomingInvoices.PerJobOrder(jobOrderId)
+                                     orderby i.Date
+                                     select new FixedPriceJobOrderDetailViewModel.Invoice
+                                     {
+                                         DateOfIssue = i.Date,
+                                         Price = i.Amount,
+                                         Number = i.Number,
+                                         PartyName = i.Supplier.Name
+                                     }).ToArray();
+
+            model.OutgoingInvoices = (from i in Database.OutgoingInvoices.PerJobOrder(jobOrderId)
+                                     orderby i.Date
+                                     select new FixedPriceJobOrderDetailViewModel.Invoice
+                                     {
+                                         DateOfIssue = i.Date,
+                                         Price = i.Amount,
+                                         Number = i.Number,
+                                         PartyName = i.Customer.Name
+                                     }).ToArray();                                             
             return model;
         }
 
