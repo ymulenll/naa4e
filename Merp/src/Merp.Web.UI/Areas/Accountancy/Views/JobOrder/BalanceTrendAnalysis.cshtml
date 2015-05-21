@@ -58,23 +58,21 @@
         </form>
     </div>
     <div class="row">
-        <div class="col-md-8">
-            <canvas id="line" class="chart chart-line" data="data"
-                    labels="labels" legend="false" series="series"
-                    click="onClick"></canvas>
-        </div>
-        <div class="col-md-4">
-            <table class="table table-striped table-hover">
-                <tr>
-                    <td>Date</td>
-                    <td>Balance</td>
-                </tr>
-                <tr data-ng-repeat="balance in Balances">
-                    <td>{{balance.Date | date:'dd-MM-yyyy'}}</td>
-                    <td>{{balance.Balance}}</td>
-                </tr>
-            </table>
-        </div>
+        <canvas id="line" class="chart chart-line" data="data"
+                labels="labels" legend="false" series="series"
+                click="onClick"></canvas>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-hover">
+            <tr>
+                <td>Date</td>
+                <td>Balance</td>
+            </tr>
+            <tr data-ng-repeat="balance in Balances">
+                <td>{{balance.Date | date:'dd-MM-yyyy'}}</td>
+                <td>{{balance.Balance}}</td>
+            </tr>
+        </table>
     </div>
 </div>
 

@@ -42,19 +42,22 @@ namespace Merp.Web.UI.Areas.Accountancy.WorkerServices
             this.EventStore = eventStore;
         }
 
-        public IEnumerable<IndexViewModel.JobOrder> GetList()
+        public IEnumerable<IndexViewModel.JobOrder> GetList(bool currentOnly)
         {
-            return (from jo in Database.JobOrders
-                   select new IndexViewModel.JobOrder
-                   {
-                        CustomerId = jo.CustomerId,
-                        CustomerName = jo.CustomerName,
-                        IsCompleted = jo.IsCompleted,
-                        Name = jo.Name,
-                        Number = jo.Number,
-                        Id = jo.Id,
-                        OriginalId = jo.OriginalId
-                   }).ToArray();
+            var query = from jo in Database.JobOrders
+                        select new IndexViewModel.JobOrder
+                        {
+                            CustomerId = jo.CustomerId,
+                            CustomerName = jo.CustomerName,
+                            IsCompleted = jo.IsCompleted,
+                            Name = jo.Name,
+                            Number = jo.Number,
+                            Id = jo.Id,
+                            OriginalId = jo.OriginalId
+                        };
+            if (currentOnly)
+                query = query.Where(jo => jo.IsCompleted == false);
+            return query.ToArray();
         }
 
         public IEnumerable<BalanceViewModel> GetBalanceViewModel(Guid jobOrderId, DateTime dateFrom, DateTime dateTo, BalanceViewModel.Scale scale)

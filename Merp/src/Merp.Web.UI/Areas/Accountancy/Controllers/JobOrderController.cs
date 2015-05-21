@@ -31,9 +31,9 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetList()
+        public ActionResult GetList(bool? currentOnly)
         {
-            var model = WorkerServices.GetList();
+            var model = WorkerServices.GetList(currentOnly.HasValue ? currentOnly.Value : false);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 

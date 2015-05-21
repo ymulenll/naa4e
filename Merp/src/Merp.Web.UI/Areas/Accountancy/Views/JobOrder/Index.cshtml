@@ -9,7 +9,7 @@
     (function (module) {
         var jobOrdersController = function ($scope, $http) {
             $scope.refreshJobOrdersList = function () {
-                var url = '/Accountancy/JobOrder/GetList';
+                var url = '/Accountancy/JobOrder/GetList?currentOnly=' + $scope.currentOnly;
                 $http.get(url).success(function (data) {
                     $scope.JobOrders = data;
                 });
@@ -24,12 +24,17 @@
     <div id="JobOrdersBox" class="col-md-10 pull-left" data-ng-app="myApp">
 
         <div id="JobOrdersTab" data-ng-controller="jobOrdersController">
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.CurrentOnly, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.CurrentOnly, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CurrentOnly, "", new { @class = "text-danger" })
                 </div>
+            </div>*@
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="currentOnly" data-ng-model="currentOnly" data-ng-click="refreshJobOrdersList()" /> Current only
+                </label>
             </div>
             <label for="JobOrdersTable">Current Job orders</label>&nbsp;(<a id="refreshJobOrdersList" data-ng-click="refreshJobOrdersList()">refresh</a>)
             <table id="JobOrdersTable" class="table table-striped">
