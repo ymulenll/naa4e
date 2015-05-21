@@ -61,6 +61,18 @@ namespace Merp.Web.UI.Areas.Accountancy.Controllers
             return Merp.Web.Mvc.JsonNetResult.JsonNet(model);
         }
 
+        public ActionResult IncomingInvoicesAssociatedToJobOrder(Guid jobOrderId)
+        {
+            var model = WorkerServices.GetIncomingInvoicesAssociatedToJobOrderViewModel(jobOrderId);
+            return View(model);
+        }
+
+        public ActionResult OutgoingInvoicesAssociatedToJobOrder(Guid jobOrderId)
+        {
+            var model = WorkerServices.GetOutgoingInvoicesAssociatedToJobOrderViewModel(jobOrderId);
+            return View(model);
+        }
+
         #region Fixed Price Job Orders
         [HttpGet]
         public ActionResult CreateFixedPrice()

@@ -17,16 +17,5 @@ namespace Merp.Web.UI.Areas.Accountancy.Models.JobOrder
         public string Notes { get; set; }
         public bool IsCompleted { get; set; }
         public decimal Balance { get; set; }
-
-        public IEnumerable<Invoice> IncomingInvoices { get; set; }
-        public IEnumerable<Invoice> OutgoingInvoices { get; set; }
-
-        public class Invoice
-        {
-            public string Number { get; set; }
-            public DateTime DateOfIssue { get; set; }
-            public decimal Price { get; set; }
-            public string PartyName { get; set; }
-        }
     }
 }
