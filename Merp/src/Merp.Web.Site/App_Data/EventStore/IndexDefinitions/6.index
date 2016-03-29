@@ -1,0 +1,31 @@
+{
+  "IndexId": 6,
+  "Name": "Auto/TimeAndMaterialJobOrderRegisteredEvents/ByJobOrderId",
+  "LockMode": "Unlock",
+  "Map": "from doc in docs.TimeAndMaterialJobOrderRegisteredEvents\nselect new {\n\tJobOrderId = doc.JobOrderId\n}",
+  "Maps": [
+    "from doc in docs.TimeAndMaterialJobOrderRegisteredEvents\nselect new {\n\tJobOrderId = doc.JobOrderId\n}"
+  ],
+  "Reduce": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {},
+  "Analyzers": {},
+  "Fields": [
+    "JobOrderId",
+    "__document_id"
+  ],
+  "Suggestions": {},
+  "TermVectors": {},
+  "SpatialIndexes": {},
+  "InternalFieldsMapping": {
+    "JobOrderId": "JobOrderId"
+  },
+  "MaxIndexOutputsPerDocument": null,
+  "Type": "Auto",
+  "DisableInMemoryIndexing": false,
+  "IsTestIndex": false,
+  "IsSideBySideIndex": false
+}
