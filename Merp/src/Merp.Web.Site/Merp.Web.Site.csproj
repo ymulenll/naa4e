@@ -64,7 +64,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Memento, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bca5f6a4d14d06d8, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MementoFX.1.0.0\lib\net452\Memento.dll</HintPath>
+      <HintPath>..\..\packages\MementoFX.1.0.1\lib\net452\Memento.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Memento.Messaging.Postie, Version=1.0.0.0, Culture=neutral, PublicKeyToken=75a7fd450051d0c2, processorArchitecture=MSIL">
