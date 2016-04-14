@@ -10,7 +10,9 @@ using Memento.Messaging.Postie;
 
 namespace Merp.Registry.QueryStack.Denormalizers
 {
-    public class CompanyDenormalizer : IHandleMessages<CompanyRegisteredEvent>
+    public class CompanyDenormalizer : 
+        IHandleMessages<CompanyRegisteredEvent>,
+        IHandleMessages<CompanyNameChangedEvent>
     {
         public void Handle(CompanyRegisteredEvent message)
         {
@@ -24,6 +26,20 @@ namespace Merp.Registry.QueryStack.Denormalizers
             using(var context = new RegistryDbContext())
             {
                 context.Parties.Add(p);
+                context.SaveChanges();
+            }
+        }
+
+        public void Handle(CompanyNameChangedEvent message)
+        {
+            using (var context = new RegistryDbContext())
+            {
+                var company = (from c in context.Parties.OfType<Company>()
+                               where c.OriginalId == message.CompanyId
+                               select c).Single();
+                company.DisplayName = message.CompanyName;
+                company.CompanyName = message.CompanyName;
+                
                 context.SaveChanges();
             }
         }

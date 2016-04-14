@@ -24,19 +24,19 @@ namespace Merp.Accountancy.CommandStack.Model
             
         }
 
-        public void ApplyEvent([AggregateId("JobOrderId")] TimeAndMaterialJobOrderExtendedEvent evt)
+        public void ApplyEvent([AggregateId(nameof(TimeAndMaterialJobOrderExtendedEvent.JobOrderId))] TimeAndMaterialJobOrderExtendedEvent evt)
         {
             this.DateOfExpiration = evt.NewDateOfExpiration;
             this.Value = new PositiveMoney(evt.Value, this.Value.Currency);
         }
 
-        public void ApplyEvent([AggregateId("JobOrderId")] TimeAndMaterialJobOrderCompletedEvent evt)
+        public void ApplyEvent([AggregateId(nameof(TimeAndMaterialJobOrderCompletedEvent.JobOrderId))] TimeAndMaterialJobOrderCompletedEvent evt)
         { 
             this.DateOfCompletion = evt.DateOfCompletion;
             this.IsCompleted = true;        
         }
 
-        public void ApplyEvent([AggregateId("JobOrderId")] TimeAndMaterialJobOrderRegisteredEvent evt)
+        public void ApplyEvent([AggregateId(nameof(TimeAndMaterialJobOrderRegisteredEvent.JobOrderId))] TimeAndMaterialJobOrderRegisteredEvent evt)
         {
             Id = evt.JobOrderId;
             CustomerId = evt.CustomerId;

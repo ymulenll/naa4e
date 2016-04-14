@@ -38,5 +38,32 @@ namespace Merp.Web.Site.Areas.Registry.Controllers
             WorkerServices.AddEntry(model);
             return Redirect("/Registry/");
         }
+
+        [HttpGet]
+        public ActionResult Info(Guid? id)
+        {
+            if (!id.HasValue)
+                return new HttpStatusCodeResult(404);
+            var model = WorkerServices.GetInfoViewModel(id.Value);
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult ChangeName(Guid? id)
+        {
+            if (!id.HasValue)
+                return new HttpStatusCodeResult(404);
+            var model = WorkerServices.GetChangeNameViewModel(id.Value);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ChangeName(ChangeNameViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+                return View(model);
+            WorkerServices.PostChangeNameViewModel(model);
+            return Redirect("/Registry/");
+        }
     }
 }

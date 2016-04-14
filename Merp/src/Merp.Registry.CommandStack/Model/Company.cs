@@ -10,7 +10,8 @@ using Merp.Registry.CommandStack.Events;
 namespace Merp.Registry.CommandStack.Model
 {
     public class Company : Party,
-        IApplyEvent<CompanyRegisteredEvent>
+        IApplyEvent<CompanyRegisteredEvent>,
+        IApplyEvent<CompanyNameChangedEvent>
     {
         public string CompanyName { get; private set; }
         protected Company()
@@ -25,6 +26,21 @@ namespace Merp.Registry.CommandStack.Model
             this.VatIndex = evt.VatIndex;
         }
 
+        public void ApplyEvent(CompanyNameChangedEvent evt)
+        {
+            this.CompanyName = evt.CompanyName;
+        }
+
+        public void ChangeName(string newName, DateTime effectiveDate)
+        {
+            if (string.IsNullOrEmpty(newName))
+                throw new ArgumentException("Company name must be specified", nameof(newName));
+            if (effectiveDate > DateTime.Now)
+                throw new ArgumentException("The name change cannot be scheduled in the future", nameof(effectiveDate));
+            var e = new CompanyNameChangedEvent(this.Id, newName, effectiveDate);
+            RaiseEvent(e);
+        }
+        
         public static class Factory
         {
             public static Company CreateNewEntry(string companyName, string vatIndex)

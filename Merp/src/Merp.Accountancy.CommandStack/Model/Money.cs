@@ -14,7 +14,7 @@ namespace Merp.Accountancy.CommandStack.Model
         public Money(decimal amount, string currency)
         {
             if (string.IsNullOrWhiteSpace(currency))
-                throw new ArgumentException("Currency cannot be null.", "currency");
+                throw new ArgumentException("Currency cannot be null.", nameof(currency));
             Amount = amount;
             Currency = currency;
         }

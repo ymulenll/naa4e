@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using MvcMate.Web.Mvc;
 using Merp.Web.Site.Areas.Registry.WorkerServices;
+using Merp.Web.Site.Support;
 
 namespace Merp.Web.Site.Areas.Registry.Controllers
 {
@@ -23,14 +24,16 @@ namespace Merp.Web.Site.Areas.Registry.Controllers
         }
 
         [HttpGet]
-        public ActionResult Detail(int id)
+        public ActionResult Detail(Guid? id)
         {
-            switch (WorkerServices.GetDetailViewModel(id))
+            if (!id.HasValue)
+                return new HttpStatusCodeResult(400);
+            switch (WorkerServices.GetDetailViewModel(id.Value))
             {
                 case "Company":
-                    return Redirect(string.Format("/Registry/Company/Detail/{0}", id));
+                    return Redirect(UrlBuilder.Registry.CompanyInfo(id.Value));
                 case "Person":
-                    return Redirect(string.Format("/Registry/Person/Detail/{0}", id));
+                    return Redirect(UrlBuilder.Registry.PersonInfo(id.Value));
                 default:
                     return RedirectToAction("Search");
             }

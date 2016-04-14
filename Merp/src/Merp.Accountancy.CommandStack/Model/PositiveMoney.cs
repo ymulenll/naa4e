@@ -11,7 +11,7 @@ namespace Merp.Accountancy.CommandStack.Model
         public PositiveMoney(decimal amount, string currency) : base(amount, currency)
         {
             if (amount < 0)
-                throw new ArgumentException("Amount cannot be less than zero", "amount");
+                throw new ArgumentException("Amount must be positive", nameof(amount));
         }
     }
 }

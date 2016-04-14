@@ -1,8 +1,0 @@
-þÿÿÿ3__document_idTag	__IsArrayPersonId	FirstNameLastName	TimeStamp
-TimelineIdTimelineId_RangeQ_@metadata_ConvertToJson
-_@metadataId	CompanyIdCompanyNameVatIndexVatIndex_RangeQ
-JobOrderId
-CustomerId	ManagerIdPricePrice_RangeQCurrencyDateOfStartDueDateJobOrderNameJobOrderNumberPurchaseOrderNumberPurchaseOrderNumber_RangeQDescriptionDescription_RangeQValueValue_RangeQDateOfExpiration	InvoiceIdInvoiceNumberSupplier_ConvertToJsonSupplierInvoiceDateAmountAmount_RangeQTaxesTaxes_RangeQ
-TotalPriceTotalPrice_RangeQPaymentTerms
-DateOfLinkCustomer_ConvertToJsonCustomerDateOfCompletion__dummy_force_index_write
-NewDueDate

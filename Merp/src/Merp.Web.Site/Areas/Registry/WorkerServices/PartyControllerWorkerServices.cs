@@ -30,13 +30,13 @@ namespace Merp.Web.Site.Areas.Registry.WorkerServices
             this.Database = database;
         }
 
-        public string GetDetailViewModel(int partyId)
+        public string GetDetailViewModel(Guid partyId)
         {
-            if(Database.Parties.OfType<Company>().Where(p => p.Id == partyId).Count()==1)
+            if(Database.Parties.OfType<Company>().Where(p => p.OriginalId == partyId).Count()==1)
             {
                 return "Company";
             }
-            else if (Database.Parties.OfType<Person>().Where(p => p.Id == partyId).Count() == 1)
+            else if (Database.Parties.OfType<Person>().Where(p => p.OriginalId == partyId).Count() == 1)
             {
                 return "Person";
             }
@@ -83,7 +83,7 @@ namespace Merp.Web.Site.Areas.Registry.WorkerServices
         {
             var model = from p in Database.Parties
                         orderby p.DisplayName ascending
-                        select new GetPartiesViewModel { id = p.Id, name = p.DisplayName };
+                        select new GetPartiesViewModel { id = p.Id, uid = p.OriginalId, name = p.DisplayName };
             if(!string.IsNullOrEmpty(query) && query!="undefined")
             {
                 model = model.Where(p => p.name.StartsWith(query));

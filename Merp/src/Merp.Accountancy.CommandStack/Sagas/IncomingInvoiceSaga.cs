@@ -23,7 +23,7 @@ namespace Merp.Accountancy.CommandStack.Sagas
 
         public void Handle(RegisterIncomingInvoiceCommand message)
         {
-            var invoice = IncomingInvoice.Factory.Issue(
+            var invoice = IncomingInvoice.Factory.Create(
                 message.InvoiceNumber,
                 message.InvoiceDate,
                 message.Amount,

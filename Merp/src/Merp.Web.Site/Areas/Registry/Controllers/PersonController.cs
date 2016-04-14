@@ -38,5 +38,14 @@ namespace Merp.Web.Site.Areas.Registry.Controllers
             WorkerServices.AddEntry(model);
             return Redirect("/Registry/");
         }
+
+        [HttpGet]
+        public ActionResult Info(Guid? id)
+        {
+            if (!id.HasValue)
+                return new HttpStatusCodeResult(404);
+            var model = WorkerServices.GetInfoViewModel(id.Value);
+            return View(model);
+        }
     }
 }

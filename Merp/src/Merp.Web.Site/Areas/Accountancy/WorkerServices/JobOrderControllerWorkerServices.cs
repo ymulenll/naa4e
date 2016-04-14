@@ -94,6 +94,9 @@ namespace Merp.Web.Site.Areas.Accountancy.WorkerServices
                 case BalanceViewModel.Scale.Monthly:
                     dates = EachMonth(dateFrom, dateTo).ToArray();                  
                     break;
+                case BalanceViewModel.Scale.Quarterly:
+                    dates = EachQuarter(dateFrom, dateTo).ToArray();
+                    break;
                 case BalanceViewModel.Scale.Yearly:
                     dates = EachYear(dateFrom, dateTo).ToArray();
                     break;
@@ -359,10 +362,16 @@ namespace Merp.Web.Site.Areas.Accountancy.WorkerServices
                 yield return new DateTime(day.Year, day.Month, 1);
         }
 
+        private IEnumerable<DateTime> EachQuarter(DateTime from, DateTime thru)
+        {
+            for (var day = from.Date; day.Date <= thru.Date; day = day.AddMonths(3))
+                yield return new DateTime(day.Year, day.Month, 1);
+        }
+
         private IEnumerable<DateTime> EachYear(DateTime from, DateTime thru)
         {
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddYears(1))
-                yield return new DateTime(day.Year, 1, 1);
+                yield return new DateTime(day.Year, 12, 31);
         }
     }
 }

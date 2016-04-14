@@ -20,7 +20,7 @@ namespace Merp.Accountancy.CommandStack.Model
 
         }
 
-        public void ApplyEvent([AggregateId("InvoiceId")] OutgoingInvoiceIssuedEvent evt)
+        public void ApplyEvent([AggregateId(nameof(OutgoingInvoiceIssuedEvent.InvoiceId))] OutgoingInvoiceIssuedEvent evt)
         {
             Id = evt.InvoiceId;
             Number = evt.InvoiceNumber;
@@ -36,7 +36,7 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public static class Factory
         {
-            public static OutgoingInvoice Issue(IOutgoingInvoiceNumberGenerator generator, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid customerId, string customerName)
+            public static OutgoingInvoice Create(IOutgoingInvoiceNumberGenerator generator, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid customerId, string customerName)
             {
                 var @event = new OutgoingInvoiceIssuedEvent(
                     Guid.NewGuid(),

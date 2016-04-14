@@ -15,6 +15,7 @@ namespace Merp.Web.Site.Areas.Accountancy.Models.JobOrder
             Daily,
             Weekly,
             Monthly,
+            Quarterly,
             Yearly
         }
     }

@@ -98,12 +98,12 @@ namespace Merp.Accountancy.CommandStack.Model
             return balance;
         }
 
-        public void ApplyEvent([AggregateId("JobOrderId")] IncomingInvoiceLinkedToJobOrderEvent evt)
+        public void ApplyEvent([AggregateId(nameof(IncomingInvoiceLinkedToJobOrderEvent.JobOrderId))] IncomingInvoiceLinkedToJobOrderEvent evt)
         {
             this.Balance -= evt.Amount;
         }
 
-        public void ApplyEvent([AggregateId("JobOrderId")] OutgoingInvoiceLinkedToJobOrderEvent evt)
+        public void ApplyEvent([AggregateId(nameof(OutgoingInvoiceLinkedToJobOrderEvent.JobOrderId))] OutgoingInvoiceLinkedToJobOrderEvent evt)
         {
             this.Balance += evt.Amount;
         }

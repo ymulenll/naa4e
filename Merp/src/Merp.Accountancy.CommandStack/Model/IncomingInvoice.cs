@@ -19,7 +19,7 @@ namespace Merp.Accountancy.CommandStack.Model
 
         }
 
-        public void ApplyEvent([AggregateId("InvoiceId")] IncomingInvoiceRegisteredEvent evt)
+        public void ApplyEvent([AggregateId(nameof(IncomingInvoiceRegisteredEvent.InvoiceId))] IncomingInvoiceRegisteredEvent evt)
         {
             Id = evt.InvoiceId;
             Number = evt.InvoiceNumber;
@@ -35,7 +35,7 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public static class Factory
         {
-            public static IncomingInvoice Issue(string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid supplierId, string supplierName)
+            public static IncomingInvoice Create(string invoiceNumber, DateTime invoiceDate, decimal amount, decimal taxes, decimal totalPrice, string description, string paymentTerms, string purchaseOrderNumber, Guid supplierId, string supplierName)
             {
                 var @event = new IncomingInvoiceRegisteredEvent(
                     Guid.NewGuid(),
