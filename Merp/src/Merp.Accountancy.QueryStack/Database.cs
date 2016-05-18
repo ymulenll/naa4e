@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Merp.Accountancy.QueryStack
 {
-    public class Database : IDatabase
+    public class Database : IDatabase, IDisposable
     {
         private AccountancyContext Context;
+
         public Database()
         {
             Context = new AccountancyContext();
@@ -36,6 +37,11 @@ namespace Merp.Accountancy.QueryStack
             {
                 return Context.OutgoingInvoices;
             }
+        }
+        public void Dispose()
+        {
+            if (Context != null)
+                Context.Dispose();
         }
     }
 }

@@ -12,6 +12,9 @@ using Merp.Web.Site.Areas.Accountancy.WorkerServices;
 using Merp.Registry.CommandStack.Sagas;
 using Merp.Registry.QueryStack.Denormalizers;
 using Merp.Web.Site.Areas.Registry.WorkerServices;
+using Raven.Database.Server;
+using Raven.Client.Embedded;
+using Memento.Messaging.Postie.Unity;
 
 namespace Merp.Web.Site.App_Start
 {
@@ -47,11 +50,21 @@ namespace Merp.Web.Site.App_Start
             // container.LoadConfiguration();
 
             // TODO: Register your types here
-            container.RegisterType<IBus, InMemoryBus>(new InjectionConstructor(container));
+            container.RegisterType<ITypeResolver, UnityTypeResolver>(new InjectionConstructor(container));
+            container.RegisterType<IBus, InMemoryBus>();
             container.RegisterType<IEventDispatcher, InMemoryBus>();
-            container.RegisterType<IEventStore, Memento.Persistence.EmbeddedRavenDB.EmbeddedRavenDbEventStore>(new InjectionConstructor(typeof(IEventDispatcher)));
-            //container.RegisterType<IRepository, Memento.Persistence.EmbeddedRavenDB.EmbeddedRavenDbRepository>();
             container.RegisterType<IRepository, Memento.Persistence.Repository>(new InjectionConstructor(typeof(EmbeddedRavenDbEventStore)));
+
+            NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(8080);
+            var documentStore = new EmbeddableDocumentStore
+            {
+                ConnectionStringName = "EventStore",
+                UseEmbeddedHttpServer = true
+            };
+            documentStore.Configuration.Port = 8080;
+            documentStore.Initialize();
+            container.RegisterInstance(documentStore);
+            container.RegisterType<IEventStore, Memento.Persistence.EmbeddedRavenDB.EmbeddedRavenDbEventStore>(new InjectionConstructor(typeof(EmbeddableDocumentStore), typeof(IEventDispatcher)));
 
             var bus = container.Resolve<IBus>();
             ConfigureAccountancyBoundedContext(container, bus);

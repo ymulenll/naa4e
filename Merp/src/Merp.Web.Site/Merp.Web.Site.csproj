@@ -67,8 +67,12 @@
       <HintPath>..\..\packages\MementoFX.1.1.0\lib\net451\Memento.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Memento.Messaging.Postie, Version=1.1.0.0, Culture=neutral, PublicKeyToken=75a7fd450051d0c2, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MementoFX.Messaging.Postie.1.1.0\lib\net451\Memento.Messaging.Postie.dll</HintPath>
+    <Reference Include="Memento.Messaging.Postie, Version=1.2.0.0, Culture=neutral, PublicKeyToken=75a7fd450051d0c2, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MementoFX.Messaging.Postie.1.2.0\lib\net451\Memento.Messaging.Postie.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Memento.Messaging.Postie.Unity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5321fd2992fb3667, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MementoFX.Messaging.Postie.Unity.1.0.0\lib\net451\Memento.Messaging.Postie.Unity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Memento.Persistence.EmbeddedRavenDB, Version=1.1.0.0, Culture=neutral, PublicKeyToken=3ca04fba2bffc37f, processorArchitecture=MSIL">
@@ -382,6 +386,8 @@
     <Content Include="Scripts\angular-messages.js" />
     <Content Include="Scripts\angular-messages.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-parse-ext.js" />
+    <Content Include="Scripts\angular-parse-ext.min.js" />
     <Content Include="Scripts\angular-resource.js" />
     <Content Include="Scripts\angular-resource.min.js" />
     <Content Include="Scripts\angular-route.js" />
@@ -1146,27 +1152,28 @@
     <Content Include="Scripts\angular-chart.min.js.map" />
     <Content Include="Areas\Accountancy\Views\JobOrder\IncomingInvoicesAssociatedToJobOrder.cshtml" />
     <Content Include="Areas\Accountancy\Views\JobOrder\OutgoingInvoicesAssociatedToJobOrder.cshtml" />
-    <Content Include="Scripts\errors.json" />
-    <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Scripts\angular-touch.min.js.map" />
-    <Content Include="Scripts\angular-sanitize.min.js.map" />
-    <Content Include="Scripts\angular-route.min.js.map" />
-    <Content Include="Scripts\angular-resource.min.js.map" />
-    <Content Include="Scripts\angular-messages.min.js.map" />
-    <Content Include="Scripts\angular-message-format.min.js.map" />
-    <Content Include="Scripts\angular-loader.min.js.map" />
-    <Content Include="Scripts\angular-cookies.min.js.map" />
-    <Content Include="Scripts\angular-aria.min.js.map" />
-    <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Areas\Registry\Views\Company\Info.cshtml" />
     <Content Include="Areas\Registry\Views\Person\Info.cshtml" />
     <Content Include="Areas\Registry\Views\Company\ChangeName.cshtml" />
     <Content Include="Raven.Studio.Html5.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-1.12.0.intellisense.js" />
-    <Content Include="Scripts\jquery-1.12.0.js" />
-    <Content Include="Scripts\jquery-1.12.0.min.js" />
+    <Content Include="Scripts\errors.json" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-touch.min.js.map" />
+    <Content Include="Scripts\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular-parse-ext.min.js.map" />
+    <Content Include="Scripts\angular-messages.min.js.map" />
+    <Content Include="Scripts\angular-message-format.min.js.map" />
+    <Content Include="Scripts\angular-loader.min.js.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="Scripts\angular-aria.min.js.map" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
+    <None Include="Scripts\jquery-1.12.3.intellisense.js" />
+    <Content Include="Scripts\jquery-1.12.3.js" />
+    <Content Include="Scripts\jquery-1.12.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1177,7 +1184,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Scripts\jquery-1.12.0.min.map" />
+    <Content Include="Scripts\jquery-1.12.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

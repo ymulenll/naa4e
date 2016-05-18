@@ -1,22 +1,138 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
+using SharpTestsEx;
 using Memento;
+using Memento.Persistence;
+using Memento.Messaging.Postie;
 using Merp.Accountancy.CommandStack.Model;
 using Merp.Accountancy.CommandStack.Services;
 using Merp.Accountancy.CommandStack.Events;
-using Memento.Persistence;
 
 namespace Merp.Accountancy.CommandStack.Tests.Model
 {
-    [TestClass]
+    [TestFixture]
     public class TimeAndMaterialJobOrderFixture
     {
-        [TestClass]
+        [TestFixture]
+        public class Factory
+        {
+            [Test]
+            public void CreateNewInstance_should_throw_ArgumentNullException_on_null_jobOrderNumberGenerator()
+            {
+                Executing.This(() => TimeAndMaterialJobOrder.Factory.CreateNewInstance(null, Guid.NewGuid(), Guid.NewGuid(), 100, "GBP", DateTime.Now, DateTime.Now.AddMonths(1), "A job order", null, "Description"))
+                    .Should()
+                    .Throw<ArgumentNullException>()
+                    .And
+                    .ValueOf
+                    .ParamName
+                    .Should()
+                    .Be
+                    .EqualTo("jobOrderNumberGenerator");
+            }
+
+            [Test]
+            public void CreateNewInstance_should_throw_ArgumentException_on_value_lower_than_zero()
+            {
+                var jobOrderNumberGenerator = new Mock<IJobOrderNumberGenerator>().Object;
+
+                Executing.This(() => TimeAndMaterialJobOrder.Factory.CreateNewInstance(jobOrderNumberGenerator, Guid.NewGuid(), Guid.NewGuid(), -1, "GBP", DateTime.Now, DateTime.Now.AddMonths(1), "A job order", null, "Description"))
+                    .Should()
+                    .Throw<ArgumentException>()
+                    .And
+                    .ValueOf
+                    .ParamName
+                    .Should()
+                    .Be
+                    .EqualTo("value");
+            }
+
+            [Test]
+            public void CreateNewInstance_should_throw_ArgumentException_on_null_currency()
+            {
+                var jobOrderNumberGenerator = new Mock<IJobOrderNumberGenerator>().Object;
+
+                Executing.This(() => TimeAndMaterialJobOrder.Factory.CreateNewInstance(jobOrderNumberGenerator, Guid.NewGuid(), Guid.NewGuid(), 101, null, DateTime.Now, DateTime.Now.AddMonths(1), "A job order", null, "Description"))
+                    .Should()
+                    .Throw<ArgumentException>()
+                    .And
+                    .ValueOf
+                    .ParamName
+                    .Should()
+                    .Be
+                    .EqualTo("currency");
+            }
+
+            [Test]
+            public void CreateNewInstance_should_throw_ArgumentException_on_blank_currency()
+            {
+                var jobOrderNumberGenerator = new Mock<IJobOrderNumberGenerator>().Object;
+
+                Executing.This(() => TimeAndMaterialJobOrder.Factory.CreateNewInstance(jobOrderNumberGenerator, Guid.NewGuid(), Guid.NewGuid(), 101, string.Empty, DateTime.Now, DateTime.Now.AddMonths(1), "A job order", null, "Description"))
+                    .Should()
+                    .Throw<ArgumentException>()
+                    .And
+                    .ValueOf
+                    .ParamName
+                    .Should()
+                    .Be
+                    .EqualTo("currency");
+            }
+
+            [Test]
+            public void CreateNewInstance_should_throw_ArgumentException_on_a_dateOfExpiration_preceding_the_startingDate()
+            {
+                var jobOrderNumberGenerator = new Mock<IJobOrderNumberGenerator>().Object;
+
+                Executing.This(() => TimeAndMaterialJobOrder.Factory.CreateNewInstance(jobOrderNumberGenerator, Guid.NewGuid(), Guid.NewGuid(), 101, "GBP", DateTime.Now.AddMonths(1), DateTime.Now, "A job order", null, "Description"))
+                    .Should()
+                    .Throw<ArgumentException>()
+                    .And
+                    .ValueOf
+                    .ParamName
+                    .Should()
+                    .Be
+                    .EqualTo("dateOfExpiration");
+            }
+
+            [Test]
+            public void CreateNewInstance_should_throw_ArgumentException_on_null_name()
+            {
+                var jobOrderNumberGenerator = new Mock<IJobOrderNumberGenerator>().Object;
+
+                Executing.This(() => TimeAndMaterialJobOrder.Factory.CreateNewInstance(jobOrderNumberGenerator, Guid.NewGuid(), Guid.NewGuid(), 101, "GBP", DateTime.Now, DateTime.Now.AddMonths(1), null, null, "Description"))
+                    .Should()
+                    .Throw<ArgumentException>()
+                    .And
+                    .ValueOf
+                    .ParamName
+                    .Should()
+                    .Be
+                    .EqualTo("name");
+            }
+
+            [Test]
+            public void CreateNewInstance_should_throw_ArgumentException_on_blank_name()
+            {
+                var jobOrderNumberGenerator = new Mock<IJobOrderNumberGenerator>().Object;
+
+                Executing.This(() => TimeAndMaterialJobOrder.Factory.CreateNewInstance(jobOrderNumberGenerator, Guid.NewGuid(), Guid.NewGuid(), 101, "GBP", DateTime.Now, DateTime.Now.AddMonths(1), string.Empty, null, "Description"))
+                    .Should()
+                    .Throw<ArgumentException>()
+                    .And
+                    .ValueOf
+                    .ParamName
+                    .Should()
+                    .Be
+                    .EqualTo("name");
+            }
+        }
+
+        [TestFixture]
         public class CalculateBalance_Method
         {
-            [TestMethod]
+            [Test]
             public void CalculateBalance_With_IncomingInvoicesOnly()
             {
                 var generator = new Mock<IJobOrderNumberGenerator>();
@@ -36,10 +152,10 @@ namespace Merp.Accountancy.CommandStack.Tests.Model
 
                 decimal balance = JobOrder.CalculateBalance(eventStore.Object, jobOrderId);
                 decimal expected = -100;
-                Assert.AreEqual<decimal>(expected, balance);
+                Assert.AreEqual(expected, balance);
             }
 
-            [TestMethod]
+            [Test]
             public void CalculateBalance_With_OutgoingInvoicesOnly()
             {
                 var generator = new Mock<IJobOrderNumberGenerator>();
@@ -59,10 +175,10 @@ namespace Merp.Accountancy.CommandStack.Tests.Model
 
                 decimal balance = JobOrder.CalculateBalance(eventStore.Object, jobOrderId);
                 decimal expected = 100;
-                Assert.AreEqual<decimal>(expected, balance);
+                Assert.AreEqual(expected, balance);
             }
 
-            [TestMethod]
+            [Test]
             public void CalculateBalance_having_both_Incoming_and_Outgoing_Invoices()
             {
                 var generator = new Mock<IJobOrderNumberGenerator>();
@@ -92,14 +208,14 @@ namespace Merp.Accountancy.CommandStack.Tests.Model
                 
                 decimal balance = JobOrder.CalculateBalance(eventStore.Object, jobOrderId);
                 decimal expected = 100;
-                Assert.AreEqual<decimal>(expected, balance);
+                Assert.AreEqual(expected, balance);
             }
         }
 
-        [TestClass]
+        [TestFixture]
         public class MarkAsCompleted_Method
         {
-            //[TestMethod]
+            //[Test]
             //public void Should_Throw_InvalidOperationException_On()
             //{
             //}

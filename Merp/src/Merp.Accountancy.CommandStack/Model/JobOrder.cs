@@ -34,13 +34,9 @@ namespace Merp.Accountancy.CommandStack.Model
             public CustomerInfo(Guid id, string name)
             {
                 if (id == Guid.Empty)
-                {
-                    throw new ArgumentException("Id cannot be empty", "id");
-                }
+                    throw new ArgumentException("Id cannot be empty", nameof(id));
                 if(string.IsNullOrWhiteSpace(name))
-                {
-                    throw new ArgumentException("Name cannot be null or empty", "name");
-                }
+                    throw new ArgumentException("Name cannot be null or empty", nameof(name));
                 Id = id;
                 Name = name;
             }
@@ -120,9 +116,7 @@ namespace Merp.Accountancy.CommandStack.Model
                 throw new InvalidOperationException("Can't relate new costs to a completed job order");
             var count = eventStore.Find<IncomingInvoiceLinkedToJobOrderEvent>(e => e.InvoiceId == invoiceId).Count();
             if(count>0)
-            {
                 throw new InvalidOperationException("The specified invoice is already associated to a Job Order.");
-            }
             var @event = new IncomingInvoiceLinkedToJobOrderEvent(invoiceId, this.Id, dateOfLink, amount);
             RaiseEvent(@event);
         }
@@ -139,9 +133,7 @@ namespace Merp.Accountancy.CommandStack.Model
                 throw new InvalidOperationException("Can't relate new revenues to a completed job order");
             var count = eventStore.Find<OutgoingInvoiceLinkedToJobOrderEvent>(e => e.InvoiceId == invoiceId).Count();
             if (count > 0)
-            {
                 throw new InvalidOperationException("The specified invoice is already associated to a Job Order.");
-            }
             var @event = new OutgoingInvoiceLinkedToJobOrderEvent(invoiceId, this.Id, dateOfLink, amount);
             RaiseEvent(@event);
         }

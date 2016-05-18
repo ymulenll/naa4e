@@ -51,6 +51,9 @@ namespace Merp.Accountancy.CommandStack.Model
 
         public void Extend(DateTime newDueDate, decimal price)
         {
+            if (this.DueDate > newDueDate)
+                throw new ArgumentException("A job order length cannot be reduced.", nameof(newDueDate));
+
             var @event = new FixedPriceJobOrderExtendedEvent(
                 this.Id, 
                 newDueDate,
@@ -62,13 +65,10 @@ namespace Merp.Accountancy.CommandStack.Model
         public void MarkAsCompleted(DateTime dateOfCompletion)
         {
             if(this.DateOfStart > dateOfCompletion)
-            {
-                throw new ArgumentException("The date of completion cannot precede the date of start.", "dateOfCompletion");
-            }
+                throw new ArgumentException("The date of completion cannot precede the date of start.", nameof(dateOfCompletion));
             if(this.IsCompleted)
-            {
                 throw new InvalidOperationException("The Job Order has already been marked as completed");
-            }
+
             var @event = new FixedPriceJobOrderCompletedEvent(
                 this.Id,
                 dateOfCompletion
@@ -79,7 +79,18 @@ namespace Merp.Accountancy.CommandStack.Model
         public class Factory
         {
             public static FixedPriceJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, Guid managerId, decimal price, string currency, DateTime dateOfStart, DateTime dueDate, string name, string purchaseOrderNumber, string description)
-            { 
+            {
+                if (jobOrderNumberGenerator == null)
+                    throw new ArgumentNullException(nameof(jobOrderNumberGenerator));
+                if (price < 0)
+                    throw new ArgumentException("The price must be zero or higher", nameof(price));
+                if (string.IsNullOrWhiteSpace(currency))
+                    throw new ArgumentException("The currency must me specified", nameof(currency));
+                if (dueDate < dateOfStart)
+                    throw new ArgumentException("The due date cannot precede the starting date", nameof(dueDate));
+                if (string.IsNullOrWhiteSpace(name))
+                    throw new ArgumentException("The job order must have a name", nameof(name));
+
                 var @event = new FixedPriceJobOrderRegisteredEvent(
                     Guid.NewGuid(),
                     customerId,

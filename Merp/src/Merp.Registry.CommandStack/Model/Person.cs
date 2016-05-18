@@ -31,6 +31,11 @@ namespace Merp.Registry.CommandStack.Model
         {
             public static Person CreateNewEntry(string firstName, string lastName, DateTime? dateOfBirth)
             {
+                if (string.IsNullOrWhiteSpace(firstName))
+                    throw new ArgumentException("The first name must be specified", nameof(firstName));
+                if (string.IsNullOrWhiteSpace(lastName))
+                    throw new ArgumentException("The first name must be specified", nameof(lastName));
+
                 var e = new PersonRegisteredEvent(Guid.NewGuid(), firstName, lastName);
                 var p = new Person();
                 p.RaiseEvent(e);

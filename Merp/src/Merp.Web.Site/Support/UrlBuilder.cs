@@ -7,6 +7,11 @@ namespace Merp.Web.Site.Support
 {
     public static class UrlBuilder
     {
+        public static class Accountancy
+        {
+
+        }
+
         public static class Registry
         {
             public static string CompanyInfo(Guid companyId)

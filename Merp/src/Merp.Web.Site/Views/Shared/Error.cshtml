@@ -5,5 +5,12 @@
 }
 
 <h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<h2 class="text-danger">An error of type @Model.Exception.GetType().Name occurred while processing your request.</h2>
+<p>
+    @Model.Exception.Message
+</p>
+<p>
+    @Model.Exception.StackTrace
+</p>
+
 

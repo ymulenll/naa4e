@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using SharpTestsEx;
 using Memento.Persistence;
@@ -13,10 +13,10 @@ using Memento.Messaging.Postie;
 
 namespace Merp.Web.Site.Tests.Areas.Registry.WorkerServices
 {
-    [TestClass]
+    [TestFixture]
     public class PersonControllerWorkerServicesFixture
     {
-        [TestMethod]
+        [Test]
         public void Ctor_should_throw_ArgumentNullException_on_null_Bus_parameter()
         {
             var database = new Mock<IDatabase>().Object;
@@ -32,7 +32,7 @@ namespace Merp.Web.Site.Tests.Areas.Registry.WorkerServices
                 .EqualTo("bus");
         }
 
-        [TestMethod]
+        [Test]
         public void Ctor_should_throw_ArgumentNullException_on_null_database_parameter()
         {
             var bus = new Mock<IBus>().Object;
@@ -48,7 +48,7 @@ namespace Merp.Web.Site.Tests.Areas.Registry.WorkerServices
                 .EqualTo("database");
         }
 
-        [TestMethod]
+        [Test]
         public void Ctor_should_throw_ArgumentNullException_on_null_repository_parameter()
         {
             var bus = new Mock<IBus>().Object;
@@ -64,7 +64,7 @@ namespace Merp.Web.Site.Tests.Areas.Registry.WorkerServices
                 .EqualTo("repository");
         }
 
-        [TestMethod]
+        [Test]
         public void Ctor_should_set_Bus_property()
         {
             var bus = new Mock<IBus>().Object;
@@ -74,7 +74,7 @@ namespace Merp.Web.Site.Tests.Areas.Registry.WorkerServices
             Assert.AreSame(bus, sut.Bus);
         }
 
-        [TestMethod]
+        [Test]
         public void Ctor_should_set_Database_property()
         {
             var bus = new Mock<IBus>().Object;
@@ -84,7 +84,7 @@ namespace Merp.Web.Site.Tests.Areas.Registry.WorkerServices
             Assert.AreSame(database, sut.Database);
         }
 
-        [TestMethod]
+        [Test]
         public void Ctor_should_set_Repository_property()
         {
             var bus = new Mock<IBus>().Object;

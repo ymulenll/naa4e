@@ -27,7 +27,7 @@ namespace Merp.Web.Mvc
         public JsonNetResult(object data)
         {
             if (data == null)
-                throw new ArgumentNullException("data");
+                throw new ArgumentNullException(nameof(data));
 
             Data = data;
         }
@@ -40,7 +40,7 @@ namespace Merp.Web.Mvc
         public override void ExecuteResult(ControllerContext context)
         {
             if (context == null)
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
 
             var serializer = new JsonSerializer();
             using (var writer = new StringWriter())

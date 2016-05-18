@@ -16,9 +16,8 @@ namespace Merp.Web.Site.Areas.Accountancy.Controllers
         public InvoiceController(InvoiceControllerWorkerServices workerServices)
         {
             if(workerServices==null)
-            {
-                throw new ArgumentNullException("workerServices");
-            }
+                throw new ArgumentNullException(nameof(workerServices));
+
             WorkerServices = workerServices;
         }
 

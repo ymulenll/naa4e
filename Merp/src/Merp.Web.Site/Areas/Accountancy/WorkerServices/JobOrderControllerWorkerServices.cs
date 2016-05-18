@@ -23,21 +23,13 @@ namespace Merp.Web.Site.Areas.Accountancy.WorkerServices
         public JobOrderControllerWorkerServices(IBus bus, IDatabase database, IRepository repository, IEventStore eventStore)
         {
             if(bus==null)
-            {
-                throw new ArgumentNullException("bus");
-            }
+                throw new ArgumentNullException(nameof(bus));
             if (database == null)
-            {
-                throw new ArgumentNullException("database");
-            }
+                throw new ArgumentNullException(nameof(database));
             if (repository == null)
-            {
-                throw new ArgumentNullException("repository");
-            }
+                throw new ArgumentNullException(nameof(repository));
             if (eventStore == null)
-            {
-                throw new ArgumentNullException("eventStore");
-            }
+                throw new ArgumentNullException(nameof(eventStore));
 
             this.Bus = bus;
             this.Database = database;

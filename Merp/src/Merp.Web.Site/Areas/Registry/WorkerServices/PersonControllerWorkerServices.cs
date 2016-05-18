@@ -26,6 +26,7 @@ namespace Merp.Web.Site.Areas.Registry.WorkerServices
                 throw new ArgumentNullException(nameof(database));
             if (repository == null)
                 throw new ArgumentNullException(nameof(repository));
+
             this.Bus = bus;
             this.Database = database;
             this.Repository = repository;

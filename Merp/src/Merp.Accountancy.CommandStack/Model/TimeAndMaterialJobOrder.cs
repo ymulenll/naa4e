@@ -64,13 +64,9 @@ namespace Merp.Accountancy.CommandStack.Model
         public void MarkAsCompleted(DateTime dateOfCompletion)
         {
             if (this.DateOfStart > dateOfCompletion)
-            {
-                throw new ArgumentException("The date of completion cannot precede the date of start.", "dateOfCompletion");
-            }
+                throw new ArgumentException("The date of completion cannot precede the date of start.", nameof(dateOfCompletion));
             if (this.IsCompleted)
-            {
                 throw new InvalidOperationException("The Job Order has already been marked as completed");
-            }
 
             var @event = new TimeAndMaterialJobOrderCompletedEvent(
                 this.Id,
@@ -83,6 +79,17 @@ namespace Merp.Accountancy.CommandStack.Model
         {
             public static TimeAndMaterialJobOrder CreateNewInstance(IJobOrderNumberGenerator jobOrderNumberGenerator, Guid customerId, Guid managerId, decimal value, string currency, DateTime dateOfStart, DateTime? dateOfExpiration, string name, string purchaseOrderNumber, string description)
             {
+                if (jobOrderNumberGenerator == null)
+                    throw new ArgumentNullException(nameof(jobOrderNumberGenerator));
+                if (value < 0)
+                    throw new ArgumentException("The value must be zero or higher", nameof(value));
+                if (string.IsNullOrWhiteSpace(currency))
+                    throw new ArgumentException("The currency must me specified", nameof(currency));
+                if (dateOfExpiration.HasValue && dateOfExpiration.Value < dateOfStart)
+                    throw new ArgumentException("The date of expiration cannot precede the starting date", nameof(dateOfExpiration));
+                if (string.IsNullOrWhiteSpace(name))
+                    throw new ArgumentException("The job order must have a name", nameof(name));
+
                 var @event = new TimeAndMaterialJobOrderRegisteredEvent(
                     Guid.NewGuid(),
                     customerId,

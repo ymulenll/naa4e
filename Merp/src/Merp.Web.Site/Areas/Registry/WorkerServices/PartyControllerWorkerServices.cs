@@ -19,13 +19,10 @@ namespace Merp.Web.Site.Areas.Registry.WorkerServices
         public PartyControllerWorkerServices(IBus bus, IDatabase database)
         {
             if(bus==null)
-            {
-                throw new ArgumentNullException("bus");
-            }
+                throw new ArgumentNullException(nameof(bus));
             if (database == null)
-            {
-                throw new ArgumentNullException("database");
-            }
+                throw new ArgumentNullException(nameof(database));
+
             this.Bus = bus;
             this.Database = database;
         }

@@ -16,9 +16,8 @@ namespace Merp.Web.Site.Areas.Accountancy.Controllers
         public JobOrderController(JobOrderControllerWorkerServices workerServices)
         {
             if(workerServices==null)
-            {
-                throw new ArgumentNullException("workerServices");
-            }
+                throw new ArgumentNullException(nameof(workerServices));
+
             WorkerServices = workerServices;
         }
 
@@ -57,9 +56,9 @@ namespace Merp.Web.Site.Areas.Accountancy.Controllers
         public ActionResult GetBalance(Guid? jobOrderId, DateTime? dateFrom, DateTime? dateTo, BalanceViewModel.Scale scale)
         {
             if(!jobOrderId.HasValue || !dateFrom.HasValue || !dateTo.HasValue)
-                return new HttpStatusCodeResult(400, "Invalid parameters"); 
+                return new HttpStatusCodeResult(400, "Invalid parameters");
+
             var model = WorkerServices.GetBalanceViewModel(jobOrderId.Value, dateFrom.Value, dateTo.Value, scale);
-            //return Json(model, JsonRequestBehavior.AllowGet);
             return Merp.Web.Mvc.JsonNetResult.JsonNet(model);
         }
 

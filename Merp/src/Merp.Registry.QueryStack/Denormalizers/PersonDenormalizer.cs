@@ -19,7 +19,7 @@ namespace Merp.Registry.QueryStack.Denormalizers
                 FirstName = message.FirstName,
                 LastName = message.LastName,
                 OriginalId = message.PersonId,
-                DisplayName = string.Format("{0} {1}", message.FirstName, message.LastName)
+                DisplayName = $"{message.FirstName} {message.LastName}"
             };
             using(var context = new RegistryDbContext())
             {

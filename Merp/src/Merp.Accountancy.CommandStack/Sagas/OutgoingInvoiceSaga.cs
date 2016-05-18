@@ -20,6 +20,9 @@ namespace Merp.Accountancy.CommandStack.Sagas
         public OutgoingInvoiceSaga(IBus bus, IEventStore eventStore, IRepository repository, IOutgoingInvoiceNumberGenerator invoiceNumberGenerator)
             : base(bus, eventStore, repository)
         {
+            if (invoiceNumberGenerator == null)
+                throw new ArgumentNullException(nameof(invoiceNumberGenerator));
+
             InvoiceNumberGenerator = invoiceNumberGenerator;
         }
 

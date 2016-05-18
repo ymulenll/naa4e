@@ -26,9 +26,8 @@ namespace Merp.Accountancy.CommandStack.Sagas
             : base(bus, eventStore, repository)
         {
             if(jobOrderNumberGenerator==null)
-            {
-                throw new ArgumentNullException("jobOrderNumberGenerator");
-            }
+                throw new ArgumentNullException(nameof(jobOrderNumberGenerator));
+
             JobOrderNumberGenerator = jobOrderNumberGenerator;
         }
 

@@ -1,13 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Merp.Accountancy.CommandStack.Commands;
 
 namespace Merp.Accountancy.CommandStack.Tests.Commands
 {
-    [TestClass]
+    [TestFixture]
     public class IssueInvoiceCommandFixture
     {
-        [TestMethod]
+        [Test]
         public void Ctor_should_set_properties_according_to_parameters()
         {
             DateTime invoiceDate = new DateTime(1990, 11, 11);
@@ -41,21 +41,21 @@ namespace Merp.Accountancy.CommandStack.Tests.Commands
                 country,
                 vatIndex,
                 nationalIdentificationNumber);
-            Assert.AreEqual<DateTime>(invoiceDate, sut.InvoiceDate);
-            Assert.AreEqual<decimal>(amount, sut.Amount);
-            Assert.AreEqual<decimal>(taxes, sut.Taxes);
-            Assert.AreEqual<decimal>(totalPrice, sut.TotalPrice);
-            Assert.AreEqual<string>(description, sut.Description);
-            Assert.AreEqual<string>(paymentTerms, sut.PaymentTerms);
-            Assert.AreEqual<string>(purchaseOrderNumber, sut.PurchaseOrderNumber);
-            Assert.AreEqual<Guid>(customerId, sut.Customer.Id);
-            Assert.AreEqual<string>(customerName, sut.Customer.Name);
-            Assert.AreEqual<string>(streetName, sut.Customer.StreetName);
-            Assert.AreEqual<string>(city, sut.Customer.City);
-            Assert.AreEqual<string>(postalCode, sut.Customer.PostalCode);
-            Assert.AreEqual<string>(country, sut.Customer.Country);
-            Assert.AreEqual<string>(vatIndex, sut.Customer.VatIndex);
-            Assert.AreEqual<string>(nationalIdentificationNumber, sut.Customer.NationalIdentificationNumber);
+            Assert.AreEqual(invoiceDate, sut.InvoiceDate);
+            Assert.AreEqual(amount, sut.Amount);
+            Assert.AreEqual(taxes, sut.Taxes);
+            Assert.AreEqual(totalPrice, sut.TotalPrice);
+            Assert.AreEqual(description, sut.Description);
+            Assert.AreEqual(paymentTerms, sut.PaymentTerms);
+            Assert.AreEqual(purchaseOrderNumber, sut.PurchaseOrderNumber);
+            Assert.AreEqual(customerId, sut.Customer.Id);
+            Assert.AreEqual(customerName, sut.Customer.Name);
+            Assert.AreEqual(streetName, sut.Customer.StreetName);
+            Assert.AreEqual(city, sut.Customer.City);
+            Assert.AreEqual(postalCode, sut.Customer.PostalCode);
+            Assert.AreEqual(country, sut.Customer.Country);
+            Assert.AreEqual(vatIndex, sut.Customer.VatIndex);
+            Assert.AreEqual(nationalIdentificationNumber, sut.Customer.NationalIdentificationNumber);
         }
     }
 }

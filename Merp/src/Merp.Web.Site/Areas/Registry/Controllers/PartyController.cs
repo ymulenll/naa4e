@@ -17,9 +17,8 @@ namespace Merp.Web.Site.Areas.Registry.Controllers
         public PartyController(PartyControllerWorkerServices workerServices)
         {
             if(workerServices==null)
-            {
-                throw new ArgumentNullException("workerServices");
-            }
+                throw new ArgumentNullException(nameof(workerServices));
+
             WorkerServices = workerServices;
         }
 

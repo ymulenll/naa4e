@@ -21,16 +21,16 @@ namespace Merp.Registry.CommandStack.Sagas
             
         }
 
+        public void Handle(RegisterCompanyCommand message)
+        {
+            var company = Company.Factory.CreateNewEntry(message.CompanyName, message.VatIndex);
+            Repository.Save(company);
+        }
+
         public void Handle(ChangeCompanyNameCommand message)
         {
             var company = Repository.GetById<Company>(message.CompanyId);
             company.ChangeName(message.CompanyName, message.EffectiveDate);
-            Repository.Save(company);
-        }
-
-        public void Handle(RegisterCompanyCommand message)
-        {
-            var company = Company.Factory.CreateNewEntry(message.CompanyName, message.VatIndex);
             Repository.Save(company);
         }
     }
